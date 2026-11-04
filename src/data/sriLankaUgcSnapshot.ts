@@ -72,6 +72,273 @@ export const UGC_INSTITUTIONS: InstitutionRecord[] = [
   { institution_code: 'SVIAS', ugc_letter: 'Y', name: 'Swami Vipulananda Institute of Aesthetic Studies', type: 'Institute', location: 'Kallady, Batticaloa', website: 'https://svias.esn.ac.lk', established: 2005, hostel_monthly_lkr: 1000 },
 ];
 
+
+export type OlGrade = 'A' | 'B' | 'C' | 'S' | 'W' | 'NONE';
+
+export interface OlRequirementRule {
+  course_code: string;
+  uni_codes: string[];
+  english?: 'B' | 'C' | 'S';
+  mathematics?: 'B' | 'C' | 'S';
+  science?: 'C' | 'S';
+  sinhala?: 'C';
+  sinhala_or_tamil?: 'B' | 'C';
+  alt_al_rule?: string;
+  special_note?: string;
+  short_badge: string;      // Shown directly on ProgramChanceCard
+  full_description: string; // Shown in tooltip / detail drawer / compare table & SQL
+}
+
+export const OL_REQUIREMENTS_BY_COURSE_CODE: Record<string, OlRequirementRule> = {
+  '011': {
+    course_code: '011',
+    uni_codes: ['011G'],
+    english: 'C',
+    mathematics: 'C',
+    science: 'S',
+    short_badge: 'O/L Required: English (C) · Maths (C) · Science (S)',
+    full_description: 'At least a Credit (C) pass in English, Credit (C) pass in Mathematics, and Ordinary (S) pass in Science at G.C.E. (O/L).'
+  },
+  '020': {
+    course_code: '020',
+    uni_codes: ['020S'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L) + Pass Practical/Aptitude Test.'
+  },
+  '041': {
+    course_code: '041',
+    uni_codes: ['041S'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L) + Pass Practical/Aptitude Test.'
+  },
+  '023': {
+    course_code: '023',
+    uni_codes: ['023G'],
+    english: 'S',
+    mathematics: 'C',
+    alt_al_rule: 'Or at least an Ordinary (S) pass in Mathematics at G.C.E. (A/L)',
+    short_badge: 'O/L Required: English (S) · Maths (C) (or A/L Maths S)',
+    full_description: 'At least an Ordinary (S) pass in English and a Credit (C) pass in Mathematics at G.C.E. (O/L) (unless passed G.C.E. A/L Mathematics with at least S) + Pass Aptitude Test.'
+  },
+  '024': {
+    course_code: '024',
+    uni_codes: ['024G'],
+    english: 'S',
+    mathematics: 'C',
+    science: 'C',
+    alt_al_rule: 'Or at least an Ordinary (S) pass in Mathematics at G.C.E. (A/L)',
+    short_badge: 'O/L Required: English (S) · Maths (C) · Science (C)',
+    full_description: 'At least an Ordinary (S) pass in English, Credit (C) pass in Mathematics (or A/L Maths S), and Credit (C) pass in Science at G.C.E. (O/L) + Pass Aptitude Test.'
+  },
+  '025': {
+    course_code: '025',
+    uni_codes: ['025A', '025B', '025E'],
+    english: 'C',
+    sinhala_or_tamil: 'C',
+    short_badge: 'O/L Required: English (C) + Sinhala OR Tamil (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Sinhala Language & Literature OR Tamil Language & Literature at G.C.E. (O/L).'
+  },
+  '027': {
+    course_code: '027',
+    uni_codes: ['027D'],
+    english: 'C',
+    mathematics: 'B',
+    short_badge: 'O/L Required: Maths (B) · English (C)',
+    full_description: 'At least a Very Good (B) pass in Mathematics AND at least a Credit (C) pass in English at G.C.E. (O/L).'
+  },
+  '029': {
+    course_code: '029',
+    uni_codes: ['029W'],
+    english: 'C',
+    short_badge: 'O/L Required: English (C)',
+    full_description: 'At least a Credit (C) pass in English at G.C.E. (O/L).'
+  },
+  '030': {
+    course_code: '030',
+    uni_codes: ['030G'],
+    english: 'B',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (B) · Maths (C)',
+    full_description: 'At least a Very Good (B) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '034': {
+    course_code: '034',
+    uni_codes: ['034G'],
+    english: 'C',
+    mathematics: 'C',
+    science: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C) · Science (C)',
+    full_description: 'At least a Credit (C) pass in English, Credit (C) pass in Mathematics, and Credit (C) pass in Science at G.C.E. (O/L) + Pass Aptitude Test.'
+  },
+  '037': {
+    course_code: '037',
+    uni_codes: ['037A', '037B', '037C', '037E', '037F', '037H'],
+    english: 'S',
+    special_note: 'Minimum height 4\' 10" (147.3 cm) and no physical deformity (Section 5.3 Note 1)',
+    short_badge: 'O/L Required: English (S) + Min Height 4\'10"',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L). Note 1: Candidate must be at least 4\' 10" (147.3 cm) in height without physical deformity.'
+  },
+  '038': {
+    course_code: '038',
+    uni_codes: ['038K', '038R'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '051': {
+    course_code: '051',
+    uni_codes: ['051B', '051C', '051E', '051F'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L).'
+  },
+  '052': {
+    course_code: '052',
+    uni_codes: ['052B', '052C', '052E', '052F'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L).'
+  },
+  '053': {
+    course_code: '053',
+    uni_codes: ['053B'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L).'
+  },
+  '054': {
+    course_code: '054',
+    uni_codes: ['054A', '054B'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L).'
+  },
+  '056': {
+    course_code: '056',
+    uni_codes: ['056G'],
+    english: 'C',
+    mathematics: 'C',
+    science: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C) · Science (C)',
+    full_description: 'At least a Credit (C) pass in English, Credit (C) pass in Mathematics, and Credit (C) pass in Science at G.C.E. (O/L).'
+  },
+  '075': {
+    course_code: '075',
+    uni_codes: ['075U'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '083': {
+    course_code: '083',
+    uni_codes: ['083D'],
+    english: 'S',
+    short_badge: 'O/L Required: English (S)',
+    full_description: 'At least an Ordinary (S) pass in English at G.C.E. (O/L).'
+  },
+  '091': {
+    course_code: '091',
+    uni_codes: ['091G'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '095': {
+    course_code: '095',
+    uni_codes: ['095F'],
+    english: 'C',
+    short_badge: 'O/L Required: English (C)',
+    full_description: 'At least a Credit (C) pass in English at G.C.E. (O/L).'
+  },
+  '096': {
+    course_code: '096',
+    uni_codes: ['096C', '096L', '096T'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L) + Pass Aptitude Test.'
+  },
+  '097': {
+    course_code: '097',
+    uni_codes: ['097G'],
+    english: 'S',
+    mathematics: 'C',
+    alt_al_rule: 'Or at least an Ordinary (S) pass in Mathematics at G.C.E. (A/L)',
+    short_badge: 'O/L Required: English (S) · Maths (C) (or A/L Maths S)',
+    full_description: 'At least an Ordinary (S) pass in English and a Credit (C) pass in Mathematics at G.C.E. (O/L) (or S in A/L Mathematics) + Pass Aptitude Test.'
+  },
+  '098': {
+    course_code: '098',
+    uni_codes: ['098D', '098E', '098H', '098L'],
+    english: 'B',
+    sinhala_or_tamil: 'B',
+    alt_al_rule: 'Or at least an Ordinary (S) pass in English Language (Subject 73) at G.C.E. (A/L)',
+    short_badge: 'O/L Required: English (B) + Sinhala/Tamil (B) (or A/L English S)',
+    full_description: 'At least Very Good (B) passes in English AND (Sinhala Language & Lit. OR Tamil Language & Lit.) at G.C.E. (O/L), OR at least an S pass in A/L English + Pass Aptitude Test.'
+  },
+  '107': {
+    course_code: '107',
+    uni_codes: ['107L'],
+    english: 'C',
+    mathematics: 'C',
+    science: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C) · Science (C)',
+    full_description: 'At least a Credit (C) pass in English, Credit (C) pass in Mathematics, and Credit (C) pass in Science at G.C.E. (O/L).'
+  },
+  '109': {
+    course_code: '109',
+    uni_codes: ['109G'],
+    mathematics: 'C',
+    short_badge: 'O/L Required: Maths (C)',
+    full_description: 'At least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '110': {
+    course_code: '110',
+    uni_codes: ['110D'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '128': {
+    course_code: '128',
+    uni_codes: ['128C'],
+    mathematics: 'C',
+    short_badge: 'O/L Required: Maths (C)',
+    full_description: 'At least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '132': {
+    course_code: '132',
+    uni_codes: ['132U'],
+    english: 'C',
+    mathematics: 'C',
+    short_badge: 'O/L Required: English (C) · Maths (C)',
+    full_description: 'At least a Credit (C) pass in English AND at least a Credit (C) pass in Mathematics at G.C.E. (O/L).'
+  },
+  '136': {
+    course_code: '136',
+    uni_codes: ['136L'],
+    english: 'C',
+    short_badge: 'O/L Required: English (C)',
+    full_description: 'At least a Credit (C) pass in English at G.C.E. (O/L).'
+  },
+  '137': {
+    course_code: '137',
+    uni_codes: ['137A'],
+    sinhala: 'C',
+    english: 'S',
+    mathematics: 'C',
+    science: 'C',
+    short_badge: 'O/L Required: Sinhala (C) · English (S) · Maths (C) · Science (C)',
+    full_description: 'At least a Credit (C) pass in Sinhala Language & Literature, Ordinary (S) pass in English, Credit (C) pass in Mathematics, and Credit (C) pass in Science at G.C.E. (O/L).'
+  }
+};
+
 export interface CourseRecord {
   course_code: string;
   name: string;
@@ -314,6 +581,379 @@ export const UGC_COURSES: CourseRecord[] = [
     career_category: 'IT & Computing',
   },
   {
+    course_code: '011',
+    name: 'Quantity Surveying',
+    stream: 'Physical Science',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'BSc (Hons) in Quantity Surveying',
+    subject_requirements: {
+      required_subjects: ['Combined Mathematics'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (C), Maths (C), Science (S) under Section 5.3',
+    },
+    description: 'Premier construction cost engineering and contract management degree accredited by PAQS, RICS, and AIQS.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '020',
+    name: 'Arts (SP) - Mass Media',
+    stream: 'Arts',
+    faculty: 'Sri Palee Campus',
+    degree_awarded: 'BA (Special) in Mass Media',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) + Pass Sripalee Practical/Aptitude Test',
+    },
+    description: 'Specialized 3-year media arts degree focusing on journalism, broadcast television, digital media production, and mass communication.',
+    career_category: 'Arts & Media',
+  },
+  {
+    course_code: '041',
+    name: 'Arts (SP) - Performing Arts',
+    stream: 'Arts',
+    faculty: 'Sri Palee Campus',
+    degree_awarded: 'BPA (Special) in Performing Arts',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) + Pass Sripalee Practical/Aptitude Test',
+    },
+    description: 'Four-year specialized degree in theatre, film, dance, and creative performance direction.',
+    career_category: 'Arts & Media',
+  },
+  {
+    course_code: '023',
+    name: 'Architecture',
+    stream: 'Other',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'B.Arch (Hons)',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (S), Maths (C) + Moratuwa Architecture Aptitude Test',
+    },
+    description: 'Five-year professional architectural degree accredited by the Sri Lanka Institute of Architects (SLIA) and RIBA.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '024',
+    name: 'Design',
+    stream: 'Other',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'B.Des (Hons)',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (S), Maths (C), Science (C) + Aptitude Test',
+    },
+    description: 'Four-year industrial, graphic, and spatial design honours degree at Moratuwa.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '025',
+    name: 'Law',
+    stream: 'Arts',
+    faculty: 'Faculty of Law',
+    degree_awarded: 'Bachelor of Laws (LLB Hons)',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C) + Sinhala or Tamil (C) at G.C.E. O/L under Section 5.3',
+    },
+    description: 'Four-year professional legal education qualifying graduates for direct admission to the Sri Lanka Law College Final Examination.',
+    career_category: 'Law & Public Policy',
+  },
+  {
+    course_code: '027',
+    name: 'Management and Information Technology (MIT)',
+    stream: 'Physical Science',
+    faculty: 'Faculty of Science',
+    degree_awarded: 'BSc (Hons) in MIT',
+    subject_requirements: {
+      required_subjects: ['Combined Mathematics', 'Physics'],
+      min_grade: 'S',
+      notes: 'Requires O/L Mathematics (B) and English (C) under Section 5.3',
+    },
+    description: 'Elite 4-year degree bridging computer science, corporate information systems, enterprise architecture, and quantitative management.',
+    career_category: 'IT & Computing',
+  },
+  {
+    course_code: '029',
+    name: 'Communication Studies',
+    stream: 'Arts',
+    faculty: 'Faculty of Communication and Business Studies',
+    degree_awarded: 'BA in Communication Studies',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C)',
+    },
+    description: 'Intercultural communication, public relations, television production, and digital journalism at Eastern University Trincomalee Campus.',
+    career_category: 'Arts & Media',
+  },
+  {
+    course_code: '030',
+    name: 'Urban Informatics and Planning',
+    stream: 'Other',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'BSc (Hons) in Town & Country Planning',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (B) and Maths (C) under Section 5.3',
+    },
+    description: 'Four-year spatial data analysis, smart city informatics, urban GIS, and territorial planning degree.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '034',
+    name: 'Fashion Design & Product Development',
+    stream: 'Other',
+    faculty: 'Faculty of Engineering',
+    degree_awarded: 'B.Des (Hons) in Fashion Design',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C), Maths (C), Science (C) + Moratuwa Aptitude Test',
+    },
+    description: 'World-renowned 4-year apparel engineering, sustainable fashion design, and global supply chain innovation program.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '037',
+    name: 'Nursing',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Allied Health Sciences',
+    degree_awarded: 'BSc (Hons) in Nursing',
+    subject_requirements: {
+      required_subjects: ['Biology', 'Chemistry'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) + Minimum height 4ft 10in (Section 5.3)',
+    },
+    description: 'Four-year professional clinical nursing degree qualifying graduates for SLMC/SLNC registration as Nursing Officers.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '051',
+    name: 'Pharmacy',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Allied Health Sciences',
+    degree_awarded: 'B.Pharm (Hons)',
+    subject_requirements: {
+      required_subjects: ['Biology', 'Chemistry'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) under Section 5.3',
+    },
+    description: 'Four-year clinical pharmacy, pharmaceutical formulation, and pharmacology honours degree.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '052',
+    name: 'Medical Laboratory Sciences',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Allied Health Sciences',
+    degree_awarded: 'BSc (Hons) in MLS',
+    subject_requirements: {
+      required_subjects: ['Biology', 'Chemistry'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) under Section 5.3',
+    },
+    description: 'Diagnostic pathology, haematology, clinical biochemistry, and molecular biology medical laboratory degree.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '053',
+    name: 'Radiography',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Allied Health Sciences',
+    degree_awarded: 'BSc (Hons) in Radiography',
+    subject_requirements: {
+      required_subjects: ['Biology', 'Physics'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) under Section 5.3',
+    },
+    description: 'Medical imaging, CT, MRI, ultrasound, and radiotherapy technology clinical degree.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '054',
+    name: 'Physiotherapy',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Allied Health Sciences',
+    degree_awarded: 'BSc (Hons) in Physiotherapy',
+    subject_requirements: {
+      required_subjects: ['Biology', 'Physics'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) under Section 5.3',
+    },
+    description: 'Musculoskeletal rehabilitation, neurological physiotherapy, and sports medicine clinical honours degree.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '056',
+    name: 'Facilities Management',
+    stream: 'Other',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'BSc (Hons) in Facilities Management',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C), Maths (C), Science (C)',
+    },
+    description: 'High-earning 4-year degree managing commercial corporate real estate, energy systems, and built asset infrastructure.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '075',
+    name: 'Industrial Information Technology',
+    stream: 'Other',
+    faculty: 'Faculty of Applied Sciences',
+    degree_awarded: 'B.Tech (Hons) in IIT',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C) and Maths (C)',
+    },
+    description: 'Four-year technology degree in embedded systems, industrial robotics, enterprise software, and smart factory IoT.',
+    career_category: 'IT & Computing',
+  },
+  {
+    course_code: '083',
+    name: 'Speech and Hearing Sciences',
+    stream: 'Biological Science',
+    faculty: 'Faculty of Medicine',
+    degree_awarded: 'BSc (Hons) in SHS',
+    subject_requirements: {
+      required_subjects: ['Biology'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (S) under Section 5.3',
+    },
+    description: 'Audiology and speech-language therapy clinical degree at University of Kelaniya Ragama Medical Faculty.',
+    career_category: 'Medicine & Allied Health',
+  },
+  {
+    course_code: '091',
+    name: 'Information Technology & Management',
+    stream: 'Other',
+    faculty: 'Faculty of Information Technology',
+    degree_awarded: 'BSc (Hons) in IT & M',
+    subject_requirements: {
+      min_grade: 'C',
+      notes: 'Requires O/L English (C) and Maths (C) under Section 5.3',
+    },
+    description: 'Moratuwa IT faculty flagship blending software engineering with tech entrepreneurship and corporate product leadership.',
+    career_category: 'IT & Computing',
+  },
+  {
+    course_code: '095',
+    name: 'Green Technology',
+    stream: 'Technology',
+    faculty: 'Faculty of Technology',
+    degree_awarded: 'B.Tech (Hons) in Green Technology',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C)',
+    },
+    description: 'Renewable energy, circular economy, waste valorization, and sustainable environmental technology honours program at Ruhuna.',
+    career_category: 'Engineering & Tech',
+  },
+  {
+    course_code: '097',
+    name: 'Landscape Architecture',
+    stream: 'Other',
+    faculty: 'Faculty of Architecture',
+    degree_awarded: 'B.LA (Hons)',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (S), Maths (C) + Aptitude Test',
+    },
+    description: 'Four-year landscape urbanism, ecological design, and urban open space architecture degree at Moratuwa.',
+    career_category: 'Built Environment',
+  },
+  {
+    course_code: '098',
+    name: 'Translation Studies',
+    stream: 'Arts',
+    faculty: 'Faculty of Humanities',
+    degree_awarded: 'BA (Hons) in Translation Studies',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (B) + Sinhala or Tamil (B) + Aptitude Test',
+    },
+    description: 'High-demand trilingual professional translation, conference interpretation, and computational linguistics honours degree.',
+    career_category: 'Arts & Media',
+  },
+  {
+    course_code: '107',
+    name: 'Food Business Management',
+    stream: 'Commerce',
+    faculty: 'Faculty of Agricultural Sciences',
+    degree_awarded: 'BSc (Hons) in Food Business Management',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C), Maths (C), Science (C)',
+    },
+    description: 'Four-year degree at Sabaragamuwa University in agri-food supply chains, commercial food processing, and food trade economics.',
+    career_category: 'Agriculture & Food Science',
+  },
+  {
+    course_code: '109',
+    name: 'Business Science',
+    stream: 'Commerce',
+    faculty: 'Faculty of Business',
+    degree_awarded: 'BBSc (Hons)',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L Mathematics (C) under Section 5.3',
+    },
+    description: 'Moratuwa business analytics, financial engineering, actuarial mathematics, and quantitative supply chain modeling degree.',
+    career_category: 'Business & Finance',
+  },
+  {
+    course_code: '110',
+    name: 'Financial Engineering',
+    stream: 'Physical Science',
+    faculty: 'Faculty of Science',
+    degree_awarded: 'BSc (Hons) in Financial Engineering',
+    subject_requirements: {
+      required_subjects: ['Combined Mathematics'],
+      min_grade: 'S',
+      notes: 'Requires O/L English (C) and Maths (C)',
+    },
+    description: 'Quantitative computational finance, stochastic calculus, derivatives pricing, and algorithmic trading at Kelaniya.',
+    career_category: 'Business & Finance',
+  },
+  {
+    course_code: '128',
+    name: 'Arts - Information Technology',
+    stream: 'Arts',
+    faculty: 'Faculty of Humanities and Social Sciences',
+    degree_awarded: 'BA (Hons) in Information Technology',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L Mathematics (C) under Section 5.3',
+    },
+    description: 'Bridging digital humanities, human-computer interaction, web technologies, and computational social sciences at Sri Jayewardenepura.',
+    career_category: 'IT & Computing',
+  },
+  {
+    course_code: '132',
+    name: 'English Language & Applied Linguistics',
+    stream: 'Arts',
+    faculty: 'Faculty of Applied Sciences',
+    degree_awarded: 'BA (Hons) in English & Applied Linguistics',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L English (C) and Maths (C)',
+    },
+    description: 'Applied linguistics, computational discourse analysis, TESL, and corporate communication at Uva Wellassa University.',
+    career_category: 'Arts & Media',
+  },
+  {
+    course_code: '137',
+    name: 'Primary Education',
+    stream: 'Arts',
+    faculty: 'Faculty of Education',
+    degree_awarded: 'B.Ed (Hons) in Primary Education',
+    subject_requirements: {
+      min_grade: 'S',
+      notes: 'Requires O/L Sinhala (C), English (S), Maths (C), Science (C)',
+    },
+    description: 'Professional 4-year early childhood education and primary pedagogical leadership degree at University of Colombo.',
+    career_category: 'Arts & Media',
+  },
+  {
     course_code: '140',
     name: 'Service Management',
     stream: 'Other',
@@ -341,9 +981,65 @@ export interface AdmissionOptionSeed {
   nqc_districts?: number[];
   requires_ol_special?: boolean;
   is_suspended?: boolean;
+  ol_rule?: OlRequirementRule | null;
+  ol_requirements_text?: string | null;
+  ol_short_badge?: string | null;
 }
 
 export const ADMISSION_OPTIONS_SEED: AdmissionOptionSeed[] = [
+
+  // --- Section 5.3 Specific Admission Options Seed ---
+  { uni_code: '011G', course_code: '011', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 155, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5240, requires_ol_special: true },
+  { uni_code: '020S', course_code: '020', institution_code: 'SPC', duration_years: 3, medium: ['E', 'S'], proposed_intake: 95, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.2150, requires_ol_special: true },
+  { uni_code: '041S', course_code: '041', institution_code: 'SPC', duration_years: 4, medium: ['S'], proposed_intake: 80, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.1540, requires_ol_special: true },
+  { uni_code: '023G', course_code: '023', institution_code: 'UOM', duration_years: 5, medium: ['E'], proposed_intake: 75, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.6210, requires_ol_special: true },
+  { uni_code: '024G', course_code: '024', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4890, requires_ol_special: true },
+  { uni_code: '025A', course_code: '025', institution_code: 'UOC', duration_years: 4, medium: ['E', 'S', 'T'], proposed_intake: 260, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.9420, requires_ol_special: true },
+  { uni_code: '025B', course_code: '025', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 110, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.8650, requires_ol_special: true },
+  { uni_code: '025E', course_code: '025', institution_code: 'UOJ', duration_years: 4, medium: ['E', 'T'], proposed_intake: 120, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.7450, requires_ol_special: true },
+  { uni_code: '027D', course_code: '027', institution_code: 'UOK', duration_years: 4, medium: ['E'], proposed_intake: 80, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.7120, requires_ol_special: true },
+  { uni_code: '029W', course_code: '029', institution_code: 'TC', duration_years: 3, medium: ['E'], proposed_intake: 85, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3450, requires_ol_special: true },
+  { uni_code: '030G', course_code: '030', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4850, requires_ol_special: true },
+  { uni_code: '034G', course_code: '034', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 55, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4250, requires_ol_special: true },
+  { uni_code: '037A', course_code: '037', institution_code: 'UOC', duration_years: 4, medium: ['E'], proposed_intake: 125, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5850, requires_ol_special: true },
+  { uni_code: '037B', course_code: '037', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 110, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5120, requires_ol_special: true },
+  { uni_code: '037C', course_code: '037', institution_code: 'USJP', duration_years: 4, medium: ['E'], proposed_intake: 95, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5450, requires_ol_special: true },
+  { uni_code: '037E', course_code: '037', institution_code: 'UOJ', duration_years: 4, medium: ['E'], proposed_intake: 90, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3980, requires_ol_special: true },
+  { uni_code: '037F', course_code: '037', institution_code: 'UOR', duration_years: 4, medium: ['E'], proposed_intake: 100, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4650, requires_ol_special: true },
+  { uni_code: '037H', course_code: '037', institution_code: 'EUSL', duration_years: 4, medium: ['E'], proposed_intake: 75, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3850, requires_ol_special: true },
+  { uni_code: '038K', course_code: '038', institution_code: 'RUSL', duration_years: 3, medium: ['E'], proposed_intake: 120, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4520, requires_ol_special: true },
+  { uni_code: '038R', course_code: '038', institution_code: 'UOV', duration_years: 3, medium: ['E'], proposed_intake: 95, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3420, requires_ol_special: true },
+  { uni_code: '051B', course_code: '051', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 65, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6450, requires_ol_special: true },
+  { uni_code: '051C', course_code: '051', institution_code: 'USJP', duration_years: 4, medium: ['E'], proposed_intake: 70, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6850, requires_ol_special: true },
+  { uni_code: '051E', course_code: '051', institution_code: 'UOJ', duration_years: 4, medium: ['E'], proposed_intake: 55, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5120, requires_ol_special: true },
+  { uni_code: '051F', course_code: '051', institution_code: 'UOR', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5950, requires_ol_special: true },
+  { uni_code: '052B', course_code: '052', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6120, requires_ol_special: true },
+  { uni_code: '052C', course_code: '052', institution_code: 'USJP', duration_years: 4, medium: ['E'], proposed_intake: 65, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6450, requires_ol_special: true },
+  { uni_code: '052E', course_code: '052', institution_code: 'UOJ', duration_years: 4, medium: ['E'], proposed_intake: 50, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4850, requires_ol_special: true },
+  { uni_code: '052F', course_code: '052', institution_code: 'UOR', duration_years: 4, medium: ['E'], proposed_intake: 55, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5650, requires_ol_special: true },
+  { uni_code: '053B', course_code: '053', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 55, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5890, requires_ol_special: true },
+  { uni_code: '054A', course_code: '054', institution_code: 'UOC', duration_years: 4, medium: ['E'], proposed_intake: 50, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6250, requires_ol_special: true },
+  { uni_code: '054B', course_code: '054', institution_code: 'UOP', duration_years: 4, medium: ['E'], proposed_intake: 50, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5840, requires_ol_special: true },
+  { uni_code: '056G', course_code: '056', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4650, requires_ol_special: true },
+  { uni_code: '075U', course_code: '075', institution_code: 'UWU', duration_years: 4, medium: ['E'], proposed_intake: 85, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4120, requires_ol_special: true },
+  { uni_code: '083D', course_code: '083', institution_code: 'UOK', duration_years: 4, medium: ['E'], proposed_intake: 45, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.5420, requires_ol_special: true },
+  { uni_code: '091G', course_code: '091', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 75, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.7850, requires_ol_special: true },
+  { uni_code: '095F', course_code: '095', institution_code: 'UOR', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3850, requires_ol_special: true },
+  { uni_code: '096C', course_code: '096', institution_code: 'USJP', duration_years: 3, medium: ['E'], proposed_intake: 90, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.6240, requires_ol_special: true },
+  { uni_code: '096L', course_code: '096', institution_code: 'SUSL', duration_years: 3, medium: ['E'], proposed_intake: 75, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4850, requires_ol_special: true },
+  { uni_code: '096T', course_code: '096', institution_code: 'UCSC', duration_years: 3, medium: ['E'], proposed_intake: 95, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.6950, requires_ol_special: true },
+  { uni_code: '097G', course_code: '097', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 45, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4120, requires_ol_special: true },
+  { uni_code: '098D', course_code: '098', institution_code: 'UOK', duration_years: 4, medium: ['E', 'S'], proposed_intake: 55, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4950, requires_ol_special: true },
+  { uni_code: '098E', course_code: '098', institution_code: 'UOJ', duration_years: 4, medium: ['E', 'T'], proposed_intake: 50, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.3650, requires_ol_special: true },
+  { uni_code: '098H', course_code: '098', institution_code: 'EUSL', duration_years: 4, medium: ['E', 'T'], proposed_intake: 45, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.3250, requires_ol_special: true },
+  { uni_code: '098L', course_code: '098', institution_code: 'SUSL', duration_years: 4, medium: ['E', 'S'], proposed_intake: 50, aptitude_test_required: true, all_island_merit_only: false, colombo_base_z: 1.4120, requires_ol_special: true },
+  { uni_code: '107L', course_code: '107', institution_code: 'SUSL', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3450, requires_ol_special: true },
+  { uni_code: '109G', course_code: '109', institution_code: 'UOM', duration_years: 4, medium: ['E'], proposed_intake: 65, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6450, requires_ol_special: true },
+  { uni_code: '110D', course_code: '110', institution_code: 'UOK', duration_years: 4, medium: ['E'], proposed_intake: 60, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.6850, requires_ol_special: true },
+  { uni_code: '128C', course_code: '128', institution_code: 'USJP', duration_years: 3, medium: ['E', 'S'], proposed_intake: 75, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.4250, requires_ol_special: true },
+  { uni_code: '132U', course_code: '132', institution_code: 'UWU', duration_years: 4, medium: ['E'], proposed_intake: 65, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3850, requires_ol_special: true },
+  { uni_code: '137A', course_code: '137', institution_code: 'UOC', duration_years: 4, medium: ['S'], proposed_intake: 70, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.3120, requires_ol_special: true },
+
   // Medicine (001) - Official UGC Letters: A=UOC, B=UOP, C=USJP, D=UOK, E=UOJ, F=UOR, G=UOM, H=EUSL, K=RUSL, L=SUSL, M=WUSL, U=UWU
   { uni_code: '001A', course_code: '001', institution_code: 'UOC', duration_years: 5, medium: ['E'], proposed_intake: 215, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 2.4125, requires_ol_special: true },
   { uni_code: '001B', course_code: '001', institution_code: 'UOP', duration_years: 5, medium: ['E'], proposed_intake: 220, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 2.2450, requires_ol_special: true },
@@ -481,6 +1177,9 @@ export interface ProgramCutoffViewRow {
   all_island_max_z: number;
   requires_ol_special?: boolean;
   is_suspended?: boolean;
+  ol_rule?: OlRequirementRule | null;
+  ol_requirements_text?: string | null;
+  ol_short_badge?: string | null;
 }
 
 export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCutoffViewRow[] {
@@ -522,8 +1221,11 @@ export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCu
       status: isNqc ? 'NQC' : 'QUALIFIED',
       all_island_min_z: Number((opt.colombo_base_z - 0.24).toFixed(4)),
       all_island_max_z: opt.colombo_base_z,
-      requires_ol_special: opt.requires_ol_special ?? false,
+      requires_ol_special: Boolean(OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code]) || (opt.requires_ol_special ?? false),
       is_suspended: opt.is_suspended ?? false,
+      ol_rule: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code] ?? null,
+      ol_requirements_text: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code]?.full_description ?? null,
+      ol_short_badge: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code]?.short_badge ?? null,
     };
   });
 }
@@ -1039,6 +1741,7 @@ export interface NonStatePathway {
   study_mode: ('FULL_TIME_WEEKDAY' | 'WEEKEND_PART_TIME' | 'DISTANCE_ONLINE')[];
   tuition_band: 'FREE_STATE' | 'IFSLS_ZERO_UPFRONT' | 'UNDER_500K' | '500K_TO_1_5M' | '1_5M_TO_3_5M';
   total_fee_lkr: number;
+  ol_requirement_badge?: string;
   has_merit_scholarship: boolean;
   has_internship: boolean;
   foreign_partner: string | null;
@@ -1070,6 +1773,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY', 'WEEKEND_PART_TIME'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 2850000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths & English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: null,
@@ -1099,6 +1803,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: '1_5M_TO_3_5M',
     total_fee_lkr: 3600000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Science & Maths',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: null,
@@ -1128,6 +1833,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY', 'WEEKEND_PART_TIME'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 2200000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths or English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: null,
@@ -1157,6 +1863,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 2200000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths & English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: 'Plymouth University (UK)',
@@ -1186,6 +1893,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 1950000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths or English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: 'Victoria University (Australia)',
@@ -1215,6 +1923,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: '1_5M_TO_3_5M',
     total_fee_lkr: 2400000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Science & English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: null,
@@ -1244,6 +1953,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: '1_5M_TO_3_5M',
     total_fee_lkr: 3400000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths & English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: 'University of Westminster (UK)',
@@ -1273,6 +1983,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: '1_5M_TO_3_5M',
     total_fee_lkr: 3200000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Maths & English',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: 'Robert Gordon University (UK)',
@@ -1302,6 +2013,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'UNDER_500K',
     total_fee_lkr: 480000,
+    ol_requirement_badge: 'O/L: 5 Passes incl. Ordinary (S) in English & Maths',
     has_merit_scholarship: false,
     has_internship: false,
     foreign_partner: 'University of Westminster (UK)',
@@ -1331,6 +2043,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 2600000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in Science & Maths',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: 'Wolverhampton University (UK)',
@@ -1360,6 +2073,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'IFSLS_ZERO_UPFRONT',
     total_fee_lkr: 1850000,
+    ol_requirement_badge: 'O/L: 6 Passes incl. Credit (C) in English & Maths',
     has_merit_scholarship: true,
     has_internship: true,
     foreign_partner: null,
@@ -1389,6 +2103,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['DISTANCE_ONLINE', 'WEEKEND_PART_TIME'],
     tuition_band: 'UNDER_500K',
     total_fee_lkr: 440000,
+    ol_requirement_badge: 'O/L: 6 Passes with 3 A/L Passes or Foundation',
     has_merit_scholarship: false,
     has_internship: true,
     foreign_partner: null,
@@ -1418,6 +2133,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY', 'WEEKEND_PART_TIME'],
     tuition_band: 'FREE_STATE',
     total_fee_lkr: 0,
+    ol_requirement_badge: 'O/L: 6 Passes with 3 A/L Passes or NVQ Level 5',
     has_merit_scholarship: false,
     has_internship: true,
     foreign_partner: null,
@@ -1447,6 +2163,7 @@ export const NON_STATE_IFSLS_PATHWAYS: NonStatePathway[] = [
     study_mode: ['FULL_TIME_WEEKDAY'],
     tuition_band: 'FREE_STATE',
     total_fee_lkr: 0,
+    ol_requirement_badge: 'O/L: 6 Passes with Ordinary (S) in English & Maths',
     has_merit_scholarship: false,
     has_internship: true,
     foreign_partner: null,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Plus, Check, Scale, AlertTriangle, Globe, Users, Clock, BookOpen, ChevronRight, ShieldCheck } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { ProgramCutoffViewRow } from '../data/sriLankaUgcSnapshot';
-import { classifyProgramMatch } from '../lib/ugcLogic';
+import { classifyProgramMatch, evaluateOlEligibility, type StudentOlGrades } from '../lib/ugcLogic';
 
 const MEDIUM_LABELS: Record<string, string> = {
   E: 'English',
@@ -13,7 +13,8 @@ const MEDIUM_LABELS: Record<string, string> = {
 export const ProgramChanceCard: React.FC<{
   program: ProgramCutoffViewRow;
   studentZ?: number | null;
-}> = ({ program, studentZ }) => {
+  studentOlGrades?: StudentOlGrades;
+}> = ({ program, studentZ, studentOlGrades }) => {
   const {
     planEntries,
     addToPlan,
@@ -34,6 +35,20 @@ export const ProgramChanceCard: React.FC<{
 
   const isInPlan = planEntries.some((p) => p.uni_code === program.uni_code);
   const isInCompare = compareList.includes(program.uni_code);
+  const olEvaluation = React.useMemo(() => {
+    if (!program.requires_ol_special || !studentOlGrades) return null;
+    const hasAnyOl = Boolean(
+      (studentOlGrades.english && studentOlGrades.english !== 'NONE') ||
+      (studentOlGrades.mathematics && studentOlGrades.mathematics !== 'NONE') ||
+      (studentOlGrades.science && studentOlGrades.science !== 'NONE') ||
+      (studentOlGrades.sinhala && studentOlGrades.sinhala !== 'NONE') ||
+      (studentOlGrades.tamil && studentOlGrades.tamil !== 'NONE') ||
+      (studentOlGrades.sinhalaOrTamil && studentOlGrades.sinhalaOrTamil !== 'NONE')
+    );
+    if (!hasAnyOl) return null;
+    return evaluateOlEligibility(studentOlGrades, program.ol_rule);
+  }, [program.requires_ol_special, program.ol_rule, studentOlGrades]);
+
 
   // Consolidated Cutoff Pill (Anchor 2)
   const renderCutoffPill = () => {
@@ -104,8 +119,8 @@ export const ProgramChanceCard: React.FC<{
           <span>{program.institution_location}</span>
         </p>
 
-        {/* Key Practical Requirements Alert Line (Consolidated) */}
-        {(program.is_suspended || program.aptitude_test_required || program.requires_ol_special) && (
+        {/* Key Practical Requirements Alert Line */}
+        {(program.is_suspended || program.aptitude_test_required) && (
           <div className="flex flex-wrap gap-1.5 mt-3 text-xs">
             {program.is_suspended && (
               <span className="px-2 py-0.5 rounded-md bg-rose-100 text-rose-900 font-bold border border-rose-300">
@@ -118,29 +133,53 @@ export const ProgramChanceCard: React.FC<{
                 Aptitude Test Required
               </span>
             )}
-            {program.requires_ol_special && (
-              <span
-                title="Special O/L Credit Pass Required under UGC Handbook Section 5.3"
-                className="px-2 py-0.5 rounded-md bg-purple-100 text-purple-950 font-bold border border-purple-300 cursor-help"
-              >
-                📋 Section 5.3 O/L Prerequisite
+          </div>
+        )}
+
+        {/* Section 5.3 G.C.E. (O/L) Requirements Box */}
+        {program.requires_ol_special && (
+          <div className="mt-3 p-2.5 rounded-xl bg-purple-50/70 border border-purple-200/90 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-1.5">
+              <span className="font-bold text-purple-950 text-[11px] font-mono">
+                📋 {program.ol_short_badge || 'Section 5.3 O/L Prerequisite'}
               </span>
+              {olEvaluation && (
+                olEvaluation.meetsOl ? (
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-300 inline-flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-700" />
+                    Your O/L Grades Qualify
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-rose-100 text-rose-900 border border-rose-300 inline-flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3 text-rose-700" />
+                    Missing: {olEvaluation.missingOlSubjects.join(' · ')}
+                  </span>
+                )
+              )}
+            </div>
+            {program.ol_requirements_text && (
+              <p className="text-[11px] text-purple-900/90 mt-1 leading-snug">
+                {program.ol_requirements_text}
+              </p>
             )}
           </div>
         )}
 
         {/* Factual Cutoff Comparison (When official Z is provided) */}
         {studentZ !== undefined && studentZ !== null && match.effectiveCutoff !== null && (
-          <div className="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs">
-            <div className="flex items-center justify-between font-mono">
+          <div className="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
+            <div className="flex flex-wrap items-center justify-between font-mono text-xs">
               <span className="text-slate-600">Your Z: <strong>{studentZ.toFixed(4)}</strong></span>
               <span className="font-bold">
-                Margin:{' '}
+                Diff vs 2024/25 Cutoff:{' '}
                 <span className={match.margin !== null && match.margin >= 0 ? 'text-emerald-700' : 'text-amber-700'}>
                   {match.margin !== null && match.margin >= 0 ? `+${match.margin.toFixed(4)}` : match.margin?.toFixed(4)}
                 </span>
               </span>
             </div>
+            <p className="text-[10px] text-slate-500 italic">
+              Historical 2024/2025 UGC cutoff for reference only; official cutoffs vary each admission year.
+            </p>
           </div>
         )}
 

@@ -1,3 +1,4 @@
+import type { OlGrade, OlRequirementRule } from '../data/sriLankaUgcSnapshot';
 export type ALGrade = 'A' | 'B' | 'C' | 'S' | 'F';
 export type ChanceTier =
   | 'ABOVE_LAST_CUTOFF'
@@ -247,4 +248,105 @@ export function checkSubjectEligibility(
   }
 
   return { eligible: true, reason: 'Meets 3-subject and Common General Test requirements.' };
+}
+
+export type { OlGrade, OlRequirementRule };
+
+export const OL_GRADE_RANK: Record<OlGrade, number> = {
+  A: 5,
+  B: 4,
+  C: 3,
+  S: 2,
+  W: 1,
+  NONE: 0,
+};
+
+export interface StudentOlGrades {
+  english?: OlGrade;
+  mathematics?: OlGrade;
+  science?: OlGrade;
+  sinhala?: OlGrade;
+  tamil?: OlGrade;
+  sinhalaOrTamil?: OlGrade;
+}
+
+export interface OlEligibilityResult {
+  meetsOl: boolean;
+  missingOlSubjects: string[];
+  olRule: OlRequirementRule | null;
+}
+
+/**
+ * Section 5.3 G.C.E. (O/L) Requirements Evaluator
+ * Compares a student's O/L subject letter grades against published UGC handbook criteria.
+ */
+export function evaluateOlEligibility(
+  studentOl: StudentOlGrades,
+  rule?: OlRequirementRule | null
+): OlEligibilityResult {
+  if (!rule) {
+    return { meetsOl: true, missingOlSubjects: [], olRule: null };
+  }
+
+  const missing: string[] = [];
+
+  // English check
+  if (rule.english) {
+    const studentGrade = studentOl.english ?? 'NONE';
+    const reqRank = OL_GRADE_RANK[rule.english];
+    const stuRank = OL_GRADE_RANK[studentGrade];
+    if (stuRank < reqRank) {
+      missing.push(`English: ${rule.english} (You have ${studentGrade === 'NONE' ? 'None' : studentGrade})`);
+    }
+  }
+
+  // Mathematics check
+  if (rule.mathematics) {
+    const studentGrade = studentOl.mathematics ?? 'NONE';
+    const reqRank = OL_GRADE_RANK[rule.mathematics];
+    const stuRank = OL_GRADE_RANK[studentGrade];
+    if (stuRank < reqRank) {
+      missing.push(`Maths: ${rule.mathematics} (You have ${studentGrade === 'NONE' ? 'None' : studentGrade})`);
+    }
+  }
+
+  // Science check
+  if (rule.science) {
+    const studentGrade = studentOl.science ?? 'NONE';
+    const reqRank = OL_GRADE_RANK[rule.science];
+    const stuRank = OL_GRADE_RANK[studentGrade];
+    if (stuRank < reqRank) {
+      missing.push(`Science: ${rule.science} (You have ${studentGrade === 'NONE' ? 'None' : studentGrade})`);
+    }
+  }
+
+  // Sinhala check (e.g. Course 137 Primary Education)
+  if (rule.sinhala) {
+    const studentGrade = studentOl.sinhala ?? studentOl.sinhalaOrTamil ?? 'NONE';
+    const reqRank = OL_GRADE_RANK[rule.sinhala];
+    const stuRank = OL_GRADE_RANK[studentGrade];
+    if (stuRank < reqRank) {
+      missing.push(`Sinhala: ${rule.sinhala} (You have ${studentGrade === 'NONE' ? 'None' : studentGrade})`);
+    }
+  }
+
+  // Sinhala OR Tamil check (e.g. Courses 025 Law, 098 Translation Studies)
+  if (rule.sinhala_or_tamil) {
+    const studentSinhala = studentOl.sinhala ?? studentOl.sinhalaOrTamil ?? 'NONE';
+    const studentTamil = studentOl.tamil ?? studentOl.sinhalaOrTamil ?? 'NONE';
+    const reqRank = OL_GRADE_RANK[rule.sinhala_or_tamil];
+    const sinhalaRank = OL_GRADE_RANK[studentSinhala];
+    const tamilRank = OL_GRADE_RANK[studentTamil];
+    if (sinhalaRank < reqRank && tamilRank < reqRank) {
+      const best = Math.max(sinhalaRank, tamilRank);
+      const bestGrade = (Object.keys(OL_GRADE_RANK) as OlGrade[]).find((k) => OL_GRADE_RANK[k] === best) ?? 'NONE';
+      missing.push(`Sinhala or Tamil: ${rule.sinhala_or_tamil} (You have ${bestGrade === 'NONE' ? 'None' : bestGrade})`);
+    }
+  }
+
+  return {
+    meetsOl: missing.length === 0,
+    missingOlSubjects: missing,
+    olRule: rule,
+  };
 }

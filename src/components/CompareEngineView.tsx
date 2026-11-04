@@ -293,24 +293,28 @@ export const CompareEngineView: React.FC = () => {
               </tr>
             )}
 
-            {/* Special O/L Prerequisite */}
+            {/* Special O/L Prerequisite (Section 5.3) */}
             {(!highlightDiffsOnly || !rowsSame((p) => String(p.requires_ol_special))) && (
               <tr>
                 <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Special O/L Credit (Section 5.3)
+                  G.C.E. (O/L) Requirements (Section 5.3)
                 </td>
                 {comparedPrograms.map((p) => (
                   <td key={p.uni_code} className="p-4 border-r border-slate-100">
                     {p.requires_ol_special ? (
-                      <span
-                        title="Special O/L Credit Required: Requires specific credit passes in English, Mathematics, or Science per Section 5.3 of UGC Handbook."
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-violet-100 text-violet-900 text-xs font-semibold cursor-help"
-                      >
-                        📋 Required (Sec 5.3)
-                      </span>
+                      <div className="space-y-1.5">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-purple-100 text-purple-950 text-xs font-bold font-mono">
+                          📋 {p.ol_short_badge || 'Section 5.3 O/L Prerequisite'}
+                        </span>
+                        {p.ol_requirements_text && (
+                          <p className="text-[11px] text-slate-700 leading-snug">
+                            {p.ol_requirements_text}
+                          </p>
+                        )}
+                      </div>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">
-                        Standard G.C.E. O/L Pass
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">
+                        Standard 6 O/L Passes (No Special Subject Credit)
                       </span>
                     )}
                   </td>

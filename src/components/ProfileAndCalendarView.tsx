@@ -366,6 +366,29 @@ export const InstitutionAndCourseProfileView: React.FC<{ mode: 'institution' | '
               )}
             </div>
 
+            {activeProgram.requires_ol_special && (
+              <div className="col-span-full p-4 rounded-xl bg-amber-50/80 border border-amber-300 text-amber-950 space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-extrabold text-sm text-amber-900">
+                    📋 G.C.E. (O/L) Requirements (Handbook Section 5.3, pp. 149–150):
+                  </span>
+                  {activeProgram.ol_short_badge && (
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-200/90 text-amber-900 border border-amber-300">
+                      {activeProgram.ol_short_badge}
+                    </span>
+                  )}
+                </div>
+                {activeProgram.ol_requirements_text && (
+                  <p className="text-xs sm:text-sm leading-relaxed text-amber-950 font-medium">
+                    {activeProgram.ol_requirements_text}
+                  </p>
+                )}
+                <p className="text-xs text-amber-800">
+                  ⚠️ Note: A certified true copy of your G.C.E. (O/L) certificate must be attached to the postal application (or verified online) for this course code.
+                </p>
+              </div>
+            )}
+
             <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200 space-y-2">
               <h3 className="font-extrabold text-amber-950">
                 General UGC National Admission Rules

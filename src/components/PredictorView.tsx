@@ -34,12 +34,16 @@ import {
   NON_STATE_IFSLS_PATHWAYS,
   type NonStatePathway,
   type ProgramCutoffViewRow,
+  type OlRequirementRule,
 } from '../data/sriLankaUgcSnapshot';
 import {
   checkSubjectEligibility,
   checkSubjectCombinationEligibility,
   classifyProgramMatch,
+  evaluateOlEligibility,
   type ALGrade,
+  type OlGrade,
+  type StudentOlGrades,
 } from '../lib/ugcLogic';
 import { ProgramChanceCard } from './ProgramChanceCard';
 
@@ -84,6 +88,9 @@ export interface UnifiedDiscoveryItem {
   accreditations: string[];
   aptitudeRequired: boolean;
   requiresOlSpecial: boolean;
+  olRule?: OlRequirementRule | null;
+  olRequirementsText?: string | null;
+  olShortBadge?: string | null;
   hasInternship: boolean;
   hasMeritScholarship: boolean;
   hasHostel: boolean;
@@ -338,7 +345,17 @@ export const PredictorView: React.FC = () => {
   const [cgtScore, setCgtScore] = useState<number>(65);
   const [subjectFilterMode, setSubjectFilterMode] = useState<'SHOW_ALL' | 'ELIGIBLE_ONLY' | 'HIGHLIGHT_MISSING'>('SHOW_ALL');
 
-  // Sidebar Facet 4: Cutoff Range & District
+
+  // Sidebar Facet 4: G.C.E. (O/L) Subject Grades & Section 5.3 Filter
+  const [olEnglish, setOlEnglish] = useState<OlGrade>('NONE');
+  const [olMaths, setOlMaths] = useState<OlGrade>('NONE');
+  const [olScience, setOlScience] = useState<OlGrade>('NONE');
+  const [olSinhalaOrTamil, setOlSinhalaOrTamil] = useState<OlGrade>('NONE');
+  const [olFilterMode, setOlFilterMode] = useState<
+    'SHOW_ALL' | 'HIDE_INELIGIBLE' | 'ONLY_SPECIAL_OL' | 'NO_SPECIAL_OL'
+  >('SHOW_ALL');
+
+  // Sidebar Facet 5: Cutoff Range & District
   const [minCutoffZ, setMinCutoffZ] = useState<string>('');
   const [maxCutoffZ, setMaxCutoffZ] = useState<string>('');
   const [onlyBelowMyZ, setOnlyBelowMyZ] = useState(false);
@@ -388,6 +405,7 @@ export const PredictorView: React.FC = () => {
     stage: true,
     sector: true,
     stream: true,
+    olGrades: true,
     cutoff: true,
     field: true,
     tuition: false,
@@ -445,6 +463,9 @@ export const PredictorView: React.FC = () => {
         accreditations,
         aptitudeRequired: row.aptitude_test_required,
         requiresOlSpecial: Boolean(row.requires_ol_special),
+        olRule: row.ol_rule ?? null,
+        olRequirementsText: row.ol_requirements_text ?? null,
+        olShortBadge: row.ol_short_badge ?? null,
         hasInternship: isComputer || isEngineering || isMedicine,
         hasMeritScholarship: false,
         hasHostel: true,
@@ -487,7 +508,10 @@ export const PredictorView: React.FC = () => {
         studyModes: p.study_mode,
         accreditations,
         aptitudeRequired: false,
-        requiresOlSpecial: false,
+        requiresOlSpecial: Boolean(p.ol_requirement_badge),
+        olRule: null,
+        olRequirementsText: p.ol_requirement_badge ?? null,
+        olShortBadge: p.ol_requirement_badge ?? null,
         hasInternship: p.has_internship,
         hasMeritScholarship: p.has_merit_scholarship,
         hasHostel: p.institute_abbr === 'SLIIT' || p.institute_abbr === 'NSBM',
@@ -539,7 +563,9 @@ export const PredictorView: React.FC = () => {
           item.instituteAbbr.toLowerCase().includes(q) ||
           item.province.toLowerCase().includes(q) ||
           item.campusHub.toLowerCase().includes(q) ||
-          item.specializations.some((s) => s.toLowerCase().includes(q));
+          item.specializations.some((s) => s.toLowerCase().includes(q)) ||
+          Boolean(item.olShortBadge && item.olShortBadge.toLowerCase().includes(q)) ||
+          Boolean(item.olRequirementsText && item.olRequirementsText.toLowerCase().includes(q));
         if (!matchesQuery) return false;
       }
 
@@ -573,7 +599,24 @@ export const PredictorView: React.FC = () => {
         if (check && !check.eligible) return false;
       }
 
-      // 5. Cutoff range & District
+
+      // 5. O/L Subject Grades & Section 5.3 Requirements
+      if (olFilterMode === 'ONLY_SPECIAL_OL' && !item.requiresOlSpecial) return false;
+      if (olFilterMode === 'NO_SPECIAL_OL' && item.requiresOlSpecial) return false;
+      if (olFilterMode === 'HIDE_INELIGIBLE' && item.kind === 'STATE_UGC' && item.olRule) {
+        const check = evaluateOlEligibility(
+          {
+            english: olEnglish !== 'NONE' ? olEnglish : undefined,
+            mathematics: olMaths !== 'NONE' ? olMaths : undefined,
+            science: olScience !== 'NONE' ? olScience : undefined,
+            sinhalaOrTamil: olSinhalaOrTamil !== 'NONE' ? olSinhalaOrTamil : undefined,
+          },
+          item.olRule
+        );
+        if (!check.meetsOl) return false;
+      }
+
+      // 6. Cutoff range & District
       if (minCutoffZ !== '' && !isNaN(Number(minCutoffZ))) {
         if (item.cutoffZ === null || item.cutoffZ < Number(minCutoffZ)) return false;
       }
@@ -645,6 +688,11 @@ export const PredictorView: React.FC = () => {
       selectedSectors,
       streamFilter,
       subjectFilterMode,
+      olFilterMode,
+      olEnglish,
+      olMaths,
+      olScience,
+      olSinhalaOrTamil,
       subjectEligibilityMap,
       minCutoffZ,
       maxCutoffZ,
@@ -780,6 +828,11 @@ export const PredictorView: React.FC = () => {
     setSelectedSectors([]);
     setStreamFilter('ALL');
     setSubjectFilterMode('SHOW_ALL');
+    setOlEnglish('NONE');
+    setOlMaths('NONE');
+    setOlScience('NONE');
+    setOlSinhalaOrTamil('NONE');
+    setOlFilterMode('SHOW_ALL');
     setMinCutoffZ('');
     setMaxCutoffZ('');
     setOnlyBelowMyZ(false);
@@ -1356,9 +1409,147 @@ export const PredictorView: React.FC = () => {
             </div>
           </FacetSection>
 
-          {/* Facet 4: Cutoff Range & District */}
+
+          {/* Facet 4: G.C.E. (O/L) Subject Grades & Section 5.3 Filter */}
           <FacetSection
-            title="4. District & 2024/25 Cutoff Range"
+            title="4. G.C.E. (O/L) Grades & Section 5.3"
+            expanded={expandedSections.olGrades}
+            onToggle={() => toggleSection('olGrades')}
+          >
+            <div className="space-y-3 text-xs">
+              <div className="p-2.5 rounded-lg bg-purple-50/70 border border-purple-200/80 space-y-2">
+                <div className="font-extrabold text-purple-950 flex items-center justify-between text-[11px]">
+                  <span>My G.C.E. (O/L) Subject Grades</span>
+                  <span className="font-mono text-[10px] text-purple-700 font-bold">Section 5.3</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                  <div>
+                    <label className="block text-slate-700 font-semibold mb-0.5">English</label>
+                    <select
+                      value={olEnglish}
+                      onChange={(e) => setOlEnglish(e.target.value as OlGrade)}
+                      className="w-full p-1.5 rounded border border-purple-200 bg-white font-bold text-xs"
+                    >
+                      <option value="NONE">Any / Not Set</option>
+                      <option value="A">A (Distinction)</option>
+                      <option value="B">B (Very Good)</option>
+                      <option value="C">C (Credit)</option>
+                      <option value="S">S (Ordinary)</option>
+                      <option value="W">W (Fail)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 font-semibold mb-0.5">Mathematics</label>
+                    <select
+                      value={olMaths}
+                      onChange={(e) => setOlMaths(e.target.value as OlGrade)}
+                      className="w-full p-1.5 rounded border border-purple-200 bg-white font-bold text-xs"
+                    >
+                      <option value="NONE">Any / Not Set</option>
+                      <option value="A">A (Distinction)</option>
+                      <option value="B">B (Very Good)</option>
+                      <option value="C">C (Credit)</option>
+                      <option value="S">S (Ordinary)</option>
+                      <option value="W">W (Fail)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 font-semibold mb-0.5">Science</label>
+                    <select
+                      value={olScience}
+                      onChange={(e) => setOlScience(e.target.value as OlGrade)}
+                      className="w-full p-1.5 rounded border border-purple-200 bg-white font-bold text-xs"
+                    >
+                      <option value="NONE">Any / Not Set</option>
+                      <option value="A">A (Distinction)</option>
+                      <option value="B">B (Very Good)</option>
+                      <option value="C">C (Credit)</option>
+                      <option value="S">S (Ordinary)</option>
+                      <option value="W">W (Fail)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 font-semibold mb-0.5">Sinhala / Tamil</label>
+                    <select
+                      value={olSinhalaOrTamil}
+                      onChange={(e) => setOlSinhalaOrTamil(e.target.value as OlGrade)}
+                      className="w-full p-1.5 rounded border border-purple-200 bg-white font-bold text-xs"
+                    >
+                      <option value="NONE">Any / Not Set</option>
+                      <option value="A">A (Distinction)</option>
+                      <option value="B">B (Very Good)</option>
+                      <option value="C">C (Credit)</option>
+                      <option value="S">S (Ordinary)</option>
+                      <option value="W">W (Fail)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* O/L Filter Mode Radio Options */}
+              <div className="space-y-1.5 pt-1">
+                <label className="flex items-start gap-2 cursor-pointer p-1 rounded hover:bg-slate-50">
+                  <input
+                    type="radio"
+                    name="olFilterMode"
+                    checked={olFilterMode === 'SHOW_ALL'}
+                    onChange={() => setOlFilterMode('SHOW_ALL')}
+                    className="mt-0.5 text-purple-700"
+                  />
+                  <div>
+                    <span className="font-semibold text-slate-800 text-xs">Show All Courses</span>
+                    <p className="text-[10px] text-slate-500">Displays exact Section 5.3 O/L pills on every card</p>
+                  </div>
+                </label>
+
+                <label className="flex items-start gap-2 cursor-pointer p-1 rounded hover:bg-slate-50">
+                  <input
+                    type="radio"
+                    name="olFilterMode"
+                    checked={olFilterMode === 'HIDE_INELIGIBLE'}
+                    onChange={() => setOlFilterMode('HIDE_INELIGIBLE')}
+                    className="mt-0.5 text-purple-700"
+                  />
+                  <div>
+                    <span className="font-semibold text-emerald-800 text-xs">✅ Hide Courses Below My O/L Grades</span>
+                    <p className="text-[10px] text-slate-500">Filters out courses where your O/L grades fall short</p>
+                  </div>
+                </label>
+
+                <label className="flex items-start gap-2 cursor-pointer p-1 rounded hover:bg-slate-50">
+                  <input
+                    type="radio"
+                    name="olFilterMode"
+                    checked={olFilterMode === 'ONLY_SPECIAL_OL'}
+                    onChange={() => setOlFilterMode('ONLY_SPECIAL_OL')}
+                    className="mt-0.5 text-purple-700"
+                  />
+                  <div className="flex items-center justify-between w-full">
+                    <span className="font-semibold text-slate-800 text-xs">📋 Special O/L Requirements Only</span>
+                    <span className="font-mono text-[10px] text-slate-500 font-bold">({countMatching((i) => i.requiresOlSpecial)})</span>
+                  </div>
+                </label>
+
+                <label className="flex items-start gap-2 cursor-pointer p-1 rounded hover:bg-slate-50">
+                  <input
+                    type="radio"
+                    name="olFilterMode"
+                    checked={olFilterMode === 'NO_SPECIAL_OL'}
+                    onChange={() => setOlFilterMode('NO_SPECIAL_OL')}
+                    className="mt-0.5 text-purple-700"
+                  />
+                  <div className="flex items-center justify-between w-full">
+                    <span className="font-semibold text-slate-800 text-xs">🟢 No Special O/L Required</span>
+                    <span className="font-mono text-[10px] text-slate-500 font-bold">({countMatching((i) => !i.requiresOlSpecial)})</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </FacetSection>
+
+          {/* Facet 5: Cutoff Range & District */}
+          <FacetSection
+            title="5. District & 2024/25 Cutoff Range"
             expanded={expandedSections.cutoff}
             onToggle={() => toggleSection('cutoff')}
           >
@@ -1563,7 +1754,7 @@ export const PredictorView: React.FC = () => {
 
           {/* Facet 7: Study Mode */}
           <FacetSection
-            title="7. Study Mode & Schedule"
+            title="8. Study Mode & Schedule"
             expanded={expandedSections.mode}
             onToggle={() => toggleSection('mode')}
           >
@@ -1604,7 +1795,7 @@ export const PredictorView: React.FC = () => {
 
           {/* Facet 8: Duration */}
           <FacetSection
-            title="8. Degree Duration"
+            title="9. Degree Duration"
             expanded={expandedSections.duration}
             onToggle={() => toggleSection('duration')}
           >
@@ -1643,7 +1834,7 @@ export const PredictorView: React.FC = () => {
 
           {/* Facet 9: Medium */}
           <FacetSection
-            title="9. Medium of Instruction"
+            title="10. Medium of Instruction"
             expanded={expandedSections.medium}
             onToggle={() => toggleSection('medium')}
           >
@@ -1761,7 +1952,7 @@ export const PredictorView: React.FC = () => {
 
           {/* Facet 12: Province, Campus Hub & Hostel */}
           <FacetSection
-            title="12. Province, Hub & Hostel"
+            title="13. Province, Hub & Hostel"
             expanded={expandedSections.location}
             onToggle={() => toggleSection('location')}
           >
@@ -2048,6 +2239,14 @@ export const PredictorView: React.FC = () => {
                             {item.aptitudeRequired && (
                               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">
                                 Aptitude Test
+                              </span>
+                            )}
+                            {item.requiresOlSpecial && (
+                              <span
+                                title={item.olRequirementsText || 'Section 5.3 O/L Requirement'}
+                                className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-950 border border-purple-200"
+                              >
+                                📋 {item.olShortBadge || 'Section 5.3 O/L'}
                               </span>
                             )}
                           </div>

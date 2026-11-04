@@ -106,3 +106,15 @@
 - [x] **Slice 2 (Prompt 2)**: Removed `SingleWindowCafDrawer` popup completely, expanded `NON_STATE_IFSLS_PATHWAYS` in `sriLankaUgcSnapshot.ts` with rich filter metadata and exact official URLs for 14 verified programs, and wired direct external apply buttons (`Apply on {abbr} Official Page ↗`, `Official Program Page ↗`, `MOHE 0% Loan Portal ↗`).
 - [x] **Slice 3 (Prompt 3)**: Built the Ultra-Advanced 3-Layer Filter & Discovery Engine in `PredictorView.tsx` (8 preset pills, 15-second guided wizard, 12-category sticky left sidebar with live counts `(N)`, active filter chips with remove, Card Grid vs Compact Cutoff & Fee Table view toggle, multi-sort, zero splash curtain) and updated `HomeDiscoveryView.tsx`.
 - [x] **Verification**: `npx vitest run` (8/8 passed) + `npm run build` (clean 0-error build in 6.29s).
+
+
+## Change 2026-11-04: Zero-Prediction, Direct Private Apply, Complete O/L Requirements & Ultra-Advanced Filter Playbook
+- **Branch**: `change/zero-prediction-ol-filters`
+- **Type**: `feature`, `content`, `design`, `upgrade`
+- **Size**: `M`
+- **Tasks**:
+  - [x] Task 1: Prompt 1 — Remove all predictions (Safe/Target/Reach & grade estimator), rename to Course & Cutoff Finder, factual comparison status
+  - [x] Task 2: Prompt 2 — Embed Section 5.3 O/L Requirements dictionary (31 courses, 55 uni_codes), evaluateOlEligibility, display O/L pills on cards, matrix & profile
+  - [x] Task 3: Prompt 3 — Remove SingleWindowCafDrawer, add rich NonStatePathway with official apply_url/program_url, direct external CTAs
+  - [x] Task 4: Prompt 4 — Build 3-Layer Discovery & Filter Engine in PredictorView & HomeDiscoveryView (Presets, Guided Wizard, 13-Facet Sidebar with O/L checker, Grid/Table view)
+  - [x] Verification: Vitest 13/13 passed + npm run build (0-error Vite/TypeScript production build)

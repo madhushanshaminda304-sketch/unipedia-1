@@ -5,7 +5,9 @@ import {
   optimizePreferenceOrder,
   checkSubjectCombinationEligibility,
   checkSubjectEligibility,
+  evaluateOlEligibility,
 } from '../ugcLogic';
+import { OL_REQUIREMENTS_BY_COURSE_CODE } from '../../data/sriLankaUgcSnapshot';
 import {
   fetchProgramCutoffsByDistrict,
   matchEligibleProgramsRpc,
@@ -212,5 +214,46 @@ describe('ugcLogic — Sri Lankan UGC Z-Score & Preference Order Engine', () => 
     expect(normSnapshot.status).toBe('QUALIFIED');
     expect(normSnapshot.requires_ol_special).toBe(false);
     expect(normSnapshot.is_suspended).toBe(false);
+  });
+
+  it('evaluates G.C.E. O/L eligibility against Section 5.3 rules accurately', () => {
+    // 027 MIT requires Maths (B) and English (C)
+    const mitRule = OL_REQUIREMENTS_BY_COURSE_CODE['027'];
+    expect(mitRule).toBeDefined();
+
+    // 1. Student with Maths C (fails B requirement)
+    const failMaths = evaluateOlEligibility(
+      { mathematics: 'C', english: 'C' },
+      mitRule
+    );
+    expect(failMaths.meetsOl).toBe(false);
+    expect(failMaths.missingOlSubjects[0]).toContain('Maths: B');
+
+    // 2. Student with Maths B and English C (passes)
+    const passMit = evaluateOlEligibility(
+      { mathematics: 'B', english: 'C' },
+      mitRule
+    );
+    expect(passMit.meetsOl).toBe(true);
+    expect(passMit.missingOlSubjects).toHaveLength(0);
+
+    // 3. Law 025 requires English (C) and Sinhala OR Tamil (C)
+    const lawRule = OL_REQUIREMENTS_BY_COURSE_CODE['025'];
+    const passLawTamil = evaluateOlEligibility(
+      { english: 'B', tamil: 'C' },
+      lawRule
+    );
+    expect(passLawTamil.meetsOl).toBe(true);
+
+    const failLawNoLang = evaluateOlEligibility(
+      { english: 'B', sinhala: 'S', tamil: 'S' },
+      lawRule
+    );
+    expect(failLawNoLang.meetsOl).toBe(false);
+    expect(failLawNoLang.missingOlSubjects[0]).toContain('Sinhala or Tamil: C');
+
+    // 4. Null rule passes immediately
+    const noRule = evaluateOlEligibility({ english: 'S' }, null);
+    expect(noRule.meetsOl).toBe(true);
   });
 });

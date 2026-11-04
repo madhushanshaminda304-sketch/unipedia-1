@@ -54,6 +54,8 @@ export const PreferenceSimulatorContent: React.FC<{ compact?: boolean }> = ({ co
         aptitude_test_required: prog?.aptitude_test_required ?? false,
         is_suspended: prog?.is_suspended ?? false,
         requires_ol_special: prog?.requires_ol_special ?? false,
+        ol_short_badge: prog?.ol_short_badge ?? null,
+        ol_requirements_text: prog?.ol_requirements_text ?? null,
         medium: prog?.medium ? prog.medium.join(', ') : 'English',
         proposed_intake: prog?.proposed_intake ?? 100,
       };
@@ -237,6 +239,14 @@ export const PreferenceSimulatorContent: React.FC<{ compact?: boolean }> = ({ co
                       <span className="font-extrabold text-sm text-slate-900 truncate">
                         {item.course_name}
                       </span>
+                      {item.requires_ol_special && (
+                        <span
+                          title={item.ol_requirements_text || 'Requires G.C.E. O/L certificate copy per Section 5.3'}
+                          className="px-2 py-0.5 rounded bg-purple-100 text-purple-950 font-bold text-[10px] font-mono shrink-0 cursor-help"
+                        >
+                          📋 {item.ol_short_badge || 'O/L Required'}
+                        </span>
+                      )}
                       {isAssigned && (
                         <span className="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-[10px]">
                           Simulated Assignment
@@ -344,7 +354,10 @@ export const PreferenceSimulatorContent: React.FC<{ compact?: boolean }> = ({ co
                 <td className="border border-black p-1.5">
                   <div className="font-bold">{item.course_name}</div>
                   {item.aptitude_test_required && (
-                    <span className="text-[10px] text-amber-800">[Aptitude Test Required]</span>
+                    <span className="text-[10px] text-amber-800 block">[Aptitude Test Required]</span>
+                  )}
+                  {item.requires_ol_special && (
+                    <span className="text-[10px] text-purple-900 font-mono block">[{item.ol_short_badge || 'O/L Certificate Required'}]</span>
                   )}
                 </td>
                 <td className="border border-black p-1.5">{item.institution_name} ({item.institution_code})</td>
