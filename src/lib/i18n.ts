@@ -42,7 +42,7 @@ const resources = {
 
 const savedLang = (() => {
   try {
-    const saved = localStorage.getItem('lankavuz_lang');
+    const saved = localStorage.getItem('unipedia_lang') ?? localStorage.getItem('lankavuz_lang');
     return normalizeLangCode(saved);
   } catch {
     return 'en';
@@ -68,6 +68,7 @@ if (typeof document !== 'undefined') {
 i18n.on('languageChanged', (lng) => {
   const norm = normalizeLangCode(lng);
   try {
+    localStorage.setItem('unipedia_lang', norm);
     localStorage.setItem('lankavuz_lang', norm);
   } catch {
     // Ignore storage failure

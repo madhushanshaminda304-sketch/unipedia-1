@@ -57,6 +57,7 @@ export const WelcomeSplashModal: React.FC<WelcomeSplashModalProps> = ({ isOpen, 
 
   const handleComplete = (targetRoute?: 'predictor' | 'home' | 'private-unis') => {
     try {
+      localStorage.setItem('unipedia_welcome_seen', 'v1');
       localStorage.setItem('lankavuz_welcome_seen', 'v1');
     } catch {
       // Ignore storage errors
@@ -89,7 +90,7 @@ export const WelcomeSplashModal: React.FC<WelcomeSplashModalProps> = ({ isOpen, 
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Welcome to LankaVuz"
+      aria-label="Welcome to UniPedia.lk"
       className={`fixed inset-0 z-50 overflow-y-auto bg-[#091929] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-950/30 via-[#091929] to-[#040c15] text-white flex flex-col justify-between p-4 sm:p-6 lg:p-8 ${
         isExiting ? 'curtain-exit' : ''
       }`}
@@ -129,8 +130,34 @@ export const WelcomeSplashModal: React.FC<WelcomeSplashModalProps> = ({ isOpen, 
             </svg>
           </div>
 
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center shadow-md shrink-0">
+              <svg
+                className="w-6 h-6 text-[#091929]"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 5.5V14.5C6 16.8 8.7 18.2 12 19.8C15.3 18.2 18 16.8 18 14.5V6.5"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M14.8 9.2L18 5.5L21.2 9.2"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Lanka<span className="text-amber-400">Vuz</span>
+            Uni<span className="text-amber-400">Pedia</span><span className="text-slate-300 font-semibold text-2xl sm:text-3xl">.lk</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
             Sri Lanka's Official UGC Cutoff Atlas, 3-Subject A/L Matcher, and MOHE Interest-Free Student Loan Bridge.

@@ -158,14 +158,36 @@ export const GlobalHeader: React.FC = () => {
               onClick={() => setRoute('home')}
               className="flex items-center gap-2.5 text-left group"
             >
-              <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-base shadow-sm group-hover:scale-105 transition-transform">
-                LV
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center shadow-sm shrink-0 group-hover:from-amber-300 group-hover:to-amber-500 transition-colors">
+                <svg
+                  className="w-5 h-5 text-[#091929]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  {/* Minimalist Open-Book 'U' + Upward Pathway Arrow */}
+                  <path
+                    d="M6 5.5V14.5C6 16.8 8.7 18.2 12 19.8C15.3 18.2 18 16.8 18 14.5V6.5"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M14.8 9.2L18 5.5L21.2 9.2"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               <div>
                 <span className="font-extrabold text-lg tracking-tight block leading-none text-white">
-                  Lanka<span className="text-amber-400">Vuz</span>
+                  Uni<span className="text-amber-400">Pedia</span><span className="text-slate-300 font-semibold text-sm">.lk</span>
                 </span>
-                <span className="text-[11px] text-slate-400 hidden 2xl:block leading-tight font-medium truncate max-w-[180px]">
+                <span className="text-[11px] text-slate-400 hidden 2xl:block leading-tight font-medium truncate max-w-[180px] mt-0.5">
                   {t.brandSubtitle}
                 </span>
               </div>
@@ -478,7 +500,7 @@ export const GlobalHeader: React.FC = () => {
             {/* Footer with Hint */}
             <div className="p-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between">
               <span>Press <kbd className="px-1.5 py-0.5 rounded bg-white border border-slate-300 font-mono text-[10px]">ESC</kbd> to close</span>
-              <span>LankaVuz Quick Command Engine</span>
+              <span>UniPedia.lk Quick Command Engine</span>
             </div>
           </div>
         </div>

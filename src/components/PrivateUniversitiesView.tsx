@@ -85,7 +85,7 @@ export const PrivateUniversitiesView: React.FC = () => {
             Private, Foreign-Affiliated & Non-State Universities Hub
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Each year, ~180,000 students pass G.C.E. A/Ls, but State UGC universities have capacity for only ~45,000 (25%). For the remaining 75%, LankaVuz maps every verified government-recognized degree: State Direct-Entry (OUSL / KDU / UoVT), MOHE Interest-Free Student Loan (IFSLS) Campuses, and Direct British / Australian Affiliated Degrees.
+            Each year, ~180,000 students pass G.C.E. A/Ls, but State UGC universities have capacity for only ~45,000 (25%). For the remaining 75%, UniPedia.lk maps every verified government-recognized degree: State Direct-Entry (OUSL / KDU / UoVT), MOHE Interest-Free Student Loan (IFSLS) Campuses, and Direct British / Australian Affiliated Degrees.
           </p>
         </div>
 

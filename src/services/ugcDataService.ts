@@ -38,7 +38,7 @@ function getCached<T>(key: string): T | null {
     return memoryCache.get(key) as T;
   }
   try {
-    const raw = sessionStorage.getItem(`lankavuz_cache_${key}`);
+    const raw = sessionStorage.getItem(`unipedia_cache_${key}`) ?? sessionStorage.getItem(`lankavuz_cache_${key}`);
     if (raw) {
       const parsed = JSON.parse(raw) as T;
       memoryCache.set(key, parsed);
@@ -53,7 +53,7 @@ function getCached<T>(key: string): T | null {
 function setCached<T>(key: string, value: T): void {
   memoryCache.set(key, value);
   try {
-    sessionStorage.setItem(`lankavuz_cache_${key}`, JSON.stringify(value));
+    sessionStorage.setItem(`unipedia_cache_${key}`, JSON.stringify(value));
   } catch {
     // Ignore storage quota errors
   }
@@ -287,9 +287,10 @@ export async function submitStudentBackupApplication(
     }
   }
 
-  const existingRaw = localStorage.getItem('lankavuz_student_applications');
+  const existingRaw = localStorage.getItem('unipedia_student_applications') ?? localStorage.getItem('lankavuz_student_applications');
   const existing = existingRaw ? (JSON.parse(existingRaw) as unknown[]) : [];
   existing.push({ ...payload, id: crypto.randomUUID(), created_at: new Date().toISOString() });
+  localStorage.setItem('unipedia_student_applications', JSON.stringify(existing));
   localStorage.setItem('lankavuz_student_applications', JSON.stringify(existing));
   return { ok: true, source: 'local' };
 }
@@ -316,16 +317,17 @@ export async function submitCampusReview(
     }
   }
 
-  const storedRaw = localStorage.getItem('lankavuz_campus_reviews');
+  const storedRaw = localStorage.getItem('unipedia_campus_reviews') ?? localStorage.getItem('lankavuz_campus_reviews');
   const stored = storedRaw ? (JSON.parse(storedRaw) as CampusReviewItem[]) : INITIAL_CAMPUS_REVIEWS;
   const updated = [newReview, ...stored];
+  localStorage.setItem('unipedia_campus_reviews', JSON.stringify(updated));
   localStorage.setItem('lankavuz_campus_reviews', JSON.stringify(updated));
   return newReview;
 }
 
 export function getCampusReviews(): CampusReviewItem[] {
   try {
-    const raw = localStorage.getItem('lankavuz_campus_reviews');
+    const raw = localStorage.getItem('unipedia_campus_reviews') ?? localStorage.getItem('lankavuz_campus_reviews');
     if (raw) return JSON.parse(raw) as CampusReviewItem[];
   } catch {
     // Fallback
@@ -335,7 +337,7 @@ export function getCampusReviews(): CampusReviewItem[] {
 
 export function getQnAThreads(): QnAThreadItem[] {
   try {
-    const raw = localStorage.getItem('lankavuz_qna_threads');
+    const raw = localStorage.getItem('unipedia_qna_threads') ?? localStorage.getItem('lankavuz_qna_threads');
     if (raw) return JSON.parse(raw) as QnAThreadItem[];
   } catch {
     // Fallback
@@ -363,6 +365,7 @@ export function submitQnAQuestion(item: {
 
   const current = getQnAThreads();
   const updated = [newThread, ...current];
+  localStorage.setItem('unipedia_qna_threads', JSON.stringify(updated));
   localStorage.setItem('lankavuz_qna_threads', JSON.stringify(updated));
   return newThread;
 }

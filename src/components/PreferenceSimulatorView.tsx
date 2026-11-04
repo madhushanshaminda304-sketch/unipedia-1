@@ -91,7 +91,7 @@ export const PreferenceSimulatorContent: React.FC<{ compact?: boolean }> = ({ co
     );
     const text = `My Sri Lankan UGC Admission Preference Sheet (${district.district_name} District | My Z-Score: ${studentZScore.toFixed(
       4
-    )}):\n\n${lines.join('\n')}\n\nAudited via LankaVuz`;
+    )}):\n\n${lines.join('\n')}\n\nAudited via UniPedia.lk (https://unipedia.lk)`;
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -307,7 +307,7 @@ export const PreferenceSimulatorContent: React.FC<{ compact?: boolean }> = ({ co
             Official Higher Education Preference Order & Submission Verification Schedule
           </h1>
           <div className="text-xs text-slate-600 font-mono">
-            Generated via LankaVuz Verified UGC Decision Engine · Academic Cycle 2024/2025
+            Generated via UniPedia.lk Verified UGC Decision Engine · Academic Cycle 2024/2025
           </div>
         </div>
 

@@ -23,16 +23,16 @@ const AppRouterContent: React.FC = () => {
 
   useEffect(() => {
     const titles: Record<string, string> = {
-      home: `LankaVuz (${district.district_name}) — Sri Lanka UGC Z-Score Cutoff Atlas & Higher Education Portal`,
-      predictor: `Course & 2024/25 Cutoff Finder (${district.district_name}) — LankaVuz`,
-      'my-plan': `My UGC Preference Order Simulator & Conflict Auditor — LankaVuz`,
-      compare: `4-Way University & UGC uni_code Comparator — LankaVuz`,
-      careers: `Sri Lanka Career-to-Degree Atlas & LKR Salary Guide — LankaVuz`,
-      'career-quiz': `3-Minute RIASEC & Klimov Career Compass Quiz — LankaVuz`,
-      calendar: `Sri Lanka UGC Admissions & Aptitude Test Calendar — LankaVuz`,
-      'private-unis': `Sri Lanka Private, Foreign & Non-State University Hub (${district.district_name}) — LankaVuz`,
-      institution: `State University Profile & 25-District Cutoffs — LankaVuz`,
-      course: `UGC uni_code Course Cutoff Matrix & Reviews — LankaVuz`,
+      home: `UniPedia.lk (${district.district_name}) — Sri Lanka UGC Cutoff Atlas & Higher Education Portal`,
+      predictor: `Course & Cutoff Finder (${district.district_name}) — UniPedia.lk`,
+      'my-plan': `My UGC Preference Order Simulator & Conflict Auditor — UniPedia.lk`,
+      compare: `4-Way University & UGC uni_code Comparator — UniPedia.lk`,
+      careers: `Sri Lanka Career-to-Degree Atlas & LKR Salary Guide — UniPedia.lk`,
+      'career-quiz': `3-Minute RIASEC & Klimov Career Compass Quiz — UniPedia.lk`,
+      calendar: `Sri Lanka UGC Admissions & Aptitude Test Calendar — UniPedia.lk`,
+      'private-unis': `Sri Lanka Private, Foreign & Non-State University Hub (${district.district_name}) — UniPedia.lk`,
+      institution: `University Profile & 25-District Cutoffs — UniPedia.lk`,
+      course: `UGC uni_code Course Cutoff Matrix & Reviews — UniPedia.lk`,
     };
     document.title = titles[route] ?? titles.home;
   }, [route, district]);
@@ -63,11 +63,37 @@ const AppRouterContent: React.FC = () => {
       <footer className="bg-[var(--primitive-obsidian-900)] text-slate-300 border-t border-slate-800 py-10 px-4 sm:px-6 lg:px-8 no-print">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
           <div className="space-y-2">
-            <div className="font-extrabold text-base text-white">
-              Lanka<span className="text-amber-400">Vuz</span>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center shadow-xs shrink-0">
+                <svg
+                  className="w-3.5 h-3.5 text-[#091929]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 5.5V14.5C6 16.8 8.7 18.2 12 19.8C15.3 18.2 18 16.8 18 14.5V6.5"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M14.8 9.2L18 5.5L21.2 9.2"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className="font-extrabold text-base text-white">
+                Uni<span className="text-amber-400">Pedia</span><span className="text-slate-300 font-semibold text-xs">.lk</span>
+              </span>
             </div>
             <p className="text-slate-400 leading-relaxed">
-              Sri Lanka's Higher Education Discovery, 25-District Z-Score Cutoff Atlas, UGC Preference Conflict Auditor, and MOHE Interest-Free Loan (IFSLS) Bridge.
+              UniPedia.lk — Sri Lanka's Higher Education Discovery, 25-District Z-Score Cutoff Atlas, UGC Preference Conflict Auditor, and MOHE Interest-Free Loan (IFSLS) Bridge.
             </p>
           </div>
 

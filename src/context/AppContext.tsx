@@ -76,7 +76,7 @@ const AppContext = createContext<AppContextValue | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [districtId, setDistrictIdState] = useState<number>(() => {
     try {
-      const saved = localStorage.getItem('lankavuz_district_id');
+      const saved = localStorage.getItem('unipedia_district_id') ?? localStorage.getItem('lankavuz_district_id');
       return saved ? Number(saved) : 1; // Default Colombo
     } catch {
       return 1;
@@ -86,14 +86,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isDistrictModalOpen, setIsDistrictModalOpen] = useState(false);
   const [isWelcomeOpen, setIsWelcomeOpen] = useState<boolean>(() => {
     try {
-      return localStorage.getItem('lankavuz_welcome_seen') !== 'v1';
+      const seen = localStorage.getItem('unipedia_welcome_seen') ?? localStorage.getItem('lankavuz_welcome_seen');
+      return seen !== 'v1';
     } catch {
       return false;
     }
   });
   const [lang, setLangState] = useState<LanguageCode>(() => {
     try {
-      const saved = localStorage.getItem('lankavuz_lang');
+      const saved = localStorage.getItem('unipedia_lang') ?? localStorage.getItem('lankavuz_lang');
       if (saved && isValidLanguageCode(saved)) return (normalizeLangCode(saved).toUpperCase() as LanguageCode);
     } catch {
       // Ignore storage error
@@ -132,7 +133,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // so students immediately see the UGC Preference Order Conflict Auditor in action!
   const [planEntries, setPlanEntries] = useState<SavedPreferenceEntry[]>(() => {
     try {
-      const saved = localStorage.getItem('lankavuz_plan_entries');
+      const saved = localStorage.getItem('unipedia_plan_entries') ?? localStorage.getItem('lankavuz_plan_entries');
       if (saved) return JSON.parse(saved) as SavedPreferenceEntry[];
     } catch {
       // Fallback
@@ -213,8 +214,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setDistrictIdState(id);
     try {
       const d = SRI_LANKA_DISTRICTS.find((item) => item.district_id === id);
+      localStorage.setItem('unipedia_district_id', String(id));
       localStorage.setItem('lankavuz_district_id', String(id));
-      if (d) localStorage.setItem('lankavuz_district_name', d.district_name);
+      if (d) {
+        localStorage.setItem('unipedia_district_name', d.district_name);
+        localStorage.setItem('lankavuz_district_name', d.district_name);
+      }
     } catch {
       // Ignore storage error
     }
@@ -222,6 +227,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     try {
+      localStorage.setItem('unipedia_plan_entries', JSON.stringify(planEntries));
       localStorage.setItem('lankavuz_plan_entries', JSON.stringify(planEntries));
     } catch {
       // Ignore storage error
