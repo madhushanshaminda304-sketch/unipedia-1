@@ -46,6 +46,7 @@ import {
   type StudentOlGrades,
 } from '../lib/ugcLogic';
 import { ProgramChanceCard } from './ProgramChanceCard';
+import { ProgramDetailDrawer } from './ProgramDetailDrawer';
 
 // ==========================================
 // Types & Constants
@@ -395,6 +396,11 @@ export const PredictorView: React.FC = () => {
   // Mobile Drawer & Workspace View
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
+  const [drawerState, setDrawerState] = useState<{
+    isOpen: boolean;
+    program?: ProgramCutoffViewRow | null;
+    pathway?: NonStatePathway | null;
+  }>({ isOpen: false, program: null, pathway: null });
   const [sortBy, setSortBy] = useState<
     'CUTOFF_DESC' | 'CUTOFF_ASC' | 'FEE_ASC' | 'INTAKE_DESC' | 'CODE_ASC'
   >('CUTOFF_DESC');
@@ -2175,6 +2181,13 @@ export const PredictorView: React.FC = () => {
                       key={item.id}
                       program={item.stateRow}
                       studentZ={studentZScore}
+                      studentOlGrades={{
+                        english: olEnglish,
+                        mathematics: olMaths,
+                        science: olScience,
+                        sinhalaOrTamil: olSinhalaOrTamil,
+                      }}
+                      onOpenDetail={(prog) => setDrawerState({ isOpen: true, program: prog, pathway: null })}
                     />
                   );
                 }
@@ -2185,6 +2198,7 @@ export const PredictorView: React.FC = () => {
                     <NonStatePathwayCard
                       key={item.id}
                       pathway={item.pathway}
+                      onOpenDetail={(pw) => setDrawerState({ isOpen: true, program: null, pathway: pw })}
                     />
                   );
                 }
@@ -2231,7 +2245,17 @@ export const PredictorView: React.FC = () => {
 
                         {/* Degree & Course */}
                         <td className="py-3 px-3.5">
-                          <div className="font-bold text-slate-900 leading-snug">{item.title}</div>
+                          <button
+                            type="button"
+                            onClick={() => setDrawerState({
+                              isOpen: true,
+                              program: item.stateRow ?? null,
+                              pathway: item.pathway ?? null,
+                            })}
+                            className="text-left font-bold text-slate-900 hover:text-amber-700 leading-snug cursor-pointer transition-colors"
+                          >
+                            {item.title}
+                          </button>
                           <div className="flex items-center gap-1.5 flex-wrap mt-1">
                             <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
                               {item.streamEligible[0]}
@@ -2322,6 +2346,18 @@ export const PredictorView: React.FC = () => {
                             <div className="inline-flex items-center gap-1.5">
                               <button
                                 type="button"
+                                onClick={() => setDrawerState({
+                                  isOpen: true,
+                                  program: item.stateRow ?? null,
+                                  pathway: null,
+                                })}
+                                className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors cursor-pointer"
+                                title="View Full Program Overview & 25-District Cutoffs"
+                              >
+                                Details ↗
+                              </button>
+                              <button
+                                type="button"
                                 onClick={() => addToPlan(item.code)}
                                 className={`px-2 py-1 rounded text-xs font-bold transition-colors ${
                                   planEntries.some((p) => p.uni_code === item.code)
@@ -2346,6 +2382,18 @@ export const PredictorView: React.FC = () => {
                             </div>
                           ) : (
                             <div className="inline-flex items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() => setDrawerState({
+                                  isOpen: true,
+                                  program: null,
+                                  pathway: item.pathway ?? null,
+                                })}
+                                className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors cursor-pointer"
+                                title="View Full Curriculum & Details"
+                              >
+                                Details ↗
+                              </button>
                               {item.loanPortalUrl && (
                                 <a
                                   href={item.loanPortalUrl}
@@ -2376,6 +2424,16 @@ export const PredictorView: React.FC = () => {
           )}
         </main>
       </div>
+
+      {/* Program Detail Drawer Modal */}
+      {drawerState.isOpen && (
+        <ProgramDetailDrawer
+          isOpen={drawerState.isOpen}
+          onClose={() => setDrawerState({ isOpen: false, program: null, pathway: null })}
+          program={drawerState.program}
+          pathway={drawerState.pathway}
+        />
+      )}
     </div>
   );
 };
@@ -2412,7 +2470,10 @@ const Chip: React.FC<{ label: string; onRemove: () => void }> = ({ label, onRemo
   </span>
 );
 
-const NonStatePathwayCard: React.FC<{ pathway: NonStatePathway }> = ({ pathway }) => {
+const NonStatePathwayCard: React.FC<{
+  pathway: NonStatePathway;
+  onOpenDetail?: (pathway: NonStatePathway) => void;
+}> = ({ pathway, onOpenDetail }) => {
   return (
     <article className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs hover:border-slate-300 flex flex-col justify-between gap-4">
       <div>
@@ -2512,6 +2573,17 @@ const NonStatePathwayCard: React.FC<{ pathway: NonStatePathway }> = ({ pathway }
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
             <span>MOHE 0% Interest Student Loan Portal (IFSLS) ↗</span>
           </a>
+        )}
+
+        {/* View Full Curriculum Link */}
+        {onOpenDetail && (
+          <button
+            type="button"
+            onClick={() => onOpenDetail(pathway)}
+            className="text-xs font-bold text-amber-700 hover:text-amber-800 text-left pt-1 cursor-pointer"
+          >
+            View Full Curriculum, Accreditations & Loan Structure →
+          </button>
         )}
       </div>
     </article>

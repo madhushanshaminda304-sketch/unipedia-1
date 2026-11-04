@@ -117,4 +117,5 @@
   - [x] Task 2: Prompt 2 — Embed Section 5.3 O/L Requirements dictionary (31 courses, 55 uni_codes), evaluateOlEligibility, display O/L pills on cards, matrix & profile
   - [x] Task 3: Prompt 3 — Remove SingleWindowCafDrawer, add rich NonStatePathway with official apply_url/program_url, direct external CTAs
   - [x] Task 4: Prompt 4 — Build 3-Layer Discovery & Filter Engine in PredictorView & HomeDiscoveryView (Presets, Guided Wizard, 13-Facet Sidebar with O/L checker, Grid/Table view)
-  - [x] Verification: Vitest 13/13 passed + npm run build (0-error Vite/TypeScript production build)
+  - [x] Task 5: Prompt 5 — Add complete 129-course master catalog, Section 5.4 aptitude test details, rich ProgramChanceCard snippets & interactive ProgramDetailDrawer
+  - [x] Verification: Vitest 13/13 passed + npm run build (0-error Vite/TypeScript production build in 7.07s)

@@ -339,6 +339,2804 @@ export const OL_REQUIREMENTS_BY_COURSE_CODE: Record<string, OlRequirementRule> =
   }
 };
 
+export interface CourseMasterOverview {
+  course_code: string;
+  degree_awarded: string;
+  overview: string;
+  al_requirements_summary: string;
+  specializations: string[];
+  special_intake_quota_note?: string | null;
+  aptitude_test_info?: string | null;
+  career_paths: string[];
+  total_national_intake?: number;
+  differently_abled_quota?: number;
+}
+
+export const COURSE_MASTER_OVERVIEWS: Record<string, CourseMasterOverview> = {
+  "100": {
+    "course_code": "100",
+    "degree_awarded": "BSc (Hons) in Food Business Management",
+    "overview": "Commercial food chain economics, global agribusiness logistics, food quality certification, and retail brand management at Sabaragamuwa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Food Business Aptitude Test.",
+    "specializations": [
+      "Agri-Food Retail Marketing",
+      "International Food Supply Chains",
+      "Food Product Innovation",
+      "Food Regulatory Compliance"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Business comprehension, food industry awareness, and commercial aptitude exam conducted by Sabaragamuwa University.",
+    "career_paths": [
+      "Food Brand Director",
+      "Food Retail Operations Executive",
+      "FMCG Supply Chain Specialist",
+      "Agribusiness Consultant"
+    ],
+    "total_national_intake": 70
+  },
+  "101": {
+    "course_code": "101",
+    "degree_awarded": "BSc (Hons) in Information Technology",
+    "overview": "Comprehensive academic curriculum in Information Technology (UWU) preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Information Technology (UWU)",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Information Technology (UWU) Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "102": {
+    "course_code": "102",
+    "degree_awarded": "BET (Hons)",
+    "overview": "Four-year technological degree emphasizing hands-on mechanical, automotive, civil, and electrical engineering technology with intensive industrial workshop training.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Engineering Technology (ET), Science for Technology (SFT), and an approved third Technology subject.",
+    "specializations": [
+      "Mechanical & Manufacturing Technology",
+      "Automobile Engineering Technology",
+      "Construction Technology",
+      "Electrical & Electronic Technology"
+    ],
+    "career_paths": [
+      "Engineering Technologist (IESL Registered)",
+      "Automotive Manufacturing Plant Engineer",
+      "Construction Project Engineer",
+      "Industrial Plant Maintenance Engineer"
+    ],
+    "total_national_intake": 1450
+  },
+  "103": {
+    "course_code": "103",
+    "degree_awarded": "BBST (Hons)",
+    "overview": "Modern technology curriculum in post-harvest processing, bio-fertilizers, pharmaceutical bio-technology, food processing, and environmental monitoring.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biosystems Technology (BST), Science for Technology (SFT), and an approved third Technology subject.",
+    "specializations": [
+      "Bio-Processing & Food Technology",
+      "Agricultural Systems Technology",
+      "Environmental Biosystems",
+      "Industrial Bio-Resource Management"
+    ],
+    "career_paths": [
+      "Biosystems Technologist",
+      "Food Processing Plant Executive",
+      "Bio-Fertilizer Quality Specialist",
+      "Environmental Technology Analyst"
+    ],
+    "total_national_intake": 1100
+  },
+  "104": {
+    "course_code": "104",
+    "degree_awarded": "BICT (Hons)",
+    "overview": "Industry-certified technology degree for Technology stream students covering network engineering, enterprise web systems, software testing, and embedded devices.",
+    "al_requirements_summary": "Minimum 3 'S' passes in A/L Technology stream including Information Communication Technology (ICT), Science for Technology (SFT), or an approved 3rd subject.",
+    "specializations": [
+      "Network & Systems Engineering",
+      "Enterprise Software Development",
+      "Embedded Systems & IoT",
+      "Database & Cloud Solutions"
+    ],
+    "career_paths": [
+      "Network Infrastructure Engineer",
+      "Web Applications Developer",
+      "IoT Systems Specialist",
+      "IT Operations Engineer"
+    ],
+    "total_national_intake": 850
+  },
+  "105": {
+    "course_code": "105",
+    "degree_awarded": "BA (Hons) in TESL / BEd (Hons) in TESL",
+    "overview": "Applied linguistics, phonetics, second language acquisition pedagogy, syllabus design, and English teacher education at USJP, SUSL, and EUSL.",
+    "al_requirements_summary": "At least an 'S' pass in A/L English (Subject 73) and passes in any two other A/L subjects + Pass Aptitude Test.",
+    "specializations": [
+      "Language Teaching Methodology",
+      "Curriculum & Materials Design",
+      "Applied English Linguistics",
+      "Educational Assessment & Testing"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: English grammatical competence, essay composition, reading comprehension, and spoken viva interview conducted by the respective university.",
+    "career_paths": [
+      "English Language Teacher / Lecturer",
+      "Curriculum Development Specialist (NIE)",
+      "Corporate Language Trainer",
+      "Educational Materials Editor"
+    ],
+    "total_national_intake": 240
+  },
+  "106": {
+    "course_code": "106",
+    "degree_awarded": "BSc (Hons) in Agricultural Technology",
+    "overview": "Comprehensive academic curriculum in Agricultural Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Agricultural Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Agricultural Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "107": {
+    "course_code": "107",
+    "degree_awarded": "BSc (Hons) in Food Business Management",
+    "overview": "Commercial agribusiness and food technology crossover program at Sabaragamuwa University covering food marketing, export supply chains, packaging, and retail management.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Bio Science, Physical Science, Commerce, or Technology + O/L English 'C', Maths 'C', Science 'C'.",
+    "specializations": [
+      "Food Supply Chain & Logistics",
+      "Food Marketing & Brand Economics",
+      "Agri-Food Entrepreneurship",
+      "Food Safety & Compliance Management"
+    ],
+    "career_paths": [
+      "Food Supply Chain Manager",
+      "FMCG Brand Executive",
+      "Agribusiness Export Manager",
+      "Food Retail Operations Executive"
+    ],
+    "total_national_intake": 80
+  },
+  "108": {
+    "course_code": "108",
+    "degree_awarded": "BA (Hons) in Financial Economics",
+    "overview": "Comprehensive academic curriculum in Financial Economics preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream.",
+    "specializations": [
+      "Applied Financial Economics",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Financial Economics Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "109": {
+    "course_code": "109",
+    "degree_awarded": "BSc (Hons) in Business Science",
+    "overview": "Highly quantitative business curriculum at University of Moratuwa focused on financial analytics, algorithmic trading, business analytics, and supply chain mathematics.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Physical Science or Commerce with Combined Maths/Economics/Statistics + O/L Maths 'C'.",
+    "specializations": [
+      "Financial Analytics & Quantitative Trading",
+      "Business Analytics & Data Modeling",
+      "Supply Chain Analytics & Optimization",
+      "FinTech & Digital Business"
+    ],
+    "career_paths": [
+      "Quantitative Business Analyst",
+      "Investment / Trading Strategist",
+      "Supply Chain Analytics Specialist",
+      "Fintech Risk Modeler"
+    ],
+    "total_national_intake": 120
+  },
+  "110": {
+    "course_code": "110",
+    "degree_awarded": "BSc (Hons) in Financial Engineering",
+    "overview": "University of Kelaniya flagship degree combining financial derivatives, stochastic calculus, risk modeling, and algorithmic trading.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Physical Science (Combined Maths) or Commerce (Statistics/Maths) + O/L English 'C', Maths 'C'.",
+    "specializations": [
+      "Derivatives Pricing & Financial Math",
+      "Financial Risk Modeling (VaR)",
+      "Algorithmic & High-Frequency Trading",
+      "Corporate Financial Strategy"
+    ],
+    "career_paths": [
+      "Financial Engineer",
+      "Risk Management Officer (Banks/Treasury)",
+      "Derivatives & Portfolio Analyst",
+      "Investment Banker"
+    ],
+    "total_national_intake": 60
+  },
+  "111": {
+    "course_code": "111",
+    "degree_awarded": "BSc (Hons) in Accounting & Finance",
+    "overview": "Comprehensive academic curriculum in Accounting & Finance preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Accounting & Finance",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Accounting & Finance Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "112": {
+    "course_code": "112",
+    "degree_awarded": "BSc (Hons) in Business Analytics",
+    "overview": "Comprehensive academic curriculum in Business Analytics preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Business Analytics",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Business Analytics Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "113": {
+    "course_code": "113",
+    "degree_awarded": "BSc (Hons) in Data Science & AI",
+    "overview": "Comprehensive academic curriculum in Data Science & Artificial Intelligence preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Data Science & Artificial Intelligence",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Data Science & Artificial Intelligence Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "114": {
+    "course_code": "114",
+    "degree_awarded": "BSc (Hons) in Cyber Security",
+    "overview": "Comprehensive academic curriculum in Cyber Security preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Cyber Security",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Cyber Security Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "115": {
+    "course_code": "115",
+    "degree_awarded": "BSc (Hons) in Occupational Therapy",
+    "overview": "Four-year clinical rehabilitation program at University of Kelaniya covering pediatric developmental therapy, neuro-rehabilitation, mental health, and assistive technology.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Paediatric Occupational Therapy",
+      "Neurological Rehabilitation",
+      "Mental Health & Psychosocial OT",
+      "Geriatric & Ergonomic Care"
+    ],
+    "career_paths": [
+      "Occupational Therapist (SLMC)",
+      "Rehabilitation Center Director",
+      "Ergonomics & Assistive Tech Specialist",
+      "Paediatric Therapy Consultant"
+    ],
+    "total_national_intake": 45
+  },
+  "116": {
+    "course_code": "116",
+    "degree_awarded": "BSc (Hons) in Optometry",
+    "overview": "Four-year clinical eye care degree at University of Peradeniya covering refractive correction, ocular pharmacology, contact lens fitting, binocular vision, and low vision aids.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Clinical Refraction & Contact Lenses",
+      "Ocular Pathology & Diagnostics",
+      "Binocular Vision & Orthoptics",
+      "Low Vision Rehabilitation"
+    ],
+    "career_paths": [
+      "Optometrist (SLMC)",
+      "Refractive Clinic Director",
+      "Ophthalmic Diagnostic Specialist",
+      "Optical Instrumentation Consultant"
+    ],
+    "total_national_intake": 40
+  },
+  "117": {
+    "course_code": "117",
+    "degree_awarded": "BSc (Hons) in Artificial Intelligence",
+    "overview": "Cutting-edge degree at University of Moratuwa covering deep learning, natural language processing, computer vision, autonomous robotics, and ethics of AI.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Mathematics, Higher Mathematics, or Physics AND 'S' passes in two other approved Physical Science / ICT subjects.",
+    "specializations": [
+      "Deep Learning & Neural Networks",
+      "Computer Vision & Autonomous Systems",
+      "Natural Language Processing & LLMs",
+      "AI Robotics & Control"
+    ],
+    "career_paths": [
+      "AI / Machine Learning Engineer",
+      "Deep Learning Research Scientist",
+      "Computer Vision Engineer",
+      "NLP / Generative AI Specialist"
+    ],
+    "total_national_intake": 75
+  },
+  "118": {
+    "course_code": "118",
+    "degree_awarded": "BSc (Hons) in Financial Mathematics",
+    "overview": "Comprehensive academic curriculum in Financial Mathematics preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Financial Mathematics",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Financial Mathematics Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "119": {
+    "course_code": "119",
+    "degree_awarded": "BSc (Hons) in Electronics & Computer Science",
+    "overview": "Four-year honors curriculum in digital VLSI design, embedded firmware, real-time operating systems, and computer hardware architecture at University of Kelaniya.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths or Physics + 2 other passes in Physical Science / ICT.",
+    "specializations": [
+      "VLSI & Semiconductor Design",
+      "Embedded Systems & Robotics",
+      "Hardware Architecture",
+      "IoT & Sensor Networks"
+    ],
+    "career_paths": [
+      "Embedded Systems Engineer",
+      "VLSI Design Engineer",
+      "Hardware Architect",
+      "Robotics Systems Specialist"
+    ],
+    "total_national_intake": 60
+  },
+  "120": {
+    "course_code": "120",
+    "degree_awarded": "BET (Hons) in Biomedical Technology",
+    "overview": "Comprehensive academic curriculum in Biomedical Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Biomedical Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Biomedical Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "121": {
+    "course_code": "121",
+    "degree_awarded": "BET (Hons) in Mechatronics Technology",
+    "overview": "Comprehensive academic curriculum in Mechatronics Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Mechatronics Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Mechatronics Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "122": {
+    "course_code": "122",
+    "degree_awarded": "BET (Hons) in Automation Technology",
+    "overview": "Comprehensive academic curriculum in Automation Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Automation Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Automation Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "123": {
+    "course_code": "123",
+    "degree_awarded": "BBST (Hons) in Food Production & Technology",
+    "overview": "Comprehensive academic curriculum in Food Production & Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Food Production & Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Food Production & Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "124": {
+    "course_code": "124",
+    "degree_awarded": "BBST (Hons) in Aquatic Bioresources",
+    "overview": "Comprehensive academic curriculum in Aquatic Bioresources preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Aquatic Bioresources",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Aquatic Bioresources Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "125": {
+    "course_code": "125",
+    "degree_awarded": "BBST (Hons) in Urban Bioresources",
+    "overview": "Comprehensive academic curriculum in Urban Bioresources preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Urban Bioresources",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Urban Bioresources Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "126": {
+    "course_code": "126",
+    "degree_awarded": "BSc (Hons) in Applied Chemistry",
+    "overview": "Comprehensive academic curriculum in Applied Chemistry preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Applied Chemistry",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Applied Chemistry Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "127": {
+    "course_code": "127",
+    "degree_awarded": "BSc (Hons) in Health Promotion",
+    "overview": "Comprehensive academic curriculum in Health Promotion preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Biological Science stream.",
+    "specializations": [
+      "Applied Health Promotion",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Health Promotion Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "128": {
+    "course_code": "128",
+    "degree_awarded": "BA (Hons) in Information Technology",
+    "overview": "Unique blend of social science research, computational linguistics, digital humanities, and web design at University of Sri Jayewardenepura.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Arts stream + O/L Maths 'C'.",
+    "specializations": [
+      "Computational Social Science",
+      "Digital Humanities & Media Tech",
+      "Web Design & Content Systems",
+      "Information Systems for Public Sector"
+    ],
+    "career_paths": [
+      "Digital Media Officer",
+      "Web Systems Specialist",
+      "Social Data Analyst",
+      "Public Sector IT Officer"
+    ],
+    "total_national_intake": 120
+  },
+  "129": {
+    "course_code": "129",
+    "degree_awarded": "BSc (Hons) in Plantation Management",
+    "overview": "Comprehensive academic curriculum in Plantation Management & Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Biological Science stream.",
+    "specializations": [
+      "Applied Plantation Management & Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Plantation Management & Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "130": {
+    "course_code": "130",
+    "degree_awarded": "BSc (Hons) in Agro-Environmental Science",
+    "overview": "Comprehensive academic curriculum in Agro-Environmental Science preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Biological Science stream.",
+    "specializations": [
+      "Applied Agro-Environmental Science",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Agro-Environmental Science Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "131": {
+    "course_code": "131",
+    "degree_awarded": "BDes (Hons)",
+    "overview": "Comprehensive academic curriculum in Creative Arts & Design preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Creative Arts & Design",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Creative Arts & Design Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Creative design aptitude examination.",
+    "total_national_intake": 80
+  },
+  "132": {
+    "course_code": "132",
+    "degree_awarded": "BA (Hons) in English Language & Applied Linguistics",
+    "overview": "Four-year honors program at Uva Wellassa University covering sociolinguistics, discourse analysis, English for Specific Purposes (ESP), and corporate communication.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'C' · Maths 'C' + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Linguistics & Discourse",
+      "English for Specific Purposes (ESP)",
+      "Corporate & International Communications",
+      "Language Teaching Methodology"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Written paper testing advanced English grammar, reading analysis, essay writing, and oral communication interview conducted by UWU.",
+    "career_paths": [
+      "Corporate Communications Manager",
+      "International Public Relations Officer",
+      "Linguistic Specialist",
+      "English Lecturer / Educator"
+    ],
+    "total_national_intake": 70
+  },
+  "133": {
+    "course_code": "133",
+    "degree_awarded": "BA (Hons) in Archaeology",
+    "overview": "Comprehensive academic curriculum in Archaeology & Heritage Management preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream.",
+    "specializations": [
+      "Applied Archaeology & Heritage Management",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Archaeology & Heritage Management Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "134": {
+    "course_code": "134",
+    "degree_awarded": "BSW (Hons) in Social Work",
+    "overview": "Professional social work degree covering clinical case work, community development, child protection, disaster rehabilitation, and psychiatric social work.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Social Work Aptitude Test.",
+    "specializations": [
+      "Community Social Work",
+      "Child Protection & Family Welfare",
+      "Psychiatric & Medical Social Work",
+      "Disaster & Refugee Rehabilitation"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Social awareness, situational empathy, analytical writing, and personal interview conducted by Faculty of Arts, University of Colombo.",
+    "career_paths": [
+      "Certified Social Worker",
+      "Child Welfare Officer",
+      "NGO Program Director",
+      "Community Development Specialist"
+    ],
+    "total_national_intake": 80
+  },
+  "135": {
+    "course_code": "135",
+    "degree_awarded": "BSc (Hons) in Marine Science",
+    "overview": "Comprehensive academic curriculum in Marine Science & Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Marine Science & Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Marine Science & Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "136": {
+    "course_code": "136",
+    "degree_awarded": "BSc (Hons) in Data Science",
+    "overview": "Four-year intensive degree in big data engineering, predictive machine learning, mathematical statistics, cloud analytics, and business intelligence at Sabaragamuwa University.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Higher Maths, or Physics + 2 other passes in Physical Science / ICT + O/L English 'C'.",
+    "specializations": [
+      "Machine Learning & Predictive Modeling",
+      "Big Data Engineering & Cloud Pipelines",
+      "Business Analytics & Data Mining",
+      "Statistical Modeling & Inference"
+    ],
+    "career_paths": [
+      "Data Scientist",
+      "Machine Learning Engineer",
+      "Big Data Architect",
+      "Business Intelligence Developer"
+    ],
+    "total_national_intake": 70
+  },
+  "137": {
+    "course_code": "137",
+    "degree_awarded": "BEd (Hons) in Primary Education",
+    "overview": "Faculty of Education, University of Colombo professional teaching degree in child psychology, curriculum pedagogy, STEM in primary education, and classroom management.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L Sinhala 'C', English 'S', Maths 'C', Science 'C' + Pass Aptitude Test.",
+    "specializations": [
+      "Primary Curriculum & Pedagogy",
+      "Child Psychology & Development",
+      "Special Needs & Inclusive Education",
+      "STEM Education in Primary Schools"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Written examination on general knowledge, analytical thinking, language skills, and a teaching aptitude interview conducted by Faculty of Education, University of Colombo.",
+    "career_paths": [
+      "Primary School Teacher / Sectional Head",
+      "Curriculum Development Officer (Ministry of Education)",
+      "Child Education Consultant",
+      "Primary Educational Researcher"
+    ],
+    "total_national_intake": 120
+  },
+  "138": {
+    "course_code": "138",
+    "degree_awarded": "BSc (Hons) in Medical Imaging Technology",
+    "overview": "Advanced four-year healthcare imaging curriculum in specialized vascular imaging, interventional ultrasound, radiation oncology imaging, and digital radiography physics.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Interventional Imaging Technology",
+      "Radiation Oncology Physics & Imaging",
+      "Clinical Ultrasound Diagnostics",
+      "Nuclear Medicine Imaging"
+    ],
+    "career_paths": [
+      "Medical Imaging Technologist (SLMC)",
+      "Radiation Oncology Imaging Specialist",
+      "Ultrasound Imaging Consultant",
+      "Diagnostic Center Imaging Manager"
+    ],
+    "total_national_intake": 45
+  },
+  "139": {
+    "course_code": "139",
+    "degree_awarded": "BSc (Hons) in Nano Science Technology",
+    "overview": "Comprehensive academic curriculum in Nano Science Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Nano Science Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Nano Science Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "140": {
+    "course_code": "140",
+    "degree_awarded": "BA (Hons) in International Relations",
+    "overview": "Four-year honors curriculum in foreign policy analysis, international treaty law, security studies, global trade governance, and diplomatic history at University of Colombo.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Arts, Commerce, or Science stream with approved subjects.",
+    "specializations": [
+      "Diplomacy & Foreign Policy",
+      "International Political Economy",
+      "Global Security & Strategic Studies",
+      "International Organizations & Law"
+    ],
+    "career_paths": [
+      "Diplomatic Foreign Service Officer (SLFS)",
+      "International Policy Analyst",
+      "UN / Global Agency Program Officer",
+      "Geopolitical Risk Analyst"
+    ],
+    "total_national_intake": 85
+  },
+  "141": {
+    "course_code": "141",
+    "degree_awarded": "BSc (Hons) in Sports Science",
+    "overview": "Comprehensive sports science, physiological exercise diagnostics, athletic talent identification, and physical conditioning at University of Kelaniya.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Physical Fitness & Sports Aptitude Assessment.",
+    "specializations": [
+      "Exercise Physiology & Fitness",
+      "Sports Biomechanics & Video Analysis",
+      "Talent Identification & Development",
+      "Conditioning Program Design"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Certified sports achievement portfolio review + practical physical fitness endurance assessment conducted by University of Kelaniya.",
+    "career_paths": [
+      "Sports Scientist",
+      "National Team Fitness Coach",
+      "Exercise Physiologist",
+      "Athletic Development Director"
+    ],
+    "total_national_intake": 70
+  },
+  "142": {
+    "course_code": "142",
+    "degree_awarded": "BPA (Hons) in Music Technology",
+    "overview": "Comprehensive academic curriculum in Creative Music Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Creative Music Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Creative Music Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Audio production & musical aptitude audition.",
+    "total_national_intake": 80
+  },
+  "001": {
+    "course_code": "001",
+    "degree_awarded": "MBBS",
+    "overview": "Five-year clinical medical program comprising pre-clinical, para-clinical, and intensive clinical hospital professorial appointments. Graduates qualify for provisional registration as Medical Officers under the Sri Lanka Medical Council (SLMC).",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Clinical Medicine",
+      "General Surgery",
+      "Paediatrics",
+      "Obstetrics & Gynaecology",
+      "Psychiatry"
+    ],
+    "career_paths": [
+      "Medical Officer (Ministry of Health)",
+      "Consultant Physician / Surgeon",
+      "Medical Researcher",
+      "Healthcare Administrator"
+    ],
+    "total_national_intake": 2155,
+    "differently_abled_quota": 10
+  },
+  "002": {
+    "course_code": "002",
+    "degree_awarded": "BDS",
+    "overview": "Five-year comprehensive dental curriculum including craniofacial anatomy, operative dentistry, orthodontics, oral and maxillofacial surgery, and hospital clinical clerkships leading to SLMC Dental Practitioner registration.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Oral & Maxillofacial Surgery",
+      "Orthodontics",
+      "Restorative Dentistry",
+      "Periodontology",
+      "Community Dentistry"
+    ],
+    "career_paths": [
+      "Dental Surgeon (Govt/Private Hospitals)",
+      "Orthodontist Specialist",
+      "Oral Pathologist",
+      "Dental Public Health Officer"
+    ],
+    "total_national_intake": 175,
+    "differently_abled_quota": 3
+  },
+  "003": {
+    "course_code": "003",
+    "degree_awarded": "BVSc",
+    "overview": "Five-year veterinary medical program covering domestic animal health, veterinary pathology, surgical interventions, dairy livestock management, and wildlife conservation leading to Veterinary Council registration.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) at a single sitting.",
+    "specializations": [
+      "Veterinary Clinical Medicine",
+      "Farm Animal Health",
+      "Wildlife & Zoo Medicine",
+      "Animal Reproduction & Genetics"
+    ],
+    "career_paths": [
+      "Veterinary Surgeon (DAPH)",
+      "Livestock Production Manager",
+      "Wildlife Veterinarian",
+      "Animal Nutrition Specialist"
+    ],
+    "total_national_intake": 140,
+    "differently_abled_quota": 2
+  },
+  "004": {
+    "course_code": "004",
+    "degree_awarded": "BSc (Hons) in Agricultural Technology & Management",
+    "overview": "Four-year multidisciplinary degree covering agricultural biology, soil science, crop economics, post-harvest engineering, and precision farming with a mandatory 6-month farm internship.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and either Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Crop Science",
+      "Soil & Water Management",
+      "Agricultural Economics",
+      "Animal Science",
+      "Food Science & Tech"
+    ],
+    "career_paths": [
+      "Agricultural Officer (DOA)",
+      "Plantation Superintendent",
+      "Agribusiness Consultant",
+      "Crop Research Scientist"
+    ],
+    "total_national_intake": 1100,
+    "differently_abled_quota": 15
+  },
+  "005": {
+    "course_code": "005",
+    "degree_awarded": "BSc (Hons) in Agricultural Technology & Management",
+    "overview": "Technology-driven agricultural program integrating smart automated irrigation, hydroponics, agricultural robotics, and commercial farm supply chain systems.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Farm Mechanization",
+      "Soil & Environmental Sciences",
+      "Agro-Enterprise Systems",
+      "Post-Harvest Technology"
+    ],
+    "career_paths": [
+      "Smart Agriculture Specialist",
+      "Farm Automation Manager",
+      "Agri-Supply Chain Director",
+      "Agronomist"
+    ],
+    "total_national_intake": 320
+  },
+  "006": {
+    "course_code": "006",
+    "degree_awarded": "BSc (Hons) in Food Science & Technology",
+    "overview": "Four-year industrial science program focusing on food chemistry, thermal processing, sensory evaluation, packaging engineering, and ISO/HACCP food safety certifications.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Chemistry, Physics, and Biology (or Agricultural Science) at G.C.E. (A/L).",
+    "specializations": [
+      "Food Chemistry & Analysis",
+      "Food Processing & Preservation",
+      "Food Quality Assurance",
+      "Product Development & Sensory"
+    ],
+    "career_paths": [
+      "Food Quality Assurance Manager",
+      "R&D Food Technologist",
+      "Food Safety Auditor (HACCP/ISO)",
+      "Production Executive"
+    ],
+    "total_national_intake": 260
+  },
+  "007": {
+    "course_code": "007",
+    "degree_awarded": "BSc (Hons) in Animal Science",
+    "overview": "Specialized study in livestock breeding, dairy farm management, poultry production, animal genetics, and feed biotechnology to strengthen national animal protein production.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Dairy Science & Technology",
+      "Poultry Science",
+      "Animal Genetics & Breeding",
+      "Meat Science & Processing"
+    ],
+    "career_paths": [
+      "Livestock Development Officer",
+      "Dairy Processing Executive",
+      "Poultry Production Manager",
+      "Feed Formulation Scientist"
+    ],
+    "total_national_intake": 180
+  },
+  "008": {
+    "course_code": "008",
+    "degree_awarded": "BScEng (Hons)",
+    "overview": "Four-year Washington Accord-accredited professional engineering program with intensive engineering design, laboratory practica, and 6-month industrial internship accredited by IESL.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Mathematics, Physics, and Chemistry at G.C.E. (A/L).",
+    "specializations": [
+      "Computer Science & Engineering",
+      "Civil Engineering",
+      "Electrical & Electronic Engineering",
+      "Mechanical Engineering",
+      "Chemical & Process Engineering",
+      "Materials Science",
+      "Biomedical Engineering"
+    ],
+    "career_paths": [
+      "Chartered Engineer (IESL)",
+      "Software / Systems Architect",
+      "Civil Structural Consultant",
+      "Power & Energy Specialist"
+    ],
+    "total_national_intake": 2350,
+    "differently_abled_quota": 20
+  },
+  "009": {
+    "course_code": "009",
+    "degree_awarded": "BScEng (Hons) in Earth Resources Engineering",
+    "overview": "Specialized engineering curriculum at University of Moratuwa covering mineral exploration, petroleum geomechanics, GIS/remote sensing, tunnelling, and quarry engineering.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Mathematics, Physics, and Chemistry at G.C.E. (A/L).",
+    "specializations": [
+      "Mining Engineering",
+      "Mineral Processing",
+      "Ocean Resources Engineering",
+      "Petroleum Geotechnology"
+    ],
+    "career_paths": [
+      "Mining Engineer",
+      "Geotechnical Consultant",
+      "Petroleum Reservoir Specialist",
+      "Tunnel & Dam Engineer"
+    ],
+    "total_national_intake": 60
+  },
+  "010": {
+    "course_code": "010",
+    "degree_awarded": "BScEng (Hons) in Textile & Apparel Engineering",
+    "overview": "Textile polymers, smart technical fabrics, automated garment manufacturing, supply chain optimization, and sustainable dyeing technologies at University of Moratuwa.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Mathematics, Physics, and Chemistry at G.C.E. (A/L).",
+    "specializations": [
+      "Textile Manufacturing & Polymers",
+      "Apparel Engineering & Automation",
+      "Technical & Medical Textiles",
+      "Garment Wet Processing"
+    ],
+    "career_paths": [
+      "Textile / Apparel Engineer",
+      "Production & Lean Manufacturing Manager",
+      "Technical Textile Technologist",
+      "Apparel Operations Director"
+    ],
+    "total_national_intake": 65
+  },
+  "011": {
+    "course_code": "011",
+    "degree_awarded": "BSc (Hons) in Quantity Surveying",
+    "overview": "RICS and IQSSL internationally accredited degree covering construction economics, BIM-enabled cost estimation, contract law, procurement strategy, and arbitration.",
+    "al_requirements_summary": "At least 'S' passes in Combined Mathematics (or Higher Maths) and two other approved Physical Science / ICT / Accounting / Economics subjects + O/L English 'C', Maths 'C', Science 'S'.",
+    "specializations": [
+      "Commercial Management",
+      "Construction Contract Law & Arbitration",
+      "Cost Planning & BIM Estimation",
+      "Infrastructure Procurement"
+    ],
+    "career_paths": [
+      "Chartered Quantity Surveyor (RICS/IQSSL)",
+      "Commercial Manager",
+      "Construction Claims & Arbitration Consultant",
+      "Project Cost Controller"
+    ],
+    "total_national_intake": 140
+  },
+  "012": {
+    "course_code": "012",
+    "degree_awarded": "BSc (Hons) in Computer Science",
+    "overview": "Rigorous academic computer science program emphasizing algorithm design, compiler theory, distributed computing, artificial intelligence, and operating systems with mandatory capstone research.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Mathematics, Higher Mathematics, or Physics AND 'S' passes in two other approved Physical Science / ICT subjects.",
+    "specializations": [
+      "Artificial Intelligence & Machine Learning",
+      "Cloud & Distributed Systems",
+      "Cyber Security",
+      "Theoretical Computer Science",
+      "Software Systems"
+    ],
+    "career_paths": [
+      "Lead Software Engineer",
+      "AI / ML Engineer",
+      "Systems Architect",
+      "Security Operations Engineer"
+    ],
+    "total_national_intake": 380
+  },
+  "013": {
+    "course_code": "013",
+    "degree_awarded": "BSc / BSc (Hons) in Physical Science",
+    "overview": "Three-year general or four-year honours degree offering specialized research streams in Applied Mathematics, Physics, Statistics, and Scientific Computing with broad industry applications.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Mathematics, Physics, and Chemistry / ICT at G.C.E. (A/L).",
+    "specializations": [
+      "Applied Mathematics",
+      "Nuclear & Applied Physics",
+      "Industrial Statistics",
+      "Scientific Computing",
+      "Data Analytics"
+    ],
+    "career_paths": [
+      "Data Analyst / Scientist",
+      "Actuarial Analyst",
+      "Research Physicist",
+      "Operations Research Analyst"
+    ],
+    "total_national_intake": 2300
+  },
+  "014": {
+    "course_code": "014",
+    "degree_awarded": "BSc / BSc (Hons) in Biological Science",
+    "overview": "Comprehensive biological training in molecular genetics, microbiology, botany, zoology, biochemistry, and ecology preparing graduates for healthcare diagnostics and environmental stewardship.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics (or Agricultural Science) at G.C.E. (A/L).",
+    "specializations": [
+      "Molecular Biology & Biotechnology",
+      "Microbiology",
+      "Plant Sciences",
+      "Zoology & Wildlife Biology",
+      "Biochemistry"
+    ],
+    "career_paths": [
+      "Biotechnologist",
+      "Diagnostic Laboratory Specialist",
+      "Environmental Conservationist",
+      "Pharmaceutical QC Analyst"
+    ],
+    "total_national_intake": 2100
+  },
+  "015": {
+    "course_code": "015",
+    "degree_awarded": "BSc (Hons) in Applied Sciences",
+    "overview": "Industry-aligned applied science curriculum integrating environmental biology, microbial biotechnology, industrial chemistry, and computational biology with industrial internships.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics / Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Industrial Microbiology",
+      "Environmental Technology",
+      "Natural Products Chemistry",
+      "Food Quality Assessment"
+    ],
+    "career_paths": [
+      "Applied Science Researcher",
+      "Environmental Consultant",
+      "Microbiology Laboratory Manager",
+      "Bio-Process Scientist"
+    ],
+    "total_national_intake": 350
+  },
+  "016": {
+    "course_code": "016",
+    "degree_awarded": "BSc (Hons) in Business Administration",
+    "overview": "Prestigious business curriculum covering financial accounting, strategic management, marketing analytics, HR organizational behavior, and supply chains accredited by CA Sri Lanka and CIMA.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce stream subjects (Accounting, Business Studies, Economics, or Business Statistics).",
+    "specializations": [
+      "Accounting & Finance",
+      "Human Resource Management",
+      "Marketing Management",
+      "Business Economics",
+      "Supply Chain Management",
+      "Business Information Systems"
+    ],
+    "career_paths": [
+      "Financial Analyst / Auditor",
+      "Brand Manager",
+      "HR Business Partner",
+      "Management Consultant"
+    ],
+    "total_national_intake": 4800
+  },
+  "017": {
+    "course_code": "017",
+    "degree_awarded": "BCom (Hons)",
+    "overview": "Focused study in international trade finance, corporate auditing, taxation systems, macroeconomic forecasting, and commercial banking operations.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce stream subjects including Accounting or Economics.",
+    "specializations": [
+      "Commerce & International Trade",
+      "Financial Management",
+      "Business Information Systems",
+      "Taxation & Auditing"
+    ],
+    "career_paths": [
+      "Chartered Accountant",
+      "Tax Advisor",
+      "Commercial Banker",
+      "Treasury & Investment Analyst"
+    ],
+    "total_national_intake": 850
+  },
+  "018": {
+    "course_code": "018",
+    "degree_awarded": "BSc (Hons) in Real Estate Management & Valuation",
+    "overview": "Specialized four-year program at USJP producing certified government and corporate real estate valuers, property asset managers, and land economists.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce, Physical Science, or Arts stream with Economics/Accounting/Maths.",
+    "specializations": [
+      "Property Valuation & Taxation",
+      "Real Estate Asset Management",
+      "Land Economics & Urban Development",
+      "Property Investment Analysis"
+    ],
+    "career_paths": [
+      "Government / Licensed Property Valuer",
+      "Real Estate Portfolio Manager",
+      "Urban Land Economist",
+      "Property Asset Consultant"
+    ],
+    "total_national_intake": 90
+  },
+  "019": {
+    "course_code": "019",
+    "degree_awarded": "BA / BAHons",
+    "overview": "Broad humanities curriculum in sociology, economics, history, languages, international relations, and political science fostering critical thinking and civic leadership.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved Arts subjects (Selected 100% on All-Island Merit rank).",
+    "specializations": [
+      "Economics",
+      "Sociology & Social Policy",
+      "Political Science",
+      "History & Archaeology",
+      "Sinhala / Tamil / English Literature"
+    ],
+    "special_intake_quota_note": "100% All-Island Merit Selection (No District Quotas)",
+    "career_paths": [
+      "Sri Lanka Administrative Service (SLAS)",
+      "Diplomat / Foreign Service Officer",
+      "Social Policy Analyst",
+      "Journalist / Media Director"
+    ],
+    "total_national_intake": 9500
+  },
+  "020": {
+    "course_code": "020",
+    "degree_awarded": "BAHons in Mass Media",
+    "overview": "Four-year program at Sripalee Campus covering investigative broadcast journalism, digital cinematography, media ethics, and public relations.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'S' + Pass Practical/Aptitude Test.",
+    "specializations": [
+      "Broadcast Journalism",
+      "Digital Content Creation",
+      "Public Relations & Corporate Comms",
+      "Television & Radio Production"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Written paper assessing media awareness, creative writing, and current social affairs conducted by Sripalee Campus, University of Colombo.",
+    "career_paths": [
+      "Journalist / News Anchor",
+      "Corporate Communications Director",
+      "Digital Media Producer",
+      "PR Campaign Manager"
+    ],
+    "total_national_intake": 140
+  },
+  "021": {
+    "course_code": "021",
+    "degree_awarded": "BAHons in Social Sciences & Languages",
+    "overview": "Sabaragamuwa University arts program blending modern languages (German, Japanese, Chinese, Hindi), economics, statistics, and geography.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved Arts or Commerce subjects.",
+    "specializations": [
+      "Foreign Languages & Linguistics",
+      "Economics & Statistics",
+      "Geography & Environmental Management",
+      "Social Sciences"
+    ],
+    "career_paths": [
+      "International Trade Officer",
+      "Tourism & Cultural Attaché",
+      "Linguist / Language Specialist",
+      "Socio-Economic Researcher"
+    ],
+    "total_national_intake": 320
+  },
+  "022": {
+    "course_code": "022",
+    "degree_awarded": "BSc (Hons) in Information Technology",
+    "overview": "Software engineering, database architecture, network security, and enterprise solutions development aligned with CSSL industry standards.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream or ICT + approved maths/science subjects.",
+    "specializations": [
+      "Software Architecture",
+      "Network & Cloud Security",
+      "Data Engineering",
+      "Web & Mobile App Engineering"
+    ],
+    "career_paths": [
+      "Full Stack Software Engineer",
+      "Cloud Infrastructure Engineer",
+      "Database Administrator",
+      "IT Project Manager"
+    ],
+    "total_national_intake": 250
+  },
+  "023": {
+    "course_code": "023",
+    "degree_awarded": "BArch (Hons)",
+    "overview": "Five-year RIBA Part I and SLIA accredited professional architectural program with design studios, sustainable bioclimatic building, urban design, and heritage conservation.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'S' · Maths 'C' (or A/L Maths S) + Pass Spatial Aptitude Test.",
+    "specializations": [
+      "Sustainable Architecture",
+      "Urban Design & Landscape",
+      "Architectural Conservation",
+      "Interior Architecture"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Rigorous spatial perception, freehand drawing, design aesthetics, and critical reasoning exam conducted by Faculty of Architecture, University of Moratuwa.",
+    "career_paths": [
+      "Chartered Architect (SLIA/RIBA)",
+      "Urban Spatial Designer",
+      "Sustainable Design Consultant",
+      "Heritage Conservation Architect"
+    ],
+    "total_national_intake": 90
+  },
+  "024": {
+    "course_code": "024",
+    "degree_awarded": "BDes (Hons)",
+    "overview": "Four-year industrial design, graphic design, and UI/UX degree teaching design thinking, 3D prototyping, ergonomic engineering, and creative branding at UOM.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'S' · Maths 'C' · Science 'C' + Pass Creative Aptitude Test.",
+    "specializations": [
+      "Industrial & Product Design",
+      "Graphic Communication Design",
+      "Fashion & Lifestyle Design",
+      "Interaction & UI/UX Design"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Creative visualization, lateral thinking, aesthetic judgment, and technical sketching exam conducted by University of Moratuwa.",
+    "career_paths": [
+      "Industrial Product Designer",
+      "UI/UX Product Designer",
+      "Creative Brand Director",
+      "Design Strategist"
+    ],
+    "total_national_intake": 60
+  },
+  "025": {
+    "course_code": "025",
+    "degree_awarded": "LLB (Hons)",
+    "overview": "Prestigious four-year legal program covering constitutional law, commercial arbitration, criminal jurisprudence, and human rights, leading to Sri Lanka Law College Bar exams.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Bio Science, Physical Science, Commerce, or approved Arts baskets + O/L English 'C' and Sinhala OR Tamil 'C'.",
+    "specializations": [
+      "Commercial & Corporate Law",
+      "Constitutional & Administrative Law",
+      "Criminal Law & Procedure",
+      "International Human Rights & Environmental Law"
+    ],
+    "career_paths": [
+      "Attorney-at-Law (Bar Association of Sri Lanka)",
+      "Corporate Legal Counsel",
+      "Judicial Service Magistrate / Judge",
+      "Legal Policy Advisor"
+    ],
+    "total_national_intake": 320
+  },
+  "026": {
+    "course_code": "026",
+    "degree_awarded": "BSc (Hons) in Information Technology",
+    "overview": "Flagship University of Moratuwa computing degree with world-class faculty, software engineering hackathons, 6-month industrial internships, and high tech company placements.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Higher Maths, Mathematics, or Physics + 2 other 'S' passes.",
+    "specializations": [
+      "Software Systems Engineering",
+      "Cyber Security & Forensic Computing",
+      "Cloud & DevOps Engineering",
+      "Data Science & Big Data"
+    ],
+    "career_paths": [
+      "Senior Software Engineer",
+      "DevOps & Cloud Architect",
+      "Security Analyst",
+      "Tech Lead / CTO"
+    ],
+    "total_national_intake": 350
+  },
+  "027": {
+    "course_code": "027",
+    "degree_awarded": "BSc (Hons) in Management and Information Technology",
+    "overview": "Unique blend of business strategy and cutting-edge computing at University of Kelaniya, designed to produce tech entrepreneurs, ERP consultants, and enterprise architects.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Higher Maths, or Physics + 2 'S' passes in Bio/Physical Science or ICT + O/L Maths 'B' and O/L English 'C'.",
+    "specializations": [
+      "Business Analytics & Enterprise Systems",
+      "Software Engineering & IT Architecture",
+      "Operations & Supply Chain Management",
+      "Information Systems Security"
+    ],
+    "special_intake_quota_note": "40% Biological Science / 60% Physical Science & ICT split",
+    "career_paths": [
+      "ERP / SAP Solutions Consultant",
+      "Business Systems Analyst",
+      "Product Manager (Tech)",
+      "Fintech Specialist"
+    ],
+    "total_national_intake": 120
+  },
+  "028": {
+    "course_code": "028",
+    "degree_awarded": "BA (Hons) in Peace & Conflict Resolution",
+    "overview": "Interdisciplinary program in international diplomacy, restorative justice, humanitarian intervention, and reconciliation studies at University of Kelaniya.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream with approved Arts/Social Sciences subjects.",
+    "specializations": [
+      "Conflict Analysis & Mediation",
+      "Humanitarian Governance",
+      "Human Rights & Transitional Justice",
+      "Diplomatic Studies"
+    ],
+    "career_paths": [
+      "UN / NGO Humanitarian Officer",
+      "Peace Mediation Specialist",
+      "Foreign Policy Analyst",
+      "Reconciliation Officer"
+    ],
+    "total_national_intake": 75
+  },
+  "029": {
+    "course_code": "029",
+    "degree_awarded": "BA (Hons) in Communication Studies",
+    "overview": "Trincomalee Campus program in mass communication, digital publishing, media linguistics, and strategic development communication.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'C'.",
+    "specializations": [
+      "Media Studies & Production",
+      "Development Communication",
+      "Corporate Public Relations",
+      "Digital Journalism"
+    ],
+    "career_paths": [
+      "Media Planner & Strategist",
+      "Corporate Communications Executive",
+      "Digital Journalist",
+      "Advertising Copywriter"
+    ],
+    "total_national_intake": 110
+  },
+  "030": {
+    "course_code": "030",
+    "degree_awarded": "BSc (Hons) in Town & Country Planning",
+    "overview": "Accredited by the Institute of Town Planners Sri Lanka (ITPSL) and RTPI UK, teaching GIS spatial modeling, master planning, traffic engineering, and resilient smart city design at UOM.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'B' and Maths 'C'.",
+    "specializations": [
+      "Smart Cities & GIS Spatial Analytics",
+      "Urban Infrastructure & Transport Planning",
+      "Environmental & Disaster Management",
+      "Regional Economic Planning"
+    ],
+    "career_paths": [
+      "Chartered Urban / Town Planner (ITPSL)",
+      "GIS Spatial Analyst",
+      "Urban Transportation Specialist",
+      "Disaster Mitigation Consultant"
+    ],
+    "total_national_intake": 80
+  },
+  "031": {
+    "course_code": "031",
+    "degree_awarded": "BA (Hons) in Islamic Studies",
+    "overview": "Comprehensive degree in Islamic theology, comparative religion, Islamic banking jurisprudence, Arabic classical literature, and Islamic law at SEUSL.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Arts stream with Islamic Civilisation or Arabic.",
+    "specializations": [
+      "Islamic Banking & Jurisprudence",
+      "Quranic Sciences & Hadith",
+      "Islamic History & Civilisation",
+      "Islamic Commercial Law"
+    ],
+    "career_paths": [
+      "Islamic Banking Shariah Advisor",
+      "Islamic Educator",
+      "Community Mediator",
+      "Cultural Researcher"
+    ],
+    "total_national_intake": 220
+  },
+  "032": {
+    "course_code": "032",
+    "degree_awarded": "BAMS (Bachelor of Ayurveda Medicine & Surgery)",
+    "overview": "Six-year holistic medical program including one-year hospital clinical internship, covering Dravyaguna (herbal pharmacology), Panchakarma therapy, and classical pathology leading to Ayurvedic Medical Council registration.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L).",
+    "specializations": [
+      "Panchakarma Clinical Therapy",
+      "Dravyaguna (Herbal Pharmacology)",
+      "Shalya Tantra (Surgical Traditions)",
+      "Kaumarbhritya (Paediatrics)"
+    ],
+    "career_paths": [
+      "Ayurvedic Medical Officer (Govt/Private)",
+      "Herbal Drug Formulation Scientist",
+      "Wellness Resort Medical Director",
+      "Panchakarma Specialist"
+    ],
+    "total_national_intake": 280
+  },
+  "033": {
+    "course_code": "033",
+    "degree_awarded": "BUMS (Bachelor of Unani Medicine & Surgery)",
+    "overview": "Six-year Greco-Arabic clinical medical curriculum including pathology, Ilmul Advia (pharmacology), Moalajat (therapeutics), and hospital clinical residency.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L).",
+    "specializations": [
+      "Kulliyat (Principles of Medicine)",
+      "Ilmul Advia (Unani Pharmacology)",
+      "Moalajat (Clinical Medicine)",
+      "Jarahat (Unani Surgery)"
+    ],
+    "career_paths": [
+      "Unani Medical Officer",
+      "Natural Therapeutics Consultant",
+      "Herbal Formulation Technologist",
+      "Clinical Researcher"
+    ],
+    "total_national_intake": 80
+  },
+  "034": {
+    "course_code": "034",
+    "degree_awarded": "BDes (Hons) in Fashion Design & Product Development",
+    "overview": "University of Moratuwa high-fashion and garment technical degree in creative collection development, pattern engineering, 3D CLO software, and export apparel merchandise.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'C', Maths 'C', Science 'C' + Pass Fashion Aptitude Test.",
+    "specializations": [
+      "Apparel Collection Design",
+      "Textile Print & Surface Ornamentation",
+      "Fashion Merchandising & Branding",
+      "Technical Activewear & Footwear"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Fashion illustration, 2D-to-3D garment form creation, color sensitivity, and written creative brief test conducted by University of Moratuwa.",
+    "career_paths": [
+      "Fashion Apparel Designer",
+      "Creative Garment Merchandiser",
+      "Apparel Brand Manager",
+      "Textile Print Designer"
+    ],
+    "total_national_intake": 60
+  },
+  "035": {
+    "course_code": "035",
+    "degree_awarded": "BSc (Hons) in Food Science & Nutrition",
+    "overview": "Wayamba University degree covering clinical dietetics, public health nutrition, biochemical toxicology, and specialized functional foods development.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Clinical Dietetics & Nutritional Therapy",
+      "Applied Food Science & Tech",
+      "Community Health Nutrition",
+      "Sports Nutrition & Metabolism"
+    ],
+    "career_paths": [
+      "Hospital Clinical Dietitian",
+      "Nutrition Policy Consultant",
+      "Food Industry Quality Specialist",
+      "Wellness / Sports Nutritionist"
+    ],
+    "total_national_intake": 180
+  },
+  "036": {
+    "course_code": "036",
+    "degree_awarded": "BSMS (Bachelor of Siddha Medicine & Surgery)",
+    "overview": "Six-year ancient Dravidian medical curriculum including Siddha pharmacology, Gunapadam, Varmam manual therapy, and clinical hospital clerkships at Jaffna and Eastern Universities.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L).",
+    "specializations": [
+      "Gunapadam (Siddha Pharmacology)",
+      "Sirappu Maruthuvam (Special Medicine)",
+      "Varmam Therapy & Orthopaedics",
+      "Noi Naadal (Siddha Pathology)"
+    ],
+    "career_paths": [
+      "Siddha Medical Officer",
+      "Varmam & Musculoskeletal Specialist",
+      "Natural Medicine Researcher",
+      "Traditional Drug Quality Officer"
+    ],
+    "total_national_intake": 140
+  },
+  "037": {
+    "course_code": "037",
+    "degree_awarded": "BSc (Hons) in Nursing",
+    "overview": "Four-year clinical nursing degree in hospital wards, intensive care, oncology, paediatrics, and community health leading to Sri Lanka Medical Council / Sri Lanka Nursing Council registration.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) + O/L English 'S' + Min Height 4' 10\" (147.3 cm) without physical deformity.",
+    "specializations": [
+      "Critical Care & Trauma Nursing",
+      "Paediatric & Neonatal Nursing",
+      "Oncology Nursing",
+      "Community & Public Health Nursing"
+    ],
+    "special_intake_quota_note": "Minimum height requirement 4' 10\" (147.3 cm) strictly enforced at physical medical checkup.",
+    "career_paths": [
+      "Registered Nursing Sister / Officer (SLNC)",
+      "Critical Care / ICU Specialist Nurse",
+      "International Healthcare Nurse (UK/Aus)",
+      "Nursing Lecturer / Researcher"
+    ],
+    "total_national_intake": 450
+  },
+  "038": {
+    "course_code": "038",
+    "degree_awarded": "BSc (Hons) in Information and Communication Technology",
+    "overview": "Software applications, cloud infrastructure, network routing, and information system management at Rajarata University and University of Vavuniya.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Physics, or ICT + 2 other 'S' passes + O/L English 'C' and Maths 'C'.",
+    "specializations": [
+      "Cloud Computing & Virtualization",
+      "Cyber Security Systems",
+      "Data Engineering",
+      "Web Systems Engineering"
+    ],
+    "career_paths": [
+      "ICT Systems Administrator",
+      "Cloud Systems Engineer",
+      "Software Developer",
+      "Network Security Engineer"
+    ],
+    "total_national_intake": 220
+  },
+  "039": {
+    "course_code": "039",
+    "degree_awarded": "BSc (Hons) in Agricultural Resource Management & Technology",
+    "overview": "Four-year agricultural science program at University of Ruhuna focusing on sustainable agro-ecosystems, water resource management, and commercial biotechnology.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Agro-Environmental Systems",
+      "Crop Protection & Pathology",
+      "Soil & Water Engineering",
+      "Agricultural Economics"
+    ],
+    "career_paths": [
+      "Agro-Resource Consultant",
+      "Plantation Technical Officer",
+      "Crop Protection Specialist",
+      "Environmental Manager"
+    ],
+    "total_national_intake": 140
+  },
+  "040": {
+    "course_code": "040",
+    "degree_awarded": "BSc (Hons) in Agribusiness Management",
+    "overview": "Commercial farm management, agricultural commodity marketing, value addition chains, and farm financial management at Sabaragamuwa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biological Science or Commerce with Economics/Business Studies.",
+    "specializations": [
+      "Agricultural Commodity Marketing",
+      "Agro-Enterprise Finance",
+      "Farm Management",
+      "Value Chain Logistics"
+    ],
+    "career_paths": [
+      "Agribusiness Manager",
+      "Commodity Trading Analyst",
+      "Farm Finance Officer",
+      "Agricultural Marketing Executive"
+    ],
+    "total_national_intake": 85
+  },
+  "041": {
+    "course_code": "041",
+    "degree_awarded": "BPAHons in Performing Arts",
+    "overview": "Four-year performing arts curriculum in classical dance, theatrical direction, music composition, and ethnochoreology at Sripalee Campus, University of Colombo.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'S' + Pass Practical Performing Arts Test.",
+    "specializations": [
+      "Kandyan & Traditional Dance",
+      "Oriental & Contemporary Music",
+      "Theatrical Acting & Directing",
+      "Choreography & Stage Production"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Practical audition evaluating rhythm, pitch accuracy, bodily flexibility, and theatrical performance conducted by Sripalee Campus.",
+    "career_paths": [
+      "Performing Artist / Choreographer",
+      "Theatrical Director",
+      "Performing Arts Educator",
+      "Cultural Ambassador"
+    ],
+    "total_national_intake": 120
+  },
+  "051": {
+    "course_code": "051",
+    "degree_awarded": "BPharm (Hons)",
+    "overview": "Four-year clinical pharmacy program in pharmaceutical chemistry, industrial drug formulation, pharmacokinetics, and hospital dispensing accredited by SLMC.",
+    "al_requirements_summary": "At least a 'C' pass in Chemistry AND 'S' passes in Biology and Physics at G.C.E. (A/L) + O/L English 'S'.",
+    "specializations": [
+      "Industrial Pharmaceutical Manufacturing",
+      "Clinical & Hospital Pharmacy",
+      "Quality Control & Regulatory Affairs",
+      "Medicinal Chemistry & Drug Discovery"
+    ],
+    "career_paths": [
+      "SLMC Registered Pharmacist",
+      "Pharmaceutical QC/QA Manager",
+      "Clinical Hospital Pharmacist",
+      "Regulatory Affairs Specialist"
+    ],
+    "total_national_intake": 160
+  },
+  "052": {
+    "course_code": "052",
+    "degree_awarded": "BSc (Hons) in Medical Laboratory Sciences",
+    "overview": "Clinical diagnostic pathology, hematology, medical microbiology, histopathology, and clinical chemistry in tertiary teaching hospitals leading to SLMC registration.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) + O/L English 'S'.",
+    "specializations": [
+      "Clinical Haematology & Blood Transfusion",
+      "Diagnostic Microbiology & Virology",
+      "Chemical Pathology",
+      "Histopathology & Cytology"
+    ],
+    "career_paths": [
+      "Medical Laboratory Scientist (SLMC)",
+      "Diagnostic Laboratory Manager",
+      "Transfusion Medicine Technologist",
+      "Biomedical Research Scientist"
+    ],
+    "total_national_intake": 160
+  },
+  "053": {
+    "course_code": "053",
+    "degree_awarded": "BSc (Hons) in Radiography",
+    "overview": "Four-year clinical diagnostic imaging curriculum at University of Peradeniya covering MRI, CT scanning, fluoroscopy, radiation physics, and nuclear medicine.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) + O/L English 'S'.",
+    "specializations": [
+      "Diagnostic Magnetic Resonance Imaging (MRI)",
+      "Computed Tomography (CT)",
+      "Radiation Safety & Protection",
+      "Interventional Radiography"
+    ],
+    "career_paths": [
+      "Licensed Radiographer (SLMC)",
+      "Chief MRI / CT Imaging Specialist",
+      "Radiation Safety Officer",
+      "Medical Imaging Systems Specialist"
+    ],
+    "total_national_intake": 50
+  },
+  "054": {
+    "course_code": "054",
+    "degree_awarded": "BSc (Hons) in Physiotherapy",
+    "overview": "Four-year physical rehabilitation science program at UOC and UOP covering musculoskeletal manual therapy, neurorehabilitation, cardiopulmonary ICU physiotherapy, and sports medicine.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) + O/L English 'S'.",
+    "specializations": [
+      "Orthopaedic & Musculoskeletal Therapy",
+      "Neurological Rehabilitation",
+      "Sports Injury Rehabilitation",
+      "Cardiopulmonary Physical Therapy"
+    ],
+    "career_paths": [
+      "Chartered / Licensed Physiotherapist (SLMC)",
+      "Sports Team Rehabilitation Specialist",
+      "Hospital ICU Physical Therapist",
+      "Private Clinic Director"
+    ],
+    "total_national_intake": 75
+  },
+  "056": {
+    "course_code": "056",
+    "degree_awarded": "BSc (Hons) in Facilities Management",
+    "overview": "Accredited by RICS and IWFM UK at University of Moratuwa, teaching commercial building lifecycle economics, HVAC energy management, smart IoT facilities, and workplace strategy.",
+    "al_requirements_summary": "At least 'C' passes in English, Maths, and Science at O/L + 3 passes in Physical Science / ICT at G.C.E. (A/L).",
+    "specializations": [
+      "Smart Building Asset Management",
+      "Energy & Sustainability Engineering",
+      "Workplace Strategy & Space Economics",
+      "Health, Safety & Environmental Operations"
+    ],
+    "career_paths": [
+      "Facilities Manager (Hotels/Airports/Commercial Towers)",
+      "Energy Audit Director",
+      "Corporate Asset Strategist",
+      "BIM Operations Manager"
+    ],
+    "total_national_intake": 60
+  },
+  "057": {
+    "course_code": "057",
+    "degree_awarded": "BSc (Hons) in Transport & Logistics Management",
+    "overview": "CILT UK accredited program at UOM covering aviation operations, maritime shipping economics, multi-modal supply chains, and freight transportation modeling.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Mathematics, Physics, and Chemistry at G.C.E. (A/L).",
+    "specializations": [
+      "Maritime Logistics & Port Operations",
+      "Aviation Systems & Airline Economics",
+      "Supply Chain Analytics & Optimization",
+      "Urban Public Transport Engineering"
+    ],
+    "career_paths": [
+      "Supply Chain Director",
+      "Port Operations & Maritime Manager",
+      "Airline Network Logistics Analyst",
+      "Freight Forwarding Executive"
+    ],
+    "total_national_intake": 70
+  },
+  "058": {
+    "course_code": "058",
+    "degree_awarded": "BSc (Hons) in Molecular Biology & Plant Biotechnology",
+    "overview": "Recombinant DNA technology, CRISPR gene editing, agricultural pathogen resistance, and tissue culture genetics at University of Colombo.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L).",
+    "specializations": [
+      "Genetic Engineering & CRISPR",
+      "Plant Tissue Culture",
+      "Molecular Diagnostics",
+      "Genomics & Bioinformatics"
+    ],
+    "career_paths": [
+      "Molecular Biologist",
+      "Biotechnology Research Scientist",
+      "Crop Genetics Officer",
+      "Genomics Analyst"
+    ],
+    "total_national_intake": 50
+  },
+  "059": {
+    "course_code": "059",
+    "degree_awarded": "BSc (Hons) in Industrial Statistics & Mathematical Finance",
+    "overview": "Quantitative mathematical finance, stochastic calculus, actuarial science, statistical quality control, and predictive machine learning at University of Colombo.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths or Higher Maths + 2 other approved Physical Science subjects.",
+    "specializations": [
+      "Actuarial Science & Insurance Math",
+      "Mathematical Finance & Risk Analysis",
+      "Industrial Statistical Quality Control",
+      "Machine Learning & Predictive Modeling"
+    ],
+    "career_paths": [
+      "Actuary / Risk Modeler",
+      "Financial Quantitative Analyst",
+      "Data Scientist",
+      "Statistical Operations Analyst"
+    ],
+    "total_national_intake": 90
+  },
+  "060": {
+    "course_code": "060",
+    "degree_awarded": "BSc (Hons) in Statistics & Operations Research",
+    "overview": "University of Peradeniya program in linear programming, operations research modeling, Bayesian statistics, and industrial quality management.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Mathematics + 2 other Physical Science subjects.",
+    "specializations": [
+      "Operations Research Optimization",
+      "Applied Econometrics",
+      "Biostatistics",
+      "Supply Chain Modeling"
+    ],
+    "career_paths": [
+      "Operations Research Analyst",
+      "Supply Chain Optimization Engineer",
+      "Biostatistician",
+      "Quantitative Modeler"
+    ],
+    "total_national_intake": 60
+  },
+  "061": {
+    "course_code": "061",
+    "degree_awarded": "BSc (Hons) in Computation & Management",
+    "overview": "Unique degree blending computer algorithms, relational databases, financial accounting, and organizational leadership at University of Peradeniya.",
+    "al_requirements_summary": "Passes in Combined Maths, Higher Maths, or Physics + Economics/Accounting/Chemistry.",
+    "specializations": [
+      "Enterprise Management Information Systems",
+      "Computational Finance",
+      "E-Commerce & Digital Strategy",
+      "Software Project Management"
+    ],
+    "career_paths": [
+      "IT Business Analyst",
+      "Software Project Manager",
+      "Fintech Specialist",
+      "Enterprise IT Consultant"
+    ],
+    "total_national_intake": 50
+  },
+  "062": {
+    "course_code": "062",
+    "degree_awarded": "BSc (Hons) in Fisheries & Marine Sciences",
+    "overview": "Oceanography, aquaculture engineering, marine bio-diversity, commercial fish stock assessment, and marine biotechnology at University of Ruhuna.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Aquaculture & Hatchery Management",
+      "Oceanography & Marine Ecology",
+      "Post-Harvest Fishery Tech",
+      "Limnology & Aquatic Resources"
+    ],
+    "career_paths": [
+      "Marine Biologist / Oceanographer",
+      "Commercial Aquaculture Manager",
+      "Fisheries Development Officer (NAQDA)",
+      "Marine Environmental Consultant"
+    ],
+    "total_national_intake": 120
+  },
+  "063": {
+    "course_code": "063",
+    "degree_awarded": "BSc (Hons) in Marine & Freshwater Sciences",
+    "overview": "Aquatic ecology, wetland conservation, environmental water testing, and marine coastal ecosystem preservation at University of Ruhuna.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Marine Environmental Science",
+      "Freshwater Conservation",
+      "Water Quality Monitoring",
+      "Coastal Zone Management"
+    ],
+    "career_paths": [
+      "Aquatic Environmental Officer",
+      "Marine Park Conservator",
+      "Hydrological Researcher",
+      "Water Quality Analyst"
+    ],
+    "total_national_intake": 60
+  },
+  "064": {
+    "course_code": "064",
+    "degree_awarded": "BSc (Hons) in Information Systems",
+    "overview": "Enterprise systems analysis, database design, cybersecurity policy, and IT service governance at UCSC and Rajarata University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L Maths 'C' and English 'C'.",
+    "specializations": [
+      "IT Governance & Audit",
+      "Enterprise Architecture",
+      "Business Systems Analysis",
+      "Database Administration"
+    ],
+    "career_paths": [
+      "IT Systems Analyst",
+      "IT Auditor",
+      "Database Administrator",
+      "Solutions Consultant"
+    ],
+    "total_national_intake": 120
+  },
+  "065": {
+    "course_code": "065",
+    "degree_awarded": "BSc (Hons) in Software Engineering",
+    "overview": "Software construction, cloud deployment pipelines, automated testing, and agile methodologies at University of Kelaniya.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Higher Maths, or Physics + 2 other approved subjects.",
+    "specializations": [
+      "Cloud Software Engineering",
+      "Mobile Architecture",
+      "Software Security & Testing",
+      "Microservices Architecture"
+    ],
+    "career_paths": [
+      "Software Engineer",
+      "Cloud Developer",
+      "Test Automation Engineer",
+      "DevOps Specialist"
+    ],
+    "total_national_intake": 90
+  },
+  "068": {
+    "course_code": "068",
+    "degree_awarded": "BSc (Hons) in Sports Science & Management",
+    "overview": "Sports biomechanics, exercise physiology, sports psychology, athlete nutrition, and commercial sports organization management at USJP, SUSL, and UOK.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Practical Physical & Sports Aptitude Test.",
+    "specializations": [
+      "Sports Biomechanics & Performance Analysis",
+      "Sports Management & Marketing",
+      "Exercise Physiology & Rehabilitation",
+      "Coaching Pedagogy"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Practical physical endurance trial (400m run, push-ups, agility shuttle) + certified sports achievement score conducted by SUSL, USJP, and UOK.",
+    "career_paths": [
+      "Sports High-Performance Director",
+      "Strength & Conditioning Coach",
+      "Sports Event & Venue Manager",
+      "National Team Biomechanist"
+    ],
+    "total_national_intake": 180
+  },
+  "069": {
+    "course_code": "069",
+    "degree_awarded": "BSc (Hons) in Physical Education",
+    "overview": "Physical education pedagogy, sports science, school athletics coaching, and recreation management at Sabaragamuwa and Jaffna Universities.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Physical Fitness Aptitude Test.",
+    "specializations": [
+      "School Physical Education Curriculum",
+      "Track & Field Coaching",
+      "Recreational Sports Administration",
+      "Adapted Physical Activity"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Practical sports skills assessment and physical endurance test conducted by Sabaragamuwa University and University of Jaffna.",
+    "career_paths": [
+      "Physical Education Director / Teacher",
+      "Athletic Coach",
+      "Community Fitness Director",
+      "Sports Development Officer"
+    ],
+    "total_national_intake": 110
+  },
+  "070": {
+    "course_code": "070",
+    "degree_awarded": "BSc (Hons) in Speech & Hearing Sciences",
+    "overview": "Four-year clinical audiology and speech therapy degree at University of Kelaniya covering pediatric language delays, cochlear implants, and neurogenic communication disorders.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics + Pass Spoken Aptitude Assessment.",
+    "specializations": [
+      "Audiology",
+      "Speech Language Pathology",
+      "Swallowing Disorders",
+      "Paediatric Hearing Screening"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Oral communication assessment and hearing awareness evaluation conducted by Faculty of Medicine, University of Kelaniya.",
+    "career_paths": [
+      "Audiologist (SLMC)",
+      "Speech Language Therapist",
+      "Hearing Aid Specialist",
+      "Clinical Researcher"
+    ],
+    "total_national_intake": 60
+  },
+  "071": {
+    "course_code": "071",
+    "degree_awarded": "BA (Hons) in Translation Studies",
+    "overview": "Trilingual interpretation and literary, technical, and legal translation at University of Kelaniya and Sabaragamuwa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Arts stream + Pass Translation Aptitude Test.",
+    "specializations": [
+      "Legal Translation",
+      "Conference Interpretation",
+      "Literary Translation",
+      "Technical Localization"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Written translation exam testing syntactic agility and vocabulary translation across Sinhala, Tamil, and English conducted by UOK and SUSL.",
+    "career_paths": [
+      "Court / Legal Translator",
+      "Conference Interpreter",
+      "Publishing House Editor",
+      "Government Translator"
+    ],
+    "total_national_intake": 60
+  },
+  "072": {
+    "course_code": "072",
+    "degree_awarded": "BA (Hons) in Film & Television Studies",
+    "overview": "Screenplay writing, cinematography, audio design, digital editing, and cinema studies at University of Kelaniya.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + Pass Creative Film Aptitude Test.",
+    "specializations": [
+      "Directing & Screenwriting",
+      "Cinematography & Lighting",
+      "Film Editing & Sound Design",
+      "Film Theory & Criticism"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Visual storytelling paper, storyboard sequencing, and creative film script writing test conducted by University of Kelaniya.",
+    "career_paths": [
+      "Film / Television Director",
+      "Cinematographer",
+      "Post-Production Editor",
+      "Screenwriter"
+    ],
+    "total_national_intake": 50
+  },
+  "073": {
+    "course_code": "073",
+    "degree_awarded": "BSc (Hons) in Animal Science & Fisheries",
+    "overview": "Animal nutrition, poultry science, aquaculture management, and veterinary parasitology at University of Peradeniya.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Aquaculture & Aquatic Resources",
+      "Dairy Production Technology",
+      "Poultry Science",
+      "Livestock Breeding"
+    ],
+    "career_paths": [
+      "Livestock Production Officer",
+      "Commercial Fish Hatchery Manager",
+      "Animal Feed Formulator",
+      "Dairy Plant Supervisor"
+    ],
+    "total_national_intake": 80
+  },
+  "074": {
+    "course_code": "074",
+    "degree_awarded": "BSc (Hons) in Export Agriculture",
+    "overview": "Commercial cultivation and value-addition of tea, rubber, coconut, cinnamon, pepper, and cardamom at Uva Wellassa University and Sabaragamuwa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science at G.C.E. (A/L).",
+    "specializations": [
+      "Spice & Beverage Crops",
+      "Agricultural Product Processing",
+      "Export Commodity Marketing",
+      "Post-Harvest Pathology"
+    ],
+    "career_paths": [
+      "Export Plantation Manager",
+      "Spices & Essential Oils Chemist",
+      "Commodity Broker",
+      "Agri-Export Quality Specialist"
+    ],
+    "total_national_intake": 120
+  },
+  "075": {
+    "course_code": "075",
+    "degree_awarded": "BSc (Hons) in Industrial Information Technology",
+    "overview": "Four-year honors degree at Uva Wellassa University bridging industrial manufacturing, ERP, IoT industrial automation, and enterprise database systems.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Physics, or ICT + 2 other 'S' passes + O/L English 'C' and Maths 'C'.",
+    "specializations": [
+      "Industrial IoT & Automation",
+      "Enterprise Software Systems",
+      "Manufacturing Data Analytics",
+      "Applied Network Infrastructure"
+    ],
+    "career_paths": [
+      "Industrial Automation Engineer",
+      "ERP Technical Specialist",
+      "Manufacturing IT Manager",
+      "Enterprise Database Engineer"
+    ],
+    "total_national_intake": 80
+  },
+  "076": {
+    "course_code": "076",
+    "degree_awarded": "BSc (Hons) in Mineral Resources and Technology",
+    "overview": "Mineral exploration, gemology, ceramic raw materials, mineral processing, and geotechnical surveying at Uva Wellassa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Combined Maths, Physics, and Chemistry at G.C.E. (A/L).",
+    "specializations": [
+      "Mineral Processing Technology",
+      "Applied Geology & Exploration",
+      "Ceramics & Glass Technology",
+      "Gemology & Jewelry Arts"
+    ],
+    "career_paths": [
+      "Geoscientist / Mining Geologist",
+      "Gemologist (NGJA)",
+      "Ceramics Technologist",
+      "Geotechnical Surveyor"
+    ],
+    "total_national_intake": 75
+  },
+  "077": {
+    "course_code": "077",
+    "degree_awarded": "BSc (Hons) in Science and Technology",
+    "overview": "Multidisciplinary materials science, mechatronics, polymer engineering, and biotechnology at Uva Wellassa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Physical Science or Biological Science stream.",
+    "specializations": [
+      "Materials & Polymer Technology",
+      "Mechatronics & Robotics",
+      "Food Engineering",
+      "Bioprocess Technology"
+    ],
+    "career_paths": [
+      "Materials Engineer",
+      "Industrial Automation Specialist",
+      "R&D Scientist",
+      "Quality Systems Engineer"
+    ],
+    "total_national_intake": 90
+  },
+  "078": {
+    "course_code": "078",
+    "degree_awarded": "BSc (Hons) in Computer Science and Technology",
+    "overview": "Four-year computing curriculum at Uva Wellassa University focusing on software engineering, cloud architecture, machine learning, and mobile computing.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Mathematics or Physics + 2 other approved subjects.",
+    "specializations": [
+      "Software Engineering",
+      "Intelligent Systems & AI",
+      "Computer Networks & Security",
+      "Enterprise Cloud Systems"
+    ],
+    "career_paths": [
+      "Software Engineer",
+      "Systems Architect",
+      "Cloud DevOps Specialist",
+      "Security Analyst"
+    ],
+    "total_national_intake": 80
+  },
+  "079": {
+    "course_code": "079",
+    "degree_awarded": "BBMHons in Entrepreneurship and Management",
+    "overview": "Business incubation, venture capital, startup development, small business management, and strategic marketing at Uva Wellassa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce, Arts, or Science streams.",
+    "specializations": [
+      "Venture Capital & Startups",
+      "SME Business Strategy",
+      "Digital Marketing",
+      "Corporate Innovation"
+    ],
+    "career_paths": [
+      "Startup Founder / Entrepreneur",
+      "Business Development Manager",
+      "Venture Capital Analyst",
+      "Innovation Consultant"
+    ],
+    "total_national_intake": 90
+  },
+  "080": {
+    "course_code": "080",
+    "degree_awarded": "BSc (Hons) in Tea Technology and Value Addition",
+    "overview": "Ceylon tea biochemistry, tea processing automation, sensory tasting, international auction trading, and tea value addition at UWU.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science.",
+    "specializations": [
+      "Tea Agronomy & Processing",
+      "Tea Tasting & Sensory Analysis",
+      "Tea Value Addition & Marketing",
+      "Quality Standards & ISO"
+    ],
+    "career_paths": [
+      "Tea Factory General Manager",
+      "Professional Tea Taster / Broker",
+      "Tea Export Marketing Director",
+      "Tea Research Scientist (TRI)"
+    ],
+    "total_national_intake": 60
+  },
+  "081": {
+    "course_code": "081",
+    "degree_awarded": "BSc (Hons) in Industrial Raw Material Technology",
+    "overview": "Rubber polymer compounding, minerals, ceramics, timber, and sustainable industrial raw material extraction at Uva Wellassa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Physical Science or Biological Science + Pass Practical Aptitude Test.",
+    "specializations": [
+      "Polymer & Rubber Processing",
+      "Ceramics & Refractory Materials",
+      "Industrial Minerals",
+      "Material Quality Testing"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Technical aptitude and analytical reasoning exam conducted by Uva Wellassa University.",
+    "career_paths": [
+      "Raw Material Quality Manager",
+      "Polymer Technologist",
+      "Ceramics Plant Specialist",
+      "Procurement Specialist"
+    ],
+    "total_national_intake": 50
+  },
+  "082": {
+    "course_code": "082",
+    "degree_awarded": "BSc (Hons) in Palm & Latex Technology & Value Addition",
+    "overview": "Rubber latex tapping, centrifugation, dipped goods manufacturing, coconut oil value addition, and palm oil processing at UWU.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Science stream + Pass Technical Aptitude Test.",
+    "specializations": [
+      "Latex Centrifugation & Dipped Products",
+      "Coconut & Palm Oil Processing",
+      "Rubber Compounding",
+      "Export Value Chain Management"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Technical evaluation paper conducted by Uva Wellassa University.",
+    "career_paths": [
+      "Latex Factory Manager",
+      "Rubber Products Chemist",
+      "Palm Oil Processing Specialist",
+      "Commodity Export Officer"
+    ],
+    "total_national_intake": 50
+  },
+  "083": {
+    "course_code": "083",
+    "degree_awarded": "BSc (Hons) in Speech & Hearing Sciences",
+    "overview": "Specialized four-year clinical rehabilitation program at University of Kelaniya producing clinical audiologists and speech-language pathologists for teaching hospitals.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics at G.C.E. (A/L) + O/L English 'S'.",
+    "specializations": [
+      "Speech Language Therapy",
+      "Clinical Audiology & Cochlear Implants",
+      "Paediatric Communication Disorders",
+      "Neurogenic Speech Rehabilitation"
+    ],
+    "career_paths": [
+      "Clinical Speech-Language Pathologist (SLMC)",
+      "Audiologist / Hearing Aid Specialist",
+      "Voice Rehabilitation Consultant",
+      "Paediatric Hearing Therapist"
+    ],
+    "total_national_intake": 65
+  },
+  "084": {
+    "course_code": "084",
+    "degree_awarded": "BSc (Hons) in Hospitality, Tourism & Events Management",
+    "overview": "Luxury hotel operations, sustainable destination planning, global MICE events, and culinary management at Uva Wellassa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'C'.",
+    "specializations": [
+      "Luxury Hotel Management",
+      "MICE & Event Production",
+      "Sustainable Eco-Tourism",
+      "Food & Beverage Operations"
+    ],
+    "career_paths": [
+      "Hotel General Manager",
+      "MICE Event Director",
+      "Tourism Development Officer (SLTDA)",
+      "Resort Operations Manager"
+    ],
+    "total_national_intake": 75
+  },
+  "085": {
+    "course_code": "085",
+    "degree_awarded": "BSc (Hons) in Tourism & Hospitality Management",
+    "overview": "Eco-tourism, travel agency management, airline ticketing, hotel finance, and resort leadership at Sabaragamuwa and Rajarata Universities.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce, Arts, or Science + Pass Tourism Aptitude Test.",
+    "specializations": [
+      "Eco-Tourism & Heritage Conservation",
+      "Hotel Operations & Finance",
+      "Travel & Airline Operations",
+      "Destination Branding"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: General tourism knowledge, English fluency, and hospitality situational judgment interview conducted by SUSL and RUSL.",
+    "career_paths": [
+      "Resort General Manager",
+      "Tourism Marketing Specialist",
+      "Travel Operations Director",
+      "Hospitality Consultant"
+    ],
+    "total_national_intake": 140
+  },
+  "086": {
+    "course_code": "086",
+    "degree_awarded": "BSc (Hons) in Aquatic Resources Technology",
+    "overview": "Inland aquaculture, ornamental fish export, reservoir fisheries, seaweed farming, and post-harvest aquatic value addition at UWU.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science.",
+    "specializations": [
+      "Ornamental Fish Breeding & Export",
+      "Inland Aquaculture Engineering",
+      "Seaweed & Microalgae Culture",
+      "Aquatic Food Processing"
+    ],
+    "career_paths": [
+      "Ornamental Fish Farm Director",
+      "Aquaculture Technical Officer",
+      "Aquatic Products Exporter",
+      "Marine Resource Officer"
+    ],
+    "total_national_intake": 60
+  },
+  "087": {
+    "course_code": "087",
+    "degree_awarded": "BSc (Hons) in Forestry & Environmental Science",
+    "overview": "Silviculture, wildlife ecology, GIS forest remote sensing, carbon sequestration, and biodiversity management at University of Sri Jayewardenepura.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biology, Chemistry, and Physics or Agricultural Science.",
+    "specializations": [
+      "Forest Ecology & Silviculture",
+      "Wildlife Conservation & Parks",
+      "GIS & Satellite Remote Sensing",
+      "Carbon Accounting & Climate Policy"
+    ],
+    "career_paths": [
+      "Forest Conservator (Forest Department)",
+      "Wildlife Officer (DWC)",
+      "Carbon Project Developer",
+      "Environmental Impact Consultant"
+    ],
+    "total_national_intake": 95
+  },
+  "088": {
+    "course_code": "088",
+    "degree_awarded": "BSc (Hons) in EcoBusiness Management",
+    "overview": "Corporate environmental sustainability, circular economy, renewable energy financing, and green marketing at Sabaragamuwa University.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Commerce, Biological Science, or Physical Science.",
+    "specializations": [
+      "Circular Economy & Zero Waste",
+      "Green Marketing & Eco-Branding",
+      "Corporate Sustainability Reporting",
+      "Renewable Energy Economics"
+    ],
+    "career_paths": [
+      "Corporate Sustainability Director",
+      "Environmental ESG Auditor",
+      "Green Supply Chain Specialist",
+      "Eco-Business Strategist"
+    ],
+    "total_national_intake": 60
+  },
+  "091": {
+    "course_code": "091",
+    "degree_awarded": "BSc (Hons) in Information Technology & Management",
+    "overview": "Interdisciplinary program combining software technology, IT governance, corporate finance, and enterprise product management at University of Moratuwa.",
+    "al_requirements_summary": "3 passes with at least 'C' in two of: Combined Maths, Higher Maths, Maths, Physics, Chemistry, Accounting, Business Statistics, or ICT + O/L English 'C', Maths 'C'.",
+    "specializations": [
+      "FinTech & Digital Banking",
+      "Business Intelligence & Big Data",
+      "IT Governance & Enterprise Architecture",
+      "Digital Marketing & Product Management"
+    ],
+    "career_paths": [
+      "Fintech Product Manager",
+      "IT Business Consultant",
+      "Business Intelligence Analyst",
+      "Enterprise Solutions Architect"
+    ],
+    "total_national_intake": 120
+  },
+  "095": {
+    "course_code": "095",
+    "degree_awarded": "BSc (Hons) in Green Technology",
+    "overview": "Sustainable technology, waste-to-energy conversion, carbon footprint auditing, and environmental compliance at University of Ruhuna.",
+    "al_requirements_summary": "Minimum 3 'S' passes in Biological Science or Physical Science stream + O/L English 'C'.",
+    "specializations": [
+      "Renewable Energy Technologies",
+      "Waste Resource Management",
+      "Environmental Auditing & Carbon Accounting",
+      "Eco-Design & Life Cycle Assessment"
+    ],
+    "career_paths": [
+      "Green Energy Project Engineer",
+      "Sustainability & Carbon Auditor",
+      "Environmental Compliance Officer",
+      "Renewable Energy Consultant"
+    ],
+    "total_national_intake": 75
+  },
+  "096": {
+    "course_code": "096",
+    "degree_awarded": "BSc (Hons) in Information Systems",
+    "overview": "Curriculum covering enterprise architecture, IT strategy, business intelligence, database security, and cloud system implementation.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'C' and Maths 'C' + Pass Aptitude Test (60% Physical Science intake quota applies from 2028/29).",
+    "specializations": [
+      "Enterprise Information Systems",
+      "Data Analytics & Business Intelligence",
+      "Information Security Management",
+      "Cloud Computing & Digital Transformation"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Analytical thinking, mathematical logic, basic computing awareness, and English comprehension test conducted jointly by UCSC, USJP, and SUSL.",
+    "special_intake_quota_note": "60% Combined Mathematics & Physics intake quota rule takes effect from 2028/2029.",
+    "career_paths": [
+      "Information Systems Analyst",
+      "IT Strategy Consultant",
+      "Business Intelligence Architect",
+      "Cybersecurity Governance Manager"
+    ],
+    "total_national_intake": 180
+  },
+  "097": {
+    "course_code": "097",
+    "degree_awarded": "BLA (Hons)",
+    "overview": "Accredited by the Sri Lanka Institute of Landscape Architects (SLILA), teaching urban parks design, eco-restoration, botanical design, and stormwater management at UOM.",
+    "al_requirements_summary": "Minimum 3 'S' passes in any stream + O/L English 'S' · Maths 'C' (or A/L Maths S) + Pass Spatial & Aesthetic Aptitude Test.",
+    "specializations": [
+      "Urban Landscape Design",
+      "Ecological Restoration & Watersheds",
+      "Heritage & Botanical Garden Design",
+      "Recreational Landscape Architecture"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Landscape spatial comprehension, ecological visualization, freehand sketching, and design perception exam conducted by University of Moratuwa.",
+    "career_paths": [
+      "Chartered Landscape Architect (SLILA)",
+      "Urban Green Infrastructure Consultant",
+      "Parks & Recreation Director",
+      "Environmental Site Planner"
+    ],
+    "total_national_intake": 50
+  },
+  "098": {
+    "course_code": "098",
+    "degree_awarded": "BA (Hons) in Translation Studies",
+    "overview": "Four-year professional translator training in trilingual legal, diplomatic, medical, and literary translation across Sinhala, Tamil, and English with computer-assisted translation (CAT).",
+    "al_requirements_summary": "3 passes with at least 'C' in Sinhala or Tamil at A/L + O/L 'B' in English and 'B' in Sinhala/Tamil (or A/L English 'S') + Pass Aptitude Test.",
+    "specializations": [
+      "Legal & Constitutional Translation",
+      "Simultaneous & Consecutive Interpretation",
+      "Literary & Media Translation",
+      "Scientific & Technical Translation"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Language proficiency, syntax conversion, reading comprehension, and written translation paper across English/Sinhala/Tamil conducted by UOK, UOJ, EUSL, and SUSL.",
+    "career_paths": [
+      "Sworn / High Court Translator",
+      "Simultaneous Conference Interpreter",
+      "Diplomatic Translator (Ministry of Foreign Affairs)",
+      "Media Localization Specialist"
+    ],
+    "total_national_intake": 120
+  },
+  "099": {
+    "course_code": "099",
+    "degree_awarded": "BSc (Hons) in Software Engineering",
+    "overview": "Dedicated software engineering curriculum covering large-scale distributed architectures, mobile and web technologies, DevOps CI/CD, and quality assurance.",
+    "al_requirements_summary": "At least a 'C' pass in Combined Maths, Higher Maths, or Physics + 2 other 'S' passes.",
+    "specializations": [
+      "Enterprise Software Architecture",
+      "Mobile & Web Platforms",
+      "DevOps & Quality Engineering",
+      "Cloud Native Systems"
+    ],
+    "career_paths": [
+      "Full Stack Software Engineer",
+      "DevOps Engineer",
+      "Software QA Lead",
+      "Solutions Architect"
+    ],
+    "total_national_intake": 140
+  },
+  "042": {
+    "course_code": "042",
+    "degree_awarded": "BPA (Hons) in Drama & Theatre",
+    "overview": "Comprehensive academic curriculum in Drama & Theatre preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Drama & Theatre",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Drama & Theatre Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Audition in dramatic performance & speech.",
+    "total_national_intake": 80
+  },
+  "043": {
+    "course_code": "043",
+    "degree_awarded": "BFA (Hons) in Visual Arts",
+    "overview": "Comprehensive academic curriculum in Visual Arts preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Visual Arts",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Visual Arts Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Drawing & compositional visual aptitude test.",
+    "total_national_intake": 80
+  },
+  "044": {
+    "course_code": "044",
+    "degree_awarded": "BPA (Hons) in Music",
+    "overview": "Comprehensive academic curriculum in Music preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Music",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Music Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Vocal/instrumental pitch and rhythm practical audition.",
+    "total_national_intake": 80
+  },
+  "045": {
+    "course_code": "045",
+    "degree_awarded": "BPA (Hons) in Dance",
+    "overview": "Comprehensive academic curriculum in Dance preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Dance",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Dance Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Practical classical dance audition and rhythm test.",
+    "total_national_intake": 80
+  },
+  "046": {
+    "course_code": "046",
+    "degree_awarded": "BDes (Hons)",
+    "overview": "Comprehensive academic curriculum in Art & Design preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Art & Design",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Art & Design Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Creative design and sketching test.",
+    "total_national_intake": 80
+  },
+  "047": {
+    "course_code": "047",
+    "degree_awarded": "BA (Hons) in English",
+    "overview": "Comprehensive academic curriculum in English (Arts) preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream.",
+    "specializations": [
+      "Applied English (Arts)",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "English (Arts) Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "048": {
+    "course_code": "048",
+    "degree_awarded": "BDes (Hons) in Graphic Design",
+    "overview": "Comprehensive academic curriculum in Graphic Design preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Graphic Design",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Graphic Design Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Visual graphics and typography practical test.",
+    "total_national_intake": 80
+  },
+  "049": {
+    "course_code": "049",
+    "degree_awarded": "BFA (Hons) in Printmaking",
+    "overview": "Comprehensive academic curriculum in Printmaking preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Printmaking",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Printmaking Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: Graphic printmaking and etching aptitude test.",
+    "total_national_intake": 80
+  },
+  "050": {
+    "course_code": "050",
+    "degree_awarded": "BFA (Hons) in Sculpture",
+    "overview": "Comprehensive academic curriculum in Sculpture preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Arts stream. + Pass Aptitude Test.",
+    "specializations": [
+      "Applied Sculpture",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Sculpture Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": "Section 5.4 Aptitude Test: 3D spatial sculpture and clay modelling test.",
+    "total_national_intake": 80
+  },
+  "055": {
+    "course_code": "055",
+    "degree_awarded": "BSc (Hons) in Environmental Conservation & Management",
+    "overview": "Comprehensive academic curriculum in Environmental Conservation & Management preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Biological Science stream.",
+    "specializations": [
+      "Applied Environmental Conservation & Management",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Environmental Conservation & Management Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "066": {
+    "course_code": "066",
+    "degree_awarded": "BSc (Hons) in Business Information Systems",
+    "overview": "Comprehensive academic curriculum in Business Information Systems preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Business Information Systems",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Business Information Systems Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "067": {
+    "course_code": "067",
+    "degree_awarded": "BSc (Hons) in Financial Mathematics & Industrial Statistics",
+    "overview": "Comprehensive academic curriculum in Financial Mathematics & Industrial Statistics preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Physical Science stream.",
+    "specializations": [
+      "Applied Financial Mathematics & Industrial Statistics",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Financial Mathematics & Industrial Statistics Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "089": {
+    "course_code": "089",
+    "degree_awarded": "BSc (Hons) in Human Resource Development",
+    "overview": "Comprehensive academic curriculum in Human Resource Development preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Human Resource Development",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Human Resource Development Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "090": {
+    "course_code": "090",
+    "degree_awarded": "BSc (Hons) in Banking & Insurance",
+    "overview": "Comprehensive academic curriculum in Banking & Insurance preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Banking & Insurance",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Banking & Insurance Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "092": {
+    "course_code": "092",
+    "degree_awarded": "BSc (Hons) in Project Management",
+    "overview": "Comprehensive academic curriculum in Project Management preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Commerce stream.",
+    "specializations": [
+      "Applied Project Management",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Project Management Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "093": {
+    "course_code": "093",
+    "degree_awarded": "BSc (Hons) in Green Technology",
+    "overview": "Comprehensive academic curriculum in Green Technology (Bio) preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Technology stream.",
+    "specializations": [
+      "Applied Green Technology (Bio)",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Green Technology (Bio) Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  },
+  "094": {
+    "course_code": "094",
+    "degree_awarded": "BSc (Hons) in Animal Production & Food Technology",
+    "overview": "Comprehensive academic curriculum in Animal Production & Food Technology preparing graduates for specialized public and private sector employment, research, and professional certification.",
+    "al_requirements_summary": "Minimum 3 'S' passes in approved G.C.E. (A/L) subjects in the Biological Science stream.",
+    "specializations": [
+      "Applied Animal Production & Food Technology",
+      "Research & Development",
+      "Industry Systems",
+      "Advanced Analytics"
+    ],
+    "career_paths": [
+      "Animal Production & Food Technology Specialist",
+      "Research Officer",
+      "Industry Consultant",
+      "Senior Analyst"
+    ],
+    "aptitude_test_info": null,
+    "total_national_intake": 80
+  }
+};
+
+
 export interface CourseRecord {
   course_code: string;
   name: string;
@@ -984,6 +3782,14 @@ export interface AdmissionOptionSeed {
   ol_rule?: OlRequirementRule | null;
   ol_requirements_text?: string | null;
   ol_short_badge?: string | null;
+  overview?: string;
+  al_requirements_summary?: string;
+  specializations?: string[];
+  special_intake_quota_note?: string | null;
+  aptitude_test_info?: string | null;
+  career_paths?: string[];
+  total_national_intake?: number;
+  differently_abled_quota?: number;
 }
 
 export const ADMISSION_OPTIONS_SEED: AdmissionOptionSeed[] = [
@@ -1180,6 +3986,14 @@ export interface ProgramCutoffViewRow {
   ol_rule?: OlRequirementRule | null;
   ol_requirements_text?: string | null;
   ol_short_badge?: string | null;
+  overview?: string;
+  al_requirements_summary?: string;
+  specializations?: string[];
+  special_intake_quota_note?: string | null;
+  aptitude_test_info?: string | null;
+  career_paths?: string[];
+  total_national_intake?: number;
+  differently_abled_quota?: number;
 }
 
 export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCutoffViewRow[] {
@@ -1226,6 +4040,14 @@ export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCu
       ol_rule: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code] ?? null,
       ol_requirements_text: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code]?.full_description ?? null,
       ol_short_badge: OL_REQUIREMENTS_BY_COURSE_CODE[opt.course_code]?.short_badge ?? null,
+      overview: COURSE_MASTER_OVERVIEWS[opt.course_code]?.overview || course.description,
+      al_requirements_summary: COURSE_MASTER_OVERVIEWS[opt.course_code]?.al_requirements_summary || (course.subject_requirements.notes || '3 S passes in approved A/L subjects'),
+      specializations: COURSE_MASTER_OVERVIEWS[opt.course_code]?.specializations || [],
+      special_intake_quota_note: COURSE_MASTER_OVERVIEWS[opt.course_code]?.special_intake_quota_note ?? null,
+      aptitude_test_info: COURSE_MASTER_OVERVIEWS[opt.course_code]?.aptitude_test_info ?? (opt.aptitude_test_required ? 'Pass University Aptitude / Practical Test' : null),
+      career_paths: COURSE_MASTER_OVERVIEWS[opt.course_code]?.career_paths || [],
+      total_national_intake: COURSE_MASTER_OVERVIEWS[opt.course_code]?.total_national_intake ?? 120,
+      differently_abled_quota: COURSE_MASTER_OVERVIEWS[opt.course_code]?.differently_abled_quota ?? 5,
     };
   });
 }

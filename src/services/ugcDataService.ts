@@ -21,6 +21,8 @@ import {
   type QnAThreadItem,
   type DistrictInfo,
   type CareerAtlasItem,
+  OL_REQUIREMENTS_BY_COURSE_CODE,
+  COURSE_MASTER_OVERVIEWS,
 } from '../data/sriLankaUgcSnapshot';
 import { classifyProgramMatch, type ChanceTier } from '../lib/ugcLogic';
 
@@ -123,8 +125,19 @@ export function normalizeProgramCutoffRow(raw: Record<string, any>): ProgramCuto
     status: isNqc ? 'NQC' : 'QUALIFIED',
     all_island_min_z: Number(raw.all_island_min_z ?? (minZ ? minZ - 0.25 : 1.2)),
     all_island_max_z: Number(raw.all_island_max_z ?? (minZ ? minZ + 0.05 : 1.8)),
-    requires_ol_special: Boolean(raw.requires_ol_special ?? raw.requires_special_ol ?? false),
+    requires_ol_special: Boolean(OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]) || Boolean(raw.requires_ol_special ?? raw.requires_special_ol ?? false),
     is_suspended: Boolean(raw.is_suspended ?? raw.intake_suspended ?? false),
+    ol_rule: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')] ?? null,
+    ol_requirements_text: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]?.full_description ?? raw.ol_requirements_text ?? null,
+    ol_short_badge: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]?.short_badge ?? raw.ol_short_badge ?? null,
+    overview: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.overview ?? raw.overview ?? String(raw.course_description ?? ''),
+    al_requirements_summary: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.al_requirements_summary ?? raw.al_requirements_summary ?? '3 S passes in approved A/L subjects',
+    specializations: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.specializations ?? (Array.isArray(raw.specializations) ? raw.specializations : []),
+    special_intake_quota_note: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.special_intake_quota_note ?? raw.special_intake_quota_note ?? null,
+    aptitude_test_info: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.aptitude_test_info ?? raw.aptitude_test_info ?? (Boolean(raw.aptitude_test_required ?? raw.requires_aptitude_test) ? 'Pass University Aptitude / Practical Test' : null),
+    career_paths: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.career_paths ?? (Array.isArray(raw.career_paths) ? raw.career_paths : []),
+    total_national_intake: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.total_national_intake ?? Number(raw.total_national_intake ?? 120),
+    differently_abled_quota: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.differently_abled_quota ?? Number(raw.differently_abled_quota ?? 5),
   };
 }
 
