@@ -1,6 +1,7 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, it, expect, vi } from "vitest";
+import { afterEach, describe, it, expect, vi } from "vitest";
+import { PortalHeader } from "./PortalHeader";
 import { getProgramCutoffRowsForDistrict } from "../services/ugcAdapter";
 import { PortalExplore } from "./PortalPages";
 import { PortalSearch } from "./PortalPrimitives";
@@ -27,6 +28,16 @@ vi.mock("../context/PortalContext", () => ({
 }));
 
 describe("Separate programme destinations", () => {
+  afterEach(() => vi.unstubAllGlobals());
+  it("initializes header and mobile comparison links from the homepage admission route", () => {
+    for (const scope of ["catalogue", "ugc"]) {
+      vi.stubGlobal("location", { pathname: "/", search: `?route=${scope}` });
+      const html = renderToStaticMarkup(<PortalHeader />);
+      const href = scope === "catalogue" ? "/compare?route=catalogue" : "/compare";
+      expect(html.match(new RegExp(`href="${href.replace("?", "\\?")}"`, "g"))).toHaveLength(2);
+      if (scope === "ugc") expect(html).not.toContain('/compare?route=catalogue');
+    }
+  });
   it("defaults old all-route links to UGC and keeps explicit catalogue links usable", () => {
     expect(scopeFromQuery(new URLSearchParams())).toBe("ugc");
     expect(scopeFromQuery(new URLSearchParams("route=all"))).toBe("ugc");

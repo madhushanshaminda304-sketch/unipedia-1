@@ -407,11 +407,18 @@ export function SavedCatalogue() {
             <ProgrammeCard key={p.key} programme={p} />
           ))}
         </div>
-      ) : (
+      ) : !portal.saved.length ? (
         <p className="empty-state">
           Save a programme while browsing and it will appear here.
         </p>
-      )}
+      ) : null}
+      {portal.saved.filter((id) => !rows.some((p) => p.ref.id === id)).map((id) => (
+        <div className="notice compact" key={id}>
+          <strong>Unavailable programme: {id}</strong>
+          <p>This saved ID is not in the current catalogue. It remains in your backup.</p>
+          <button className="text-link danger" onClick={() => portal.toggleSaved(id)}>Remove {id}</button>
+        </div>
+      ))}
     </section>
   );
 }

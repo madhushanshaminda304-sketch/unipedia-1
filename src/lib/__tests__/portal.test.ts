@@ -16,6 +16,19 @@ import { readLocation, routePath } from "../routes";
 import { portalCopy } from "../portalCopy";
 const rows = discoveryProgrammes();
 describe("Unified education discovery", () => {
+  it("opens diploma/HND and foundation guides in the matching other-programme directory", () => {
+    for (const [slug, level] of [["degree-or-hnd", "Diploma"], ["foundation-routes", "Foundation"]]) {
+      const guide = GUIDES.find((g) => g.slug === slug)!;
+      expect(guide.action).toBe(`/pathways?level=${level}`);
+      const url = new URL(guide.action, "https://unipedia.lk");
+      const matches = filterDiscovery(rows, {
+        ...readExplore(url.searchParams),
+        route: "catalogue",
+      });
+      expect(matches.length).toBeGreaterThan(0);
+      expect(matches.every((p) => p.ref.kind === "catalogue" && p.level === level)).toBe(true);
+    }
+  });
   it("keeps every source record and programme variant discoverable", () => {
     expect(rows).toHaveLength(255 + NON_STATE_CATALOG.length);
     expect(new Set(rows.map((p) => p.key)).size).toBe(rows.length);

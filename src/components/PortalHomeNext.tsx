@@ -9,6 +9,7 @@ import {
   GUIDES,
 } from "../lib/portal";
 import {
+  DISCOVERY_SCOPE_CHANGED,
   scopePath,
   scopeLabel,
   scopedProgrammes,
@@ -70,6 +71,7 @@ export function PortalHome() {
     const url = new URL(location.href);
     url.searchParams.set("route", next);
     history.replaceState(null, "", url.pathname + url.search);
+    window.dispatchEvent(new Event(DISCOVERY_SCOPE_CHANGED));
   };
   const all = useMemo(
     () => discoveryProgrammes(app.districtPrograms),

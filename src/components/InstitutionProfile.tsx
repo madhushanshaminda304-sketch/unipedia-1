@@ -7,6 +7,7 @@ import {
 import { InstitutionMark } from "./PortalPrimitives";
 import { UgcOpportunityRow } from "./UgcOpportunityRow";
 import { ProgrammeDirectoryRow } from "./ProgrammeDirectoryRow";
+import { INSTITUTION_PROFILES } from "../data/institutionProfiles";
 import {
   MapPinIcon,
   GraduationCapIcon,
@@ -33,6 +34,9 @@ export function InstitutionProfile({
   source: string;
   programmes: DiscoveryProgramme[];
 }) {
+  const research = kind === "ugc" ? INSTITUTION_PROFILES[id] : undefined;
+  website = research?.website || website;
+  location = research?.address || location;
   const [query, setQuery] = useState("");
   const choices = programmes.filter((p) =>
     `${p.title} ${p.subject}`.toLowerCase().includes(query.toLowerCase()),
@@ -52,7 +56,15 @@ export function InstitutionProfile({
         className={`institution-cover institution-cover-${id}${hasInstitutionPhotograph(id) ? "" : " institution-cover-text"}`}
         aria-hidden={hasInstitutionPhotograph(id) ? undefined : true}
       >
-        {hasInstitutionPhotograph(id) && (
+        {research?.cover ? (
+          <figure className="institution-visual large">
+            <img src={research.cover.src} srcSet={research.cover.srcSet}
+              sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1384px) calc(100vw - 64px), 1320px"
+              width={research.cover.width} height={research.cover.height}
+              alt={research.cover.alt} decoding="async" />
+            <figcaption>Photograph supplied by the site owner. Cropped for display.</figcaption>
+          </figure>
+        ) : hasInstitutionPhotograph(id) && (
           <InstitutionVisual id={id} name={name} large />
         )}
       </div>
@@ -134,9 +146,9 @@ export function InstitutionProfile({
         <section className="premium-panel" id="institution-overview">
           <h2>About this listing</h2>
           <p>
-            {kind === "ugc"
+            {research?.overview || (kind === "ugc"
               ? `${name} is included in the UGC handbook records used by UniPedia. Browse its listed course offerings and check programme-specific requirements and historical district cutoffs.`
-              : `This profile brings together the supplied programme reports for ${name}. Compare durations, entry requirements, awarding bodies and reported fee periods before contacting the institution.`}
+              : `This profile brings together the supplied programme reports for ${name}. Compare durations, entry requirements, awarding bodies and reported fee periods before contacting the institution.`)}
           </p>
           <p className="small muted">
             Directory inclusion does not establish recognition or accreditation.
@@ -198,10 +210,11 @@ export function InstitutionProfile({
       <section id="institution-admissions" className="premium-panel">
         <h2>Admissions & requirements</h2>
         <p>
-          {kind === "ugc"
+          {research?.admissions || (kind === "ugc"
             ? "Historical cutoffs are references, not admission guarantees. Programme-specific subjects, grades, general admission conditions and aptitude tests may apply. Keep your preferences in the order you wish to study."
-            : "Entry requirements and application steps differ by programme and awarding body. Check the full course page for fees, pathway stages, source dates and exceptions."}
+            : "Entry requirements and application steps differ by programme and awarding body. Check the full course page for fees, pathway stages, source dates and exceptions.")}
         </p>
+        {research && <ul>{research.admissionsLinks.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}</ul>}
         <a
           className="button secondary"
           href={kind === "ugc" ? "/courses" : "/pathways"}
@@ -211,8 +224,15 @@ export function InstitutionProfile({
       </section>
       <section id="institution-sources" className="premium-panel">
         <h2>Sources & contact</h2>
-        <p>{source}</p>
-        {contact && <p>Contact listed in the source: {contact}</p>}
+        {research ? <>
+          <p>Report research date: <time dateTime={research.reportDate}>{new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(research.reportDate))}</time>. Central address and general telephone numbers checked against the official university contact directory.</p>
+          <p><strong>Central university address:</strong> {research.address}</p>
+          <p><strong>General university telephone numbers:</strong></p>
+          <ul>{research.telephones.map((phone) => <li key={phone}><a href={`tel:${phone.replace(/ /g, "")}`}>{phone}</a></li>)}</ul>
+          <p>A single general university email is not listed. Use the official contact directory for office-specific contacts; faculty contacts are separate.</p>
+          <ul>{research.sources.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}</ul>
+          <p className="small muted">Programme requirements and historical cutoffs continue to use the existing UGC catalogue sources.</p>
+        </> : <><p>{source}</p>{contact && <p>Contact listed in the source: {contact}</p>}</>}
         {website && (
           <a href={website} target="_blank" rel="noreferrer">
             Visit the official website for current contact details

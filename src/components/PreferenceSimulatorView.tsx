@@ -4,6 +4,7 @@ import { useApp } from "../context/AppContext";
 import { cutoffLabel } from "../lib/discovery";
 import { copy } from "../lib/ui";
 import { Modal } from "./Modal";
+import { SavedChoicesBackup } from "./SavedChoicesBackup";
 
 export function PreferenceSimulatorContent() {
   const app = useApp(),
@@ -68,7 +69,7 @@ export function PreferenceSimulatorContent() {
                           {p.course_name}
                         </button>
                       ) : (
-                        entry.originalCourseName || "Saved course needs review"
+                        entry.originalCourseName || "Unavailable programme"
                       )}
                     </h2>
                     <p>
@@ -155,6 +156,7 @@ export function PreferenceSimulatorView() {
     <div className="premium-page premium-shortlist">
       <nav className="reference-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Saved choices</span></nav>
       <h1>{copy(lang).plan}</h1>
+      <SavedChoicesBackup />
       <h2>UGC preference plan</h2>
       <PreferenceSimulatorContent />
       <SavedCatalogue />

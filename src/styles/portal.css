@@ -1476,7 +1476,7 @@ p {
   color: var(--color-primary-strong);
 }
 .student-guides-band {
-  background: var(--color-surface);
+  background: var(--color-background);
 }
 .discovery-guides {
   display: grid;
@@ -4539,12 +4539,11 @@ button:disabled,
   background-image:
     linear-gradient(
       180deg,
-      #eeedffe0 0%,
-      #f1effdb3 35%,
-      #e9effa66 73%,
+      #eeedff99 0%,
+      #f1effd66 35%,
+      #e9effa1a 73%,
       var(--color-background) 100%
     ),
-    radial-gradient(ellipse at 10% 65%, #ffe2d999, #dce7ff33 65%, transparent),
     url("/images/colombo-skyline.jpg");
   background-size: cover;
   background-position: center 55%;
@@ -5308,8 +5307,12 @@ button:disabled,
   min-height: 44px;
 }
 .premium-application .site-footer {
-  background: var(--color-surface);
-  border-top: 1px solid var(--lavender-border);
+  background: var(--lavender-950);
+  color: var(--slate-200);
+  border-top: 1px solid var(--lavender-800);
+}
+.premium-application .site-footer a:focus-visible {
+  outline-color: var(--neutral-white);
 }
 .premium-application .page {
   max-width: 1320px;
@@ -5388,6 +5391,9 @@ button:disabled,
 .institution-cover .institution-visual.large img {
   height: 220px;
   border-radius: 0;
+}
+.institution-cover-CMB .institution-visual.large img {
+  object-position: center 30%;
 }
 .institution-cover .institution-visual.large figcaption {
   position: absolute;
@@ -5993,6 +5999,9 @@ button:disabled,
   }
   .institution-cover .institution-visual.large img {
     height: 160px;
+  }
+  .institution-cover-CMB .institution-visual.large img {
+    object-position: center 50%;
   }
   .institution-cover .institution-visual-fallback.large {
     gap: 16px;

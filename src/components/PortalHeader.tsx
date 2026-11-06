@@ -6,7 +6,10 @@ import {
   ArrowsLeftRightIcon as GitCompareArrows,
   GraduationCapIcon,
 } from "@phosphor-icons/react";
-import { type DiscoveryScope } from "../lib/discoveryRoutes";
+import {
+  DISCOVERY_SCOPE_CHANGED,
+  type DiscoveryScope,
+} from "../lib/discoveryRoutes";
 import { portalCopy } from "../lib/portalCopy";
 import { useApp } from "../context/AppContext";
 import { usePortal } from "../context/PortalContext";
@@ -21,18 +24,30 @@ export function PortalHeader() {
     [searchScope, setSearchScope] = useState<DiscoveryScope>(
       typeof location !== "undefined" &&
         (location.pathname === "/pathways" ||
-          location.pathname.startsWith("/programmes"))
+          location.pathname.startsWith("/programmes") ||
+          new URLSearchParams(location.search).get("route") === "catalogue")
         ? "catalogue"
         : "ugc",
     );
   useEffect(() => {
-    const other =
-      app.route === "private-unis" ||
-      app.route === "programme" ||
-      app.route === "catalogue-institution" ||
-      new URLSearchParams(location.search).get("route") === "catalogue";
-    setSearchScope(other ? "catalogue" : "ugc");
+    const sync = () => {
+      const other =
+        app.route === "private-unis" ||
+        app.route === "programme" ||
+        app.route === "catalogue-institution" ||
+        new URLSearchParams(location.search).get("route") === "catalogue";
+      setSearchScope(other ? "catalogue" : "ugc");
+    };
+    sync();
+    window.addEventListener(DISCOVERY_SCOPE_CHANGED, sync);
+    window.addEventListener("popstate", sync);
+    return () => {
+      window.removeEventListener(DISCOVERY_SCOPE_CHANGED, sync);
+      window.removeEventListener("popstate", sync);
+    };
   }, [app.route]);
+  const compareHref =
+    searchScope === "catalogue" ? "/compare?route=catalogue" : "/compare";
   const links = [
     ["/", c.home],
     ["/courses", app.lang === "EN" ? "UGC finder" : c.ugc],
@@ -129,11 +144,7 @@ export function PortalHeader() {
             </a>
             <a
               className="header-saved"
-              href={
-                searchScope === "catalogue"
-                  ? "/compare?route=catalogue"
-                  : "/compare"
-              }
+              href={compareHref}
               aria-label={`Compare programmes (${compared})`}
             >
               <GitCompareArrows size={19} />
@@ -159,7 +170,7 @@ export function PortalHeader() {
           {links.map(([href, label]) => link(href, label))}
           {link("/explore", "Browse UGC programmes")}
           {link("/shortlist", `${c.plan} (${saved})`)}
-          {link("/compare", `${c.compare} (${compared})`)}
+          {link(compareHref, `${c.compare} (${compared})`)}
           {link("/interests", c.careers)}
           {link("/dates", c.dates)}
           {link("/about", c.about)}
@@ -205,11 +216,7 @@ export function PortalHeader() {
           {c.saved} ({saved})
         </a>
         <a
-          href={
-            searchScope === "catalogue"
-              ? "/compare?route=catalogue"
-              : "/compare"
-          }
+          href={compareHref}
         >
           <GitCompareArrows size={19} />
           {c.compare} ({compared})

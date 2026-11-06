@@ -293,7 +293,7 @@ export const GUIDES = [
     ],
     source: "https://nibm.ac.lk/programme/degree-programmes",
     sourceName: "NIBM degree programme directory",
-    action: "/explore?level=Diploma",
+    action: "/pathways?level=Diploma",
     actionLabel: "Explore diplomas and HNDs",
   },
   {
@@ -317,7 +317,7 @@ export const GUIDES = [
     source:
       "https://www.nsbm.ac.lk/course/foundation-programme-for-bachelors-degree/",
     sourceName: "NSBM foundation programme",
-    action: "/explore?level=Foundation",
+    action: "/pathways?level=Foundation",
     actionLabel: "Explore foundation programmes",
   },
   {

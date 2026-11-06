@@ -1,4 +1,18 @@
 {
+  "colombo-profile-400.webp": {
+    "source": "User-supplied attachment: images.jfif",
+    "author": "Not supplied",
+    "license": "Not supplied; used at the site owner's request",
+    "changes": "Proportional downsize to 400px wide and WebP conversion; responsive CSS crop",
+    "depicts": "White university building with central tower, red-tiled roofs, trees and lawn; supplied for the University of Colombo profile"
+  },
+  "colombo-profile-597.webp": {
+    "source": "User-supplied attachment: images.jfif",
+    "author": "Not supplied",
+    "license": "Not supplied; used at the site owner's request",
+    "changes": "WebP conversion at original 597 x 335 dimensions; responsive CSS crop",
+    "depicts": "White university building with central tower, red-tiled roofs, trees and lawn; supplied for the University of Colombo profile"
+  },
   "students-japura.webp": {
     "source": "https://commons.wikimedia.org/wiki/File:University_Students_Studying_before_exams.jpg",
     "author": "Dinesh De Alwis",

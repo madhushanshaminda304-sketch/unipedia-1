@@ -1,11 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useApp } from "./AppContext";
 import { validCatalogueIds } from "../lib/portal";
-export const SAVED_CATALOGUE = "unipedia_catalogue_saved_v1",
+import {
+  isSavedProgrammeId, validateSavedChoices, restoredUgcEntries,
+  persistRestoredChoices, OTHER_SAVED_KEY,
+} from "../lib/savedChoicesBackup";
+export const SAVED_CATALOGUE = OTHER_SAVED_KEY,
   COMPARE_CATALOGUE = "unipedia_catalogue_compare_v1";
 function read(key: string) {
   try {
-    return validCatalogueIds(JSON.parse(localStorage.getItem(key) || "[]"));
+    const value: unknown = JSON.parse(localStorage.getItem(key) || "[]");
+    return Array.isArray(value) ? [...new Set(value.filter(isSavedProgrammeId))] : [];
   } catch {
     return [];
   }
@@ -15,6 +20,7 @@ const defaults = {
   compared: [] as string[],
   toggleSaved: (_id: string) => {},
   toggleCompared: (_id: string) => {},
+  restoreSavedChoices: (_value: unknown) => {},
 };
 const Context = createContext(defaults);
 export function PortalProvider({ children }: { children: React.ReactNode }) {
@@ -27,7 +33,7 @@ export function PortalProvider({ children }: { children: React.ReactNode }) {
     } catch {}
   }, [saved]);
   const toggleSaved = (id: string) => {
-    if (validCatalogueIds([id]).length)
+    if (saved.includes(id) || validCatalogueIds([id]).length)
       setSaved((p) =>
         p.includes(id) ? p.filter((x) => x !== id) : [...p, id],
       );
@@ -36,8 +42,15 @@ export function PortalProvider({ children }: { children: React.ReactNode }) {
     if (!validCatalogueIds([id]).length) return;
     app.toggleCatalogueCompare(id);
   };
+  const restoreSavedChoices = (value: unknown) => {
+    const backup = validateSavedChoices(value);
+    const entries = restoredUgcEntries(backup.ugcProgrammeIds, app.planEntries);
+    persistRestoredChoices(localStorage, entries, backup.otherProgrammeIds);
+    app.replaceSavedPlan(entries);
+    setSaved(backup.otherProgrammeIds);
+  };
   return (
-    <Context.Provider value={{ saved, compared, toggleSaved, toggleCompared }}>
+    <Context.Provider value={{ saved, compared, toggleSaved, toggleCompared, restoreSavedChoices }}>
       {children}
     </Context.Provider>
   );

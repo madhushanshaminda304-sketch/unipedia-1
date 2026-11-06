@@ -82,6 +82,7 @@ export interface AppContextValue {
   academicProfile: AcademicProfile;
   setAcademicProfile: React.Dispatch<React.SetStateAction<AcademicProfile>>;
   planEntries: SavedPreferenceEntry[];
+  replaceSavedPlan: (entries: SavedPreferenceEntry[]) => void;
   addToPlan: (code: string) => void;
   removeFromPlan: (code: string) => void;
   movePlanItem: (index: number, direction: "up" | "down") => void;
@@ -406,6 +407,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         academicProfile,
         setAcademicProfile,
         planEntries,
+        replaceSavedPlan: setPlanEntries,
         addToPlan,
         removeFromPlan,
         movePlanItem,

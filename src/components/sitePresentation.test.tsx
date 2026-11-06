@@ -28,6 +28,27 @@ beforeEach(() => {
   };
 });
 describe("Truthful site presentation", () => {
+  it("populates the CMB profile without merging UCSC or Sri Palee programmes", () => {
+    fixture.app.selectedInstitutionCode = "CMB";
+    const html = renderToStaticMarkup(<InstitutionAndCourseProfileView mode="institution" />);
+    const programmes = fixture.app.districtPrograms.filter((p: any) => p.institution_code === "CMB");
+    expect(html).toContain(`${programmes.length} course offerings`);
+    expect(html).toContain("The University of Colombo is a state university");
+    expect(html).toContain("College House, 94, Cumaratunga Munidasa Mawatha, Colombo 03, Sri Lanka");
+    for (const telephone of ["+94112581835", "+94112584695", "+94112585509"])
+      expect(html).toContain(`href="tel:${telephone}"`);
+    expect(html).toContain('href="https://cmb.ac.lk/contact-us"');
+    expect(html).toContain('href="https://admission.ugc.ac.lk/"');
+    expect(html).toContain('dateTime="2026-11-06"');
+    expect(html).toContain("6 November 2026");
+    expect(html).toContain("colombo-profile-400.webp 400w");
+    expect(html).toContain("White university building with a central tower");
+    expect(html).not.toContain("mailto:");
+    expect(html).not.toContain("Apptitude_Test_2023");
+    expect(html).not.toContain("aptitude2026");
+    for (const p of fixture.app.districtPrograms.filter((p: any) => p.institution_code !== "CMB"))
+      expect(html).not.toContain(`href="/courses/${p.uni_code}"`);
+  });
   it("gives standalone UGC programme pages a main heading", () => {
     fixture.app.selectedUniCode = "008G";
     const html = renderToStaticMarkup(<InstitutionAndCourseProfileView mode="course" />);
