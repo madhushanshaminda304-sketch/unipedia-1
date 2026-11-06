@@ -1,447 +1,320 @@
-import React, { useState, useMemo } from 'react';
-import {
-  Scale,
-  Plus,
-  X,
-  AlertTriangle,
-  Sparkles,
-  CheckCircle2,
-  ExternalLink,
-} from 'lucide-react';
-import { useApp } from '../context/AppContext';
-import { NON_STATE_IFSLS_PATHWAYS } from '../services/ugcDataService';
-import { DegreeRoiCalculator } from './DegreeRoiCalculator';
+import React from "react";
+import { usePortal } from "../context/PortalContext";
+import { discoveryProgrammes } from "../lib/portal";
+import { ProgrammeActions } from "./PortalPrimitives";
+import { useApp } from "../context/AppContext";
+import { copy } from "../lib/ui";
+import { cutoffLabel, requirementPreview } from "../lib/discovery";
+import { CutoffEditionSelect } from "./CutoffEditionSelect";
+import { scopeFromQuery } from "../lib/discoveryRoutes";
 
-const POPULAR_PRESETS = [
-  {
-    label: 'Computing: UCSC CS (012T) vs UOM IT (026G) vs USJP CS (012C) vs SUSL DS (136L)',
-    codes: ['012T', '026G', '012C', '136L'],
-  },
-  {
-    label: 'Engineering: UOM (008G) vs UOP (008B) vs UOR (008F) vs USJP (008C)',
-    codes: ['008G', '008B', '008F', '008C'],
-  },
-  {
-    label: 'Medicine: Colombo (001A) vs Peradeniya (001B) vs Jayewardenepura (001C) vs Kelaniya (001D)',
-    codes: ['001A', '001B', '001C', '001D'],
-  },
-  {
-    label: 'Engineering Tech (ET): Colombo (102A) vs USJP (102C) vs Kelaniya (102D) vs Ruhuna (102F)',
-    codes: ['102A', '102C', '102D', '102F'],
-  },
-];
-
-export const CompareEngineView: React.FC = () => {
-  const {
-    district,
-    districtPrograms,
-    compareList,
-    toggleCompare,
-    setComparePreset,
-    addToPlan,
-    setRoute,
-    openCourseProfile,
-  } = useApp();
-
-  const [highlightDiffsOnly, setHighlightDiffsOnly] = useState(false);
-  const [selectedAddCode, setSelectedAddCode] = useState('');
-
-  const comparedPrograms = useMemo(() => {
-    return compareList
-      .map((code) => districtPrograms.find((p) => p.uni_code === code))
-      .filter((p): p is NonNullable<typeof p> => Boolean(p));
-  }, [compareList, districtPrograms]);
-
-  const availableToAdd = useMemo(() => {
-    return districtPrograms.filter((p) => !compareList.includes(p.uni_code));
-  }, [districtPrograms, compareList]);
-
-  const rowsSame = (extractor: (p: (typeof comparedPrograms)[number]) => string) => {
-    if (comparedPrograms.length <= 1) return false;
-    const first = extractor(comparedPrograms[0]);
-    return comparedPrograms.every((p) => extractor(p) === first);
-  };
-
+export function CompareEngineView() {
+  const app = useApp(),
+    c = copy(app.lang, app.cutoffYear);
+  const portal = usePortal();
+  const scope = scopeFromQuery(
+    new URLSearchParams(
+      typeof window === "undefined" ? "" : window.location.search,
+    ),
+  );
+  const catalogue = discoveryProgrammes(app.districtPrograms).filter(
+    (p) =>
+      scope === "catalogue" &&
+      p.ref.kind === "catalogue" &&
+      portal.compared.includes(p.ref.id),
+  );
+  const rows = app.compareList
+    .map((code) => app.districtPrograms.find((p) => p.uni_code === code))
+    .filter((p) => !!p);
+  const visibleRows = scope === "ugc" ? rows : [];
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-24">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-5">
+    <div className="premium-page premium-comparison">
+      <nav className="reference-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Compare programmes</span></nav>
+      <div className="page-heading">
         <div>
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-100 text-amber-950 text-xs font-bold">
-            Vuzopedia + Shiksha 4-Way College & Course Comparator
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-            4-Way University & UGC <code className="font-tabular">uni_code</code> Comparison Matrix
-          </h1>
-          <p className="text-sm text-slate-600 mt-1">
-            Compare up to 4 state programs side-by-side for <strong>{district.district_name} District</strong>, or bridge directly to MOHE Interest-Free Loan (IFSLS) & TVEC NVQ backups.
+          <h1>{c.compare}</h1>
+          <p className="muted">
+            UGC and other programmes have separate comparison views. Save up to
+            four choices in total.
           </p>
         </div>
-
-        <label className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-xs sm:text-sm font-bold text-slate-800 cursor-pointer self-start md:self-auto">
-          <input
-            type="checkbox"
-            checked={highlightDiffsOnly}
-            onChange={(e) => setHighlightDiffsOnly(e.target.checked)}
-            className="rounded border-slate-400"
-          />
-          <span>Highlight Differences Only</span>
-        </label>
+        <button
+          className="button secondary"
+          onClick={() =>
+            app.setRoute(scope === "ugc" ? "explore" : "private-unis")
+          }
+        >
+          Add courses
+        </button>
       </div>
-
-      {/* Popular Pre-Built Comparisons + Add Selector */}
-      <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="space-y-1.5">
-            <span className="text-xs font-extrabold text-slate-700 block">
-              Popular Pre-Built Sri Lankan Comparisons:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {POPULAR_PRESETS.map((preset) => (
-                <button
-                  key={preset.label}
-                  type="button"
-                  onClick={() => setComparePreset(preset.codes)}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-800 hover:text-amber-950 text-xs font-semibold border border-slate-200"
-                >
-                  {preset.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {compareList.length < 4 && (
-            <div className="flex items-center gap-2">
-              <select
-                aria-label="Add program to comparison"
-                value={selectedAddCode}
-                onChange={(e) => setSelectedAddCode(e.target.value)}
-                className="px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-semibold"
-              >
-                <option value="">+ Add uni_code to Compare ({compareList.length}/4)...</option>
-                {availableToAdd.map((p) => (
-                  <option key={p.uni_code} value={p.uni_code}>
-                    {p.uni_code} — {p.course_name} ({p.institution_code})
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                disabled={!selectedAddCode}
-                onClick={() => {
-                  if (selectedAddCode) {
-                    toggleCompare(selectedAddCode);
-                    setSelectedAddCode('');
-                  }
-                }}
-                className="px-3.5 py-2 rounded-lg bg-[var(--color-brand-primary)] text-white text-xs font-bold disabled:opacity-40 inline-flex items-center gap-1"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add</span>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 4-Column Comparison Matrix Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-x-auto">
-        <table className="w-full text-left border-collapse min-w-[720px]">
-          <thead>
-            <tr className="bg-slate-900 text-white">
-              <th className="p-4 text-xs font-extrabold uppercase tracking-wider w-48 border-r border-slate-800">
-                Comparison Criterion
-              </th>
-              {comparedPrograms.map((p) => (
-                <th key={p.uni_code} className="p-4 border-r border-slate-800 align-top">
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <button
-                      type="button"
-                      onClick={() => openCourseProfile(p.uni_code)}
-                      className="font-tabular font-extrabold text-xs px-2 py-0.5 rounded bg-amber-500 text-slate-950"
-                    >
-                      {p.uni_code}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => toggleCompare(p.uni_code)}
-                      aria-label={`Remove ${p.uni_code} from comparison`}
-                      className="p-1 rounded hover:bg-slate-800 text-slate-300 hover:text-white"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <div className="font-extrabold text-sm text-white leading-snug">
-                    {p.course_name}
-                  </div>
-                  <div className="text-xs text-slate-300 mt-0.5">
-                    {p.institution_name} ({p.institution_code})
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-slate-200 text-xs sm:text-sm">
-            {/* Selected District Min Z-Score */}
-            {(!highlightDiffsOnly || !rowsSame((p) => String(p.min_z_score))) && (
-              <tr className="bg-amber-50/40">
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  {district.district_name} District Min Z-Score
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 font-tabular font-extrabold text-slate-950 border-r border-slate-100">
-                    {p.min_z_score !== null ? p.min_z_score.toFixed(4) : 'NQC (NULL)'}
-                    <span className="block text-[11px] font-sans font-normal text-slate-600 mt-0.5">
-                      All-Island Range: {p.all_island_min_z.toFixed(2)} – {p.all_island_max_z.toFixed(2)}
-                    </span>
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Degree Awarded & Duration */}
-            {(!highlightDiffsOnly || !rowsSame((p) => `${p.degree_awarded}-${p.duration_years}`)) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Degree Awarded & Duration
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 text-slate-800 border-r border-slate-100">
-                    <strong className="font-bold block text-slate-900">{p.degree_awarded}</strong>
-                    <span className="font-tabular text-xs text-slate-600">{p.duration_years} Years Full-Time</span>
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Medium of Instruction */}
-            {(!highlightDiffsOnly || !rowsSame((p) => p.medium.join(','))) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Medium of Instruction
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 text-slate-800 border-r border-slate-100 font-semibold">
-                    {p.medium.map((m: string) => (m === 'E' ? 'English' : m === 'S' ? 'Sinhala' : 'Tamil')).join(', ')}
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Annual Proposed Seat Intake */}
-            {(!highlightDiffsOnly || !rowsSame((p) => String(p.proposed_intake))) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Annual Proposed Seat Intake
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 font-tabular font-bold text-slate-900 border-r border-slate-100">
-                    {p.proposed_intake} Seats
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Subject Prerequisites */}
-            {(!highlightDiffsOnly || !rowsSame((p) => JSON.stringify(p.subject_requirements))) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Subject Prerequisites & Min Grades
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 text-xs text-slate-700 border-r border-slate-100 space-y-1">
-                    {p.subject_requirements.required_subjects && (
-                      <div>
-                        <strong>Mandatory:</strong> {p.subject_requirements.required_subjects.join(', ')}
-                      </div>
-                    )}
-                    {p.subject_requirements.any_of_subjects && (
-                      <div>
-                        <strong>Plus any of:</strong> {p.subject_requirements.any_of_subjects.join(', ')}
-                      </div>
-                    )}
-                    <div>
-                      <strong>Min Grade:</strong> Grade '{p.subject_requirements.min_grade ?? 'S'}'
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Aptitude Test Requirement */}
-            {(!highlightDiffsOnly || !rowsSame((p) => String(p.aptitude_test_required))) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  Aptitude Test Requirement
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 border-r border-slate-100">
-                    {p.aptitude_test_required ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-amber-100 text-amber-950 text-xs font-bold">
-                        <AlertTriangle className="w-3.5 h-3.5 text-amber-700" />
-                        Yes (Required)
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 text-xs font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        No
-                      </span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Special O/L Prerequisite (Section 5.3) */}
-            {(!highlightDiffsOnly || !rowsSame((p) => String(p.requires_ol_special))) && (
-              <tr>
-                <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                  G.C.E. (O/L) Requirements (Section 5.3)
-                </td>
-                {comparedPrograms.map((p) => (
-                  <td key={p.uni_code} className="p-4 border-r border-slate-100">
-                    {p.requires_ol_special ? (
-                      <div className="space-y-1.5">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-purple-100 text-purple-950 text-xs font-bold font-mono">
-                          📋 {p.ol_short_badge || 'Section 5.3 O/L Prerequisite'}
-                        </span>
-                        {p.ol_requirements_text && (
-                          <p className="text-[11px] text-slate-700 leading-snug">
-                            {p.ol_requirements_text}
-                          </p>
-                        )}
-                      </div>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">
-                        Standard 6 O/L Passes (No Special Subject Credit)
-                      </span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            )}
-
-            {/* Action Row */}
-            <tr className="bg-slate-50">
-              <td className="p-4 font-bold text-slate-900 border-r border-slate-200">
-                Shortlist Action
-              </td>
-              {comparedPrograms.map((p) => (
-                <td key={p.uni_code} className="p-4 border-r border-slate-100">
-                  <button
-                    type="button"
-                    onClick={() => addToPlan(p.uni_code)}
-                    className="w-full px-3 py-2 rounded-lg bg-[var(--color-brand-primary)] hover:bg-slate-800 text-white text-xs font-bold"
-                  >
-                    + Add {p.uni_code} to My UGC Plan
-                  </button>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      {/* Interactive 4-Year Cost, IFSLS Loan & Salary ROI Calculator */}
-      <DegreeRoiCalculator />
-
-      {/* State + Non-State / IFSLS Student Loan Bridge */}
-      <section className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 space-y-5 shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-          <div>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-950 text-xs font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-              Alternative Pathways & MOHE Interest-Free Student Loan Scheme (IFSLS) Bridge
-            </span>
-            <h2 className="text-xl font-extrabold text-slate-900 mt-2">
-              Parallel Non-State, IFSLS Interest-Free Govt Loan & TVEC NVQ Level 6/7 Comparables
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              Verified accreditation badges help students and parents distinguish UGC/MOHE Degree Awarding Institutes (DAI) and TVEC-registered programs.
-            </p>
-          </div>
+      <p className="comparison-total" role="status">
+        <strong>{app.compareList.length + portal.compared.length} of 4</strong>{" "}
+        comparison slots used across both lists.
+      </p>
+      <nav className="route-switch" aria-label="Comparison admission routes">
+        <a href="/compare" aria-current={scope === "ugc" ? "page" : undefined}>
+          UGC programmes ({app.compareList.length})
+        </a>
+        <a
+          href="/compare?route=catalogue"
+          aria-current={scope === "catalogue" ? "page" : undefined}
+        >
+          Private & other programmes ({portal.compared.length})
+        </a>
+      </nav>
+      {scope === "ugc" && <CutoffEditionSelect />}
+      <p className="directory-count">
+        <a href={scope === "ugc" ? "/explore" : "/pathways"}>
+          Find more programmes to compare
+        </a>
+      </p>
+      {!visibleRows.length && !catalogue.length ? (
+        <div className="empty-state">
+          <h2>{c.emptyCompare}</h2>
+          <p>{c.emptyCompareBody}</p>
           <button
-            type="button"
-            onClick={() => setRoute('private-unis')}
-            className="px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs sm:text-sm shrink-0"
+            className="button primary"
+            onClick={() =>
+              app.setRoute(scope === "ugc" ? "explore" : "private-unis")
+            }
           >
-            Explore All Private & IFSLS Degrees →
+            {c.find}
           </button>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {NON_STATE_IFSLS_PATHWAYS.map((pathway) => (
-            <div
-              key={pathway.id}
-              className="rounded-xl border border-slate-200 p-4 flex flex-col justify-between gap-3 bg-slate-50/60"
-            >
-              <div>
-                <div className="flex flex-wrap gap-1.5 mb-2">
-                  {pathway.ugc_recognized && (
-                    <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 text-[11px] font-bold">
-                      ✅ UGC Recognized
-                    </span>
-                  )}
-                  {pathway.mohe_dai && (
-                    <span className="px-2 py-0.5 rounded bg-sky-100 text-sky-900 text-[11px] font-bold">
-                      ✅ MOHE Degree Awarding Institute (DAI)
-                    </span>
-                  )}
-                  {pathway.tvec_nvq_level && (
-                    <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-900 text-[11px] font-bold">
-                      ✅ TVEC Registered ({pathway.tvec_nvq_level})
-                    </span>
-                  )}
-                  {pathway.ifsls_loan_eligible && (
-                    <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-950 text-[11px] font-bold">
-                      💰 IFSLS Interest-Free Govt Loan Eligible
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="font-bold text-sm text-slate-900">{pathway.degree_title}</h3>
-                <p className="text-xs text-slate-600 mt-1">
-                  <strong>{pathway.institute_name}</strong> · {pathway.location}
-                </p>
-                <p className="text-xs text-emerald-800 font-semibold mt-2">{pathway.tuition_note_lkr}</p>
-              </div>
-
-              <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between gap-2">
-                <a
-                  href={pathway.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-semibold text-slate-700 hover:underline inline-flex items-center gap-1"
-                >
-                  <span>Official Site</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  {pathway.ifsls_loan_eligible && (
-                    <a
-                      href={pathway.loan_portal_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-2.5 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold inline-flex items-center gap-1"
+      ) : (
+        <>
+          <p className="notice compact">
+            {scope === "ugc"
+              ? `${c.disclaimer} “Not stated” means the handbook extraction does not establish that fact.`
+              : "Fees keep their reported payment periods and currencies. Confirm current fees and requirements with the institution."}
+          </p>
+          <div
+            className="comparison-table-wrap"
+            tabIndex={0}
+            role="region"
+            aria-label="Programme comparison table"
+          >
+            <table className="comparison-table">
+              <caption>Compare the essentials</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Programme details</th>
+                  {[
+                    ...visibleRows.map((p) => ({
+                      id: p.uni_code,
+                      title: p.course_name,
+                      href: `/courses/${p.uni_code}`,
+                      institution: p.institution_name,
+                      route: "UGC admission",
+                      award: p.degree_display || c.unknown,
+                      duration: p.duration_display || c.unknown,
+                      fee: "Check official UGC programme information",
+                      requirements: p.al_requirements_summary,
+                    })),
+                    ...catalogue.map((p) => ({
+                      id: p.key,
+                      title: p.title,
+                      href: p.href,
+                      institution: p.institution,
+                      route: "Direct entry",
+                      award: p.award,
+                      duration: p.duration,
+                      fee: p.fee,
+                      requirements: p.requirements,
+                    })),
+                  ].map((p) => (
+                    <th scope="col" key={p.id}>
+                      <a href={p.href}>{p.title}</a>
+                      <button
+                        className="text-link comparison-remove"
+                        aria-label={`Remove ${p.title} from comparison table`}
+                        onClick={() =>
+                          p.id.startsWith("catalogue:")
+                            ? portal.toggleCompared(p.id.slice(10))
+                            : app.toggleCompare(p.id)
+                        }
+                      >
+                        Remove
+                      </button>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {(
+                  [
+                    "institution",
+                    "route",
+                    "award",
+                    "duration",
+                    "fee",
+                    "requirements",
+                  ] as const
+                ).map((field, index) => (
+                  <tr key={field}>
+                    <th scope="row">
+                      {
+                        [
+                          "Institution",
+                          "Admission route",
+                          "Qualification / award",
+                          "Duration",
+                          "Fee information",
+                          "Entry requirements",
+                        ][index]
+                      }
+                    </th>
+                    {[
+                      ...visibleRows.map((p) => ({
+                        id: p.uni_code,
+                        institution: p.institution_name,
+                        route: "UGC admission",
+                        award: p.degree_display || c.unknown,
+                        duration: p.duration_display || c.unknown,
+                        fee: "Check official UGC programme information",
+                        requirements: p.al_requirements_summary,
+                      })),
+                      ...catalogue.map((p) => ({
+                        id: p.key,
+                        institution: p.institution,
+                        route: "Direct entry",
+                        award: p.award,
+                        duration: p.duration,
+                        fee: p.fee,
+                        requirements: p.requirements,
+                      })),
+                    ].map((p) => (
+                      <td key={p.id}>
+                        {field === "requirements" ? (
+                          <details>
+                            <summary>Read entry requirements</summary>
+                            <p className="source-prose">{p[field]}</p>
+                          </details>
+                        ) : (
+                          p[field]
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <details className="comparison-detail-section" open>
+            <summary>Cutoffs, sources & full programme details</summary>
+            <div className="comparison-grid">
+              {visibleRows.map((p) => (
+                <article className="comparison-card" key={p.uni_code}>
+                  <div className="card-top">
+                    <span className="code">{p.uni_code}</span>
+                    <button
+                      className="text-link danger"
+                      aria-label={`Remove ${p.course_name} from comparison`}
+                      onClick={() => app.toggleCompare(p.uni_code)}
                     >
-                      MOHE Loan ↗
-                    </a>
-                  )}
-                  <a
-                    href={pathway.apply_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded-lg bg-[var(--color-brand-primary)] hover:bg-slate-800 text-white text-xs font-bold inline-flex items-center gap-1"
+                      {c.remove}
+                    </button>
+                  </div>
+                  <h2>{p.course_name}</h2>
+                  <button
+                    className="text-link"
+                    onClick={() =>
+                      app.openInstitutionProfile(p.institution_code)
+                    }
                   >
-                    Apply on {pathway.institute_abbr} ↗
+                    {p.institution_name}
+                  </button>
+                  <dl>
+                    <dt>Admission route</dt>
+                    <dd>UGC admission</dd>
+                    <dt>Institution</dt>
+                    <dd>{p.institution_name}</dd>
+                    <dt>Fee information</dt>
+                    <dd>Check official UGC programme information</dd>
+                    <dt>Degree</dt>
+                    <dd>{p.degree_display || c.unknown}</dd>
+                    <dt>Duration</dt>
+                    <dd>{p.duration_display || c.unknown}</dd>
+                    <dt>Medium</dt>
+                    <dd>{p.medium_display || c.unknown}</dd>
+                    <dt>Proposed intake · 2025/2026</dt>
+                    <dd>{p.proposed_intake}</dd>
+                    <dt>
+                      {c.cutoff} · {p.district_name} · {p.cutoff_year}
+                    </dt>
+                    <dd>{cutoffLabel(p)}</dd>
+                    <dt>Aptitude / practical test</dt>
+                    <dd>
+                      {p.aptitude_status === "required"
+                        ? "Required"
+                        : c.unknown}
+                    </dd>
+                    <dt>Academic rule review</dt>
+                    <dd>
+                      {p.auto_decision_safe
+                        ? "Supported academic checks available"
+                        : "Manual review needed"}
+                    </dd>
+                    <dt>{c.requirements} · 2025/2026</dt>
+                    <dd className="source-prose">
+                      {requirementPreview(p.al_requirements_summary)}
+                    </dd>
+                  </dl>
+                  <button
+                    className="button secondary"
+                    onClick={() => app.openCourseProfile(p.uni_code)}
+                  >
+                    {c.details}
+                  </button>
+                </article>
+              ))}
+              {catalogue.map((p) => (
+                <article className="comparison-card" key={p.key}>
+                  <div className="card-top">
+                    <span>{p.level}</span>
+                    <button
+                      className="text-link danger"
+                      aria-label={`Remove ${p.title} from comparison`}
+                      onClick={() => portal.toggleCompared(p.ref.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <h2>
+                    <a href={p.href}>{p.title}</a>
+                  </h2>
+                  <a href={p.institutionHref}>{p.institution}</a>
+                  <dl>
+                    <dt>Admission route</dt>
+                    <dd>Direct entry</dd>
+                    <dt>Institution</dt>
+                    <dd>{p.institution}</dd>
+                    <dt>Fee information</dt>
+                    <dd>{p.fee}</dd>
+                    <dt>Degree / qualification</dt>
+                    <dd>{p.award}</dd>
+                    <dt>Duration</dt>
+                    <dd>{p.duration}</dd>
+                    <dt>Campus & study mode</dt>
+                    <dd>{p.campus}</dd>
+                    <dt>District cutoff</dt>
+                    <dd>Not applicable to this admission route</dd>
+                    <dt>Entry requirements</dt>
+                    <dd className="source-prose">{p.requirements}</dd>
+                  </dl>
+                  {p.source?.programme_notes && (
+                    <p className="small muted">{p.source.programme_notes}</p>
+                  )}
+                  <ProgrammeActions programme={p} />
+                  <a className="button secondary" href={p.href}>
+                    View programme
                   </a>
-                </div>
-              </div>
+                </article>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </details>
+        </>
+      )}
     </div>
   );
-};
+}

@@ -1,0 +1,1090 @@
+[
+  {
+    "institution_id": "CMB",
+    "official_abbreviation": "CMB",
+    "uni_code_suffix": "A",
+    "official_name": "University of Colombo",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "“College House”, 94, Cumaratunga Munidasa Mawatha, Colombo 03.",
+    "telephone_numbers": [
+      "011 - 2581835",
+      "2584695",
+      "2585509"
+    ],
+    "faculty_contacts_in_annex_c": [
+      {
+        "unit_name": "Faculty of Medicine, University of Colombo",
+        "postal_address": "No. 25, P.O. Box 271, Kynsey Road, Colombo 08.",
+        "telephone_numbers": [
+          "011 - 2695300",
+          "2696243",
+          "2688748",
+          "2688749"
+        ],
+        "source_line": 707
+      }
+    ],
+    "annex_b_proposed_total_intake": 3554,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 7,
+    "source_line_end": 162,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 180,
+        "source_line_end": 180,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 317,
+        "source_line_end": 707,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "PDN",
+    "official_abbreviation": "PDN",
+    "uni_code_suffix": "B",
+    "official_name": "University of Peradeniya",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Peradeniya.",
+    "telephone_numbers": [
+      "081 - 2388301",
+      "2388302",
+      "2388303",
+      "2388304",
+      "2388305",
+      "2392000"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 3343,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 8,
+    "source_line_end": 163,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 181,
+        "source_line_end": 181,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 340,
+        "source_line_end": 709,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "SJP",
+    "official_abbreviation": "SJP",
+    "uni_code_suffix": "C",
+    "official_name": "University of Sri Jayewardenepura",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Gangodawila, Nugegoda.",
+    "telephone_numbers": [
+      "011 - 2802022",
+      "2801024",
+      "2758000",
+      "2801025"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 4763,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 9,
+    "source_line_end": 164,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 182,
+        "source_line_end": 182,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 367,
+        "source_line_end": 710,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "KLN",
+    "official_abbreviation": "KLN",
+    "uni_code_suffix": "D",
+    "official_name": "University of Kelaniya",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Kandy Road, Dalugama, Kelaniya.",
+    "telephone_numbers": [
+      "011 - 2903903"
+    ],
+    "faculty_contacts_in_annex_c": [
+      {
+        "unit_name": "Faculty of Medicine, University of Kelaniya",
+        "postal_address": "Talagolla Road, Ragama.",
+        "telephone_numbers": [
+          "011 - 2961000"
+        ],
+        "source_line": 712
+      }
+    ],
+    "annex_b_proposed_total_intake": 4277,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 10,
+    "source_line_end": 165,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 183,
+        "source_line_end": 183,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 416,
+        "source_line_end": 712,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "MRT",
+    "official_abbreviation": "MRT",
+    "uni_code_suffix": "G",
+    "official_name": "University of Moratuwa",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Bandaranayake Mawatha, Moratuwa.",
+    "telephone_numbers": [
+      "011 - 2650301",
+      "2640051"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 2358,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 11,
+    "source_line_end": 166,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 184,
+        "source_line_end": 184,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 519,
+        "source_line_end": 713,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "UJA",
+    "official_abbreviation": "UJA",
+    "uni_code_suffix": "E",
+    "official_name": "University of Jaffna",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "P.O. Box 57, Thirunelvely, Jaffna.",
+    "telephone_numbers": [
+      "021 - 2222294",
+      "2218101"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 3456,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 12,
+    "source_line_end": 167,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 185,
+        "source_line_end": 185,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 467,
+        "source_line_end": 714,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "RUH",
+    "official_abbreviation": "RUH",
+    "uni_code_suffix": "F",
+    "official_name": "University of Ruhuna",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Wellamadama, Matara.",
+    "telephone_numbers": [
+      "041 - 2222681",
+      "2222682",
+      "2227001-4"
+    ],
+    "faculty_contacts_in_annex_c": [
+      {
+        "unit_name": "Faculty of Medicine, University of Ruhuna",
+        "postal_address": "Karapitiya, Galle.",
+        "telephone_numbers": [
+          "091 - 2234801",
+          "2234803"
+        ],
+        "source_line": 717
+      },
+      {
+        "unit_name": "Faculty of Agriculture, University of Ruhuna",
+        "postal_address": "Mapalana, Kamburupitiya.",
+        "telephone_numbers": [
+          "041 - 2292200",
+          "2292382"
+        ],
+        "source_line": 718
+      },
+      {
+        "unit_name": "Faculty of Engineering, University of Ruhuna",
+        "postal_address": "Hapugala, Galle.",
+        "telephone_numbers": [
+          "091 - 2245765",
+          "2245766"
+        ],
+        "source_line": 719
+      }
+    ],
+    "annex_b_proposed_total_intake": 4028,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 13,
+    "source_line_end": 168,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 186,
+        "source_line_end": 186,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 541,
+        "source_line_end": 719,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "EUSL",
+    "official_abbreviation": "EUSL",
+    "uni_code_suffix": "H",
+    "official_name": "Eastern University, Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Vantharamoolai, Chenkalady.",
+    "telephone_numbers": [
+      "065 - 2240490",
+      "2240590",
+      "2240580",
+      "2240730"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 1914,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 14,
+    "source_line_end": 169,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 187,
+        "source_line_end": 187,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 603,
+        "source_line_end": 720,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "SEUSL",
+    "official_abbreviation": "SEUSL",
+    "uni_code_suffix": "J",
+    "official_name": "South Eastern University of Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "University Park, Oluvil.",
+    "telephone_numbers": [
+      "067 - 2255062",
+      "2255063",
+      "2255064"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 2148,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 15,
+    "source_line_end": 170,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 188,
+        "source_line_end": 188,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 620,
+        "source_line_end": 727,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "RUSL",
+    "official_abbreviation": "RUSL",
+    "uni_code_suffix": "K",
+    "official_name": "Rajarata University of Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Mihintale.",
+    "telephone_numbers": [
+      "025 - 2266643"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 2327,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 16,
+    "source_line_end": 171,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 189,
+        "source_line_end": 189,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 449,
+        "source_line_end": 723,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "SUSL",
+    "official_abbreviation": "SUSL",
+    "uni_code_suffix": "L",
+    "official_name": "Sabaragamuwa University of Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "P.O. Box 02, Pambahinna, Belihuloya.",
+    "telephone_numbers": [
+      "045 - 2280014",
+      "2280087"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 2575,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 17,
+    "source_line_end": 172,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 190,
+        "source_line_end": 190,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 494,
+        "source_line_end": 726,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "WUSL",
+    "official_abbreviation": "WUSL",
+    "uni_code_suffix": "M",
+    "official_name": "Wayamba University of Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Lionel Jayathilake Mawatha, Kanadulla, Kuliyapitiya.",
+    "telephone_numbers": [
+      "037 - 2281414",
+      "2281412",
+      "2283614"
+    ],
+    "faculty_contacts_in_annex_c": [
+      {
+        "unit_name": "Faculty of Agriculture & Plantation Management, Wayamba University of Sri Lanka",
+        "postal_address": "Makandura, Gonawila.",
+        "telephone_numbers": [
+          "031 - 2299704"
+        ],
+        "source_line": 725
+      }
+    ],
+    "annex_b_proposed_total_intake": 1929,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 18,
+    "source_line_end": 173,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 191,
+        "source_line_end": 191,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 589,
+        "source_line_end": 725,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "UWU",
+    "official_abbreviation": "UWU",
+    "uni_code_suffix": "U",
+    "official_name": "Uva Wellassa University of Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "2nd Milepost, Passara Road, Badulla.",
+    "telephone_numbers": [
+      "055 - 2226622"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 1689,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 19,
+    "source_line_end": 174,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 192,
+        "source_line_end": 192,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 567,
+        "source_line_end": 728,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "UVPA",
+    "official_abbreviation": "UVPA",
+    "uni_code_suffix": "Z",
+    "official_name": "University of the Visual & Performing Arts",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "21, Albert Crescent, Colombo 07.",
+    "telephone_numbers": [
+      "011 - 2033710"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 794,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 20,
+    "source_line_end": 175,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 193,
+        "source_line_end": 193,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 406,
+        "source_line_end": 729,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "GWUIM",
+    "official_abbreviation": "GWUIM",
+    "uni_code_suffix": "P",
+    "official_name": "Gampaha Wickramarachchi University of Indigenous Medicine, Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Yakkala.",
+    "telephone_numbers": [
+      "033 - 2222748"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 176,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 21,
+    "source_line_end": 176,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 194,
+        "source_line_end": 194,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 637,
+        "source_line_end": 732,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "UOV",
+    "official_abbreviation": "UOV",
+    "uni_code_suffix": "R",
+    "official_name": "University of Vavuniya, Sri Lanka",
+    "institution_type": "National University",
+    "ugc_admission_participating": true,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Pampaaimadu, Vavuniya.",
+    "telephone_numbers": [
+      "024 - 2222265",
+      "2222264"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 927,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 22,
+    "source_line_end": 177,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 195,
+        "source_line_end": 195,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 644,
+        "source_line_end": 715,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "SP",
+    "official_abbreviation": "SP",
+    "uni_code_suffix": "S",
+    "official_name": "Sripalee Campus, University of Colombo",
+    "institution_type": "Campus",
+    "ugc_admission_participating": true,
+    "parent_institution_id": "CMB",
+    "academic_year": "2025/2026",
+    "postal_address": "Wewala, Horana.",
+    "telephone_numbers": [
+      "034 - 2263616"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 220,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 24,
+    "source_line_end": 178,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 196,
+        "source_line_end": 196,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 657,
+        "source_line_end": 706,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "TRINCO",
+    "official_abbreviation": "TRINCO",
+    "uni_code_suffix": "W",
+    "official_name": "Trincomalee Campus, Eastern University, Sri Lanka",
+    "institution_type": "Campus",
+    "ugc_admission_participating": true,
+    "parent_institution_id": "EUSL",
+    "academic_year": "2025/2026",
+    "postal_address": "Konesapuri, Nilavely, Trincomalee.",
+    "telephone_numbers": [
+      "026 - 2227410"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 815,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 25,
+    "source_line_end": 179,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 197,
+        "source_line_end": 197,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 665,
+        "source_line_end": 721,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "UCSC",
+    "official_abbreviation": "UCSC",
+    "uni_code_suffix": "T",
+    "official_name": "University of Colombo School of Computing",
+    "institution_type": "Institute",
+    "ugc_admission_participating": true,
+    "parent_institution_id": "CMB",
+    "academic_year": "2025/2026",
+    "postal_address": "No 35, Reid Avenue, Colombo 07.",
+    "telephone_numbers": [
+      "011 - 2581245",
+      "2581247"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 350,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 26,
+    "source_line_end": 180,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 198,
+        "source_line_end": 198,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 676,
+        "source_line_end": 708,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "SVIAS",
+    "official_abbreviation": "SVIAS",
+    "uni_code_suffix": "Y",
+    "official_name": "Swamy Vipulananda Institute of Aesthetic Studies, Eastern University, Sri Lanka",
+    "institution_type": "Institute",
+    "ugc_admission_participating": true,
+    "parent_institution_id": "EUSL",
+    "academic_year": "2025/2026",
+    "postal_address": "Kallady, Batticaloa.",
+    "telephone_numbers": [
+      "065 - 2225689"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": 394,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(8)",
+    "source_table": null,
+    "source_line_start": 27,
+    "source_line_end": 181,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc9.md",
+        "source_section": "Section 7",
+        "source_line_start": 199,
+        "source_line_end": 199,
+        "printed_page": null
+      },
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (b) & Annex (c)",
+        "source_line_start": 684,
+        "source_line_end": 722,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "OUSL",
+    "official_abbreviation": "OUSL",
+    "uni_code_suffix": null,
+    "official_name": "The Open University of Sri Lanka",
+    "institution_type": "Open University (Separate Admission under Universities Act)",
+    "ugc_admission_participating": false,
+    "parent_institution_id": null,
+    "academic_year": "2025/2026",
+    "postal_address": "Nawala, Nugegoda.",
+    "telephone_numbers": [
+      "011 - 2853777",
+      "2881000"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": null,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Abbreviations & Section 1.6(9)",
+    "source_table": null,
+    "source_line_start": 23,
+    "source_line_end": 182,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (c)",
+        "source_line_start": 730,
+        "source_line_end": 730,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "IHRA",
+    "official_abbreviation": "IHRA",
+    "uni_code_suffix": null,
+    "official_name": "Institute of Human Resource Advancement, University of Colombo",
+    "institution_type": "Institute (Separate Admission under Section 1.6(10))",
+    "ugc_admission_participating": false,
+    "parent_institution_id": "CMB",
+    "academic_year": "2025/2026",
+    "postal_address": "P.O.Box 1557, 275, Bauddhaloka Mawatha, Colombo 07.",
+    "telephone_numbers": [
+      "011 - 2503393",
+      "2554724"
+    ],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": null,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Section 1.6(10)",
+    "source_table": null,
+    "source_line_start": 183,
+    "source_line_end": 184,
+    "printed_page": null,
+    "additional_sources": [
+      {
+        "source_file": "ugc10.md",
+        "source_section": "Annex (c)",
+        "source_line_start": 731,
+        "source_line_end": 731,
+        "printed_page": null
+      }
+    ]
+  },
+  {
+    "institution_id": "ITUM",
+    "official_abbreviation": null,
+    "uni_code_suffix": null,
+    "official_name": "Institute of Technology, University of Moratuwa",
+    "institution_type": "Institute (Separate Admission under Section 1.6(10))",
+    "ugc_admission_participating": false,
+    "parent_institution_id": "MRT",
+    "academic_year": "2025/2026",
+    "postal_address": null,
+    "telephone_numbers": [],
+    "faculty_contacts_in_annex_c": [],
+    "annex_b_proposed_total_intake": null,
+    "accreditation": null,
+    "salaries": null,
+    "fees": null,
+    "scholarships": null,
+    "internships": null,
+    "careers": null,
+    "verification_status": "needs_review",
+    "source_file": "ugc1.md",
+    "source_section": "Section 1.6(10)",
+    "source_table": null,
+    "source_line_start": 183,
+    "source_line_end": 185,
+    "printed_page": null,
+    "additional_sources": []
+  }
+]

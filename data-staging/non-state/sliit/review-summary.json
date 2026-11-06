@@ -1,0 +1,23 @@
+{
+  "status": "research_draft_needs_correction",
+  "source_file": "C:\\Users\\DELL\\Downloads\\SLIIT Undergraduate Programme Research.md",
+  "source_sha256": "b9e63ece51a285106b2861107fc13af6f3071304ed58ee134a2414126ab6cafd",
+  "review_date": "2026-11-05",
+  "fact_sheet_count": 24,
+  "inventory_entry_count": 45,
+  "inventory_entries_marked_researched": 25,
+  "recognition_rows_ending_in_incomplete_claim": [
+    145,
+    160,
+    175,
+    190,
+    235,
+    327,
+    372,
+    387,
+    481
+  ],
+  "production_page_fetch_result": "403; not independently confirmed",
+  "website_updated": false,
+  "production_pages_checked": 4
+}

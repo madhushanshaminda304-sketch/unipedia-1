@@ -1,0 +1,52 @@
+{
+  "results": [
+    "Filter chips clear only the selected filter; remaining and unrelated query parameters survive; Back restores the previous filter.",
+    "UGC pagination and filtered URLs survive reload.",
+    "Keyboard search suggestions in the UGC scope open UGC programme pages.",
+    "Synthetic saved UGC ordering and locks survive; imported saves persist after reload; separate comparisons enforce four total selections.",
+    "Both historical cutoff editions remain selectable.",
+    "Mobile menu opens by keyboard, traps focus, closes with Escape and restores its trigger.",
+    "Reduced motion disables movement and transitions.",
+    "Phone landscape has no document overflow.",
+    "200% browser-zoom layout equivalent (640 CSS pixels within a 1280px window) remains readable without horizontal overflow.",
+    "Measured representative heading, body, button, link and programme-fact text contrasts exceed 4.5:1."
+  ],
+  "contrast": [
+    {
+      "selector": ".discovery-opening h1",
+      "text": "rgb(255, 255, 255)",
+      "bg": "rgb(20, 37, 75)",
+      "ratio": 15.043285862152107
+    },
+    {
+      "selector": ".opening-description",
+      "text": "rgb(220, 227, 239)",
+      "bg": "rgb(20, 37, 75)",
+      "ratio": 11.66009513526858
+    },
+    {
+      "selector": ".button.primary",
+      "text": "rgb(255, 255, 255)",
+      "bg": "rgb(36, 87, 219)",
+      "ratio": 6.067284066564737
+    },
+    {
+      "selector": ".section-link",
+      "text": "rgb(36, 87, 219)",
+      "bg": "rgb(246, 248, 252)",
+      "ratio": 5.70647762369411
+    },
+    {
+      "selector": ".programme-fee",
+      "text": "rgb(23, 35, 59)",
+      "bg": "rgb(246, 248, 252)",
+      "ratio": 14.739712537771796
+    },
+    {
+      "selector": ".programme-fee small",
+      "text": "rgb(83, 98, 122)",
+      "bg": "rgb(246, 248, 252)",
+      "ratio": 5.816182825706293
+    }
+  ]
+}

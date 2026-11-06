@@ -1,0 +1,1017 @@
+/* UniPedia discovery refresh: route first, practical, student focused. */
+:root {
+  --ink: #182b35;
+  --muted: #53636b;
+  --green: #09694f;
+  --green-dark: #07513d;
+  --green-light: #e7f4ed;
+  --paper: #ffffff;
+  --white: #ffffff;
+  --surface: #f4f7f8;
+  --line: #dce4e7;
+  --accent: #e6aa39;
+  --amber-light: #fff2d8;
+  --violet: #64449b;
+  --violet-light: #f0ebf8;
+  --blue: #286a9c;
+  --blue-light: #eaf2fb;
+  --rose: #9b475b;
+  --rose-light: #faecf0;
+  --portal-shadow: 0 8px 32px #163a2b0d;
+  --radius: 16px;
+  --radius-small: 8px;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+.portal-header {
+  top: 12px;
+  width: min(1200px, calc(100% - 32px));
+  margin: 12px auto 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fffffff5;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--portal-shadow);
+}
+.portal-header .header-inner {
+  width: 100%;
+  padding: 16px 24px;
+  gap: 24px;
+}
+.portal-main-nav {
+  gap: 24px;
+}
+.portal-main-nav a {
+  font-size: 14px;
+  line-height: 20px;
+}
+.portal-main-nav a[aria-current] {
+  color: var(--green);
+  text-decoration: none;
+}
+.portal-main-nav a[aria-current]::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--green);
+  margin: 4px auto -6px;
+}
+.brand {
+  font-size: 24px;
+  line-height: 32px;
+}
+.portal-header .icon-button {
+  border: 0;
+  background: transparent;
+  min-width: 44px;
+  min-height: 44px;
+}
+.portal-header select {
+  min-height: 44px;
+}
+.portal-header .header-saved {
+  border-radius: 8px;
+  min-height: 44px;
+}
+.header-saved:hover {
+  background: var(--green-light);
+}
+.discovery-opening {
+  background: var(--green-light);
+  margin-top: -96px;
+  padding-top: 96px;
+}
+.discovery-opening-inner {
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+.discovery-opening h1 {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  max-width: 680px;
+  margin: 0 auto 16px;
+  color: var(--ink);
+  background: linear-gradient(100deg, #122d29, #50695e);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.opening-description {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--muted);
+  margin: 0 auto 24px;
+  max-width: 680px;
+}
+.discovery-workbench {
+  width: min(800px, 100%);
+  margin: auto;
+  background: var(--white);
+  border: 1px solid #c5dcd0;
+  border-radius: 16px;
+  box-shadow: var(--portal-shadow);
+  text-align: left;
+}
+.admission-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 8px;
+  gap: 8px;
+}
+.admission-switch button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 12px;
+  padding: 12px 16px;
+  min-height: 64px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+.admission-switch button small {
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  margin-top: 2px;
+}
+.admission-switch button[aria-pressed="true"] {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-color: #c5dcd0;
+}
+.admission-switch button:nth-child(2)[aria-pressed="true"] {
+  background: var(--violet-light);
+  color: var(--violet);
+  border-color: #d8cbea;
+}
+.admission-switch button:hover {
+  background: var(--surface);
+}
+.workbench-search {
+  padding: 12px 24px 16px;
+}
+.workbench-search .portal-search {
+  border: 1px solid #9aaca3;
+  border-radius: 8px;
+  padding: 8px 8px 8px 16px;
+}
+.workbench-search .portal-search input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 0;
+}
+.portal-search .button {
+  padding: 8px 24px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.search-starters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+}
+.search-starters a {
+  color: var(--green);
+  text-decoration: none;
+  padding-block: 4px;
+}
+.search-starters a:hover {
+  text-decoration: underline;
+}
+.opening-assurance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 24px;
+  color: var(--green-dark);
+}
+.opening-assurance svg {
+  flex-shrink: 0;
+}
+.journey-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.journey-tools > a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+}
+.journey-tools h2 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+.journey-tools p {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  margin: 0;
+}
+.journey-tools > a > svg {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.tool-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--green-light);
+  color: var(--green);
+}
+.tool-icon.violet {
+  background: var(--violet-light);
+  color: var(--violet);
+}
+.discovery-section {
+  padding-block: 48px;
+}
+.discovery-section .portal-section-head {
+  margin-bottom: 24px;
+}
+.portal-section-head h2 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.portal-section-head p {
+  max-width: 65ch;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.discovery-subjects {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 12px;
+}
+.discovery-subjects a {
+  text-align: center;
+  text-decoration: none;
+  padding: 16px 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+}
+.discovery-subjects a:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+.subject-symbol {
+  margin: 0 auto 12px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--green);
+  background: var(--green-light);
+}
+.subject-symbol-1,
+.subject-symbol-4 {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+.subject-symbol-2,
+.subject-symbol-7 {
+  color: #835711;
+  background: var(--amber-light);
+}
+.subject-symbol-3 {
+  color: var(--rose);
+  background: var(--rose-light);
+}
+.subject-symbol-5,
+.subject-symbol-6 {
+  color: var(--violet);
+  background: var(--violet-light);
+}
+.discovery-subjects h3 {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.015em;
+  margin: 0;
+  font-weight: 600;
+}
+.discovery-subjects p {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.catalogue-band {
+  background: var(--surface);
+}
+.portal-programme {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+}
+.portal-programme h2 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+}
+.programme-labels span {
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.programme-labels span:first-child {
+  background: var(--blue-light);
+  color: #245a81;
+}
+.programme-institution {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.programme-duration {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.programme-fee {
+  padding: 12px;
+  background: var(--surface);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-block: 16px;
+}
+.programme-card-bottom {
+  border: 0;
+  padding-top: 0;
+}
+.programme-card-bottom > a {
+  color: var(--green);
+  font-weight: 600;
+}
+.icon-action {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px;
+}
+.section-footnote {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.discovery-institutions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.discovery-institutions > a {
+  padding: 24px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.discovery-institutions > a:hover,
+.journey-tools > a:hover {
+  border-color: var(--green);
+  background: var(--surface);
+}
+.discovery-institutions .institution-name-mark {
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+}
+.discovery-institutions h3 {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  margin: 0;
+  min-height: 56px;
+}
+.discovery-institutions p {
+  margin-block: 8px 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+.discovery-institutions > a > span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+.student-guides-band {
+  background: var(--surface);
+}
+.discovery-guides {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.discovery-guides > a {
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+}
+.guide-art {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  height: 96px;
+  color: var(--green);
+  background: var(--green-light);
+}
+.guide-art-1 {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+.guide-art-2 {
+  color: var(--violet);
+  background: var(--violet-light);
+}
+.guide-art-3 {
+  color: #835711;
+  background: var(--amber-light);
+}
+.discovery-guides > a > div {
+  padding: 24px;
+}
+.discovery-guides h3 {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+.discovery-guides p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+.guide-read {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--green);
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+.discovery-guides > a:hover h3 {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.route-next-step {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.route-next-step > svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+.route-next-step h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.route-next-step p {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.route-next-step .button {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.route-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  width: fit-content;
+  max-width: 100%;
+}
+.route-switch :is(a, button) {
+  padding: 12px 16px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.route-switch :is([aria-current="page"], [aria-pressed="true"]) {
+  color: var(--green-dark);
+  background: var(--white);
+  border-color: var(--line);
+}
+.route-switch :is(a, button):hover {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+.portal-page-heading {
+  max-width: 800px;
+}
+.portal-page-heading h1 {
+  font-size: 36px;
+  line-height: 40px;
+}
+.portal-page-heading p {
+  font-size: 16px;
+  line-height: 24px;
+}
+.finder-callout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  background: var(--green-light);
+  border: 1px solid #c5dcd0;
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: var(--green-dark);
+  font-size: 14px;
+  line-height: 20px;
+}
+.directory-search {
+  background: var(--white);
+  border-radius: 8px;
+}
+.explore-filters {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.explore-filters summary {
+  font-size: 16px;
+  line-height: 24px;
+}
+.field select,
+.field input {
+  min-height: 44px;
+  border-radius: 8px;
+}
+.directory-institutions .portal-institution {
+  border: 1px solid var(--line);
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--white);
+}
+.programme-page-head h1,
+.guide-page h1 {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.035em;
+}
+.site-footer {
+  background: var(--surface);
+}
+.app-dialog:has(.menu-links) {
+  max-width: 480px;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0 0 0 auto;
+  border-radius: 0;
+}
+.app-dialog:has(.menu-links) .dialog-panel {
+  min-height: 100%;
+}
+.menu-links a {
+  padding: 16px;
+  min-height: 44px;
+  border-radius: 8px;
+}
+.menu-links a[aria-current] {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+.menu-links a {
+  animation: menu-arrive 500ms var(--ease-out) both;
+}
+.menu-links a:nth-child(2) {
+  animation-delay: 60ms;
+}
+.menu-links a:nth-child(3) {
+  animation-delay: 120ms;
+}
+.menu-links a:nth-child(n + 4) {
+  animation-delay: 180ms;
+}
+@keyframes menu-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 1100px) {
+  .portal-main-nav {
+    display: none;
+  }
+  .portal-menu-button {
+    display: inline-flex;
+  }
+  .portal-header .header-saved {
+    display: flex;
+  }
+  .discovery-subjects {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .discovery-guides {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .discovery-institutions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .portal-container {
+    width: calc(100% - 32px);
+  }
+  .portal-header .header-inner {
+    width: 100%;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+  .discovery-opening {
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+  .discovery-opening-inner {
+    padding-top: 40px;
+  }
+  .discovery-opening h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .opening-description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .journey-tools {
+    gap: 12px;
+  }
+  .journey-tools > a {
+    padding: 16px;
+    gap: 12px;
+  }
+  .journey-tools > a > svg {
+    display: none;
+  }
+  .journey-tools .tool-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  .discovery-section {
+    padding-block: 32px;
+  }
+  .portal-section-head h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .portal-programme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .route-next-step {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .route-next-step > div {
+    flex: 1;
+  }
+  .route-next-step .button {
+    margin-left: 52px;
+  }
+}
+@media (max-width: 600px) {
+  .portal-header {
+    width: calc(100% - 24px);
+    top: 8px;
+    margin-top: 8px;
+    border-radius: 12px;
+  }
+  .portal-header .header-inner {
+    padding: 8px 12px;
+  }
+  .portal-header .brand {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .portal-header .header-controls {
+    gap: 0;
+  }
+  .portal-header .header-saved {
+    display: none;
+  }
+  .portal-header select {
+    width: 52px;
+    padding-inline: 4px;
+  }
+  .discovery-opening {
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+  .discovery-opening-inner {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+  .discovery-opening h1 {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.035em;
+  }
+  .opening-description {
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .admission-switch {
+    gap: 4px;
+    padding: 4px;
+  }
+  .admission-switch button {
+    padding: 12px 8px;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 64px;
+  }
+  .admission-switch button svg {
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .admission-switch button small {
+    display: none;
+  }
+  .workbench-search {
+    padding: 12px;
+  }
+  .workbench-search .portal-search {
+    gap: 8px;
+    padding: 4px 4px 4px 8px;
+  }
+  .workbench-search .portal-search input {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 0;
+  }
+  .workbench-search .portal-search > svg {
+    width: 18px;
+  }
+  .portal-search .button {
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .search-starters {
+    gap: 4px 12px;
+    margin-top: 12px;
+  }
+  .search-starters > span {
+    width: 100%;
+  }
+  .search-starters a {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .opening-assurance {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 16px;
+  }
+  .journey-tools {
+    grid-template-columns: 1fr;
+    margin-top: 16px;
+  }
+  .journey-tools > a > svg {
+    display: block;
+  }
+  .journey-tools > a {
+    padding: 12px 16px;
+  }
+  .journey-tools h2 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .discovery-section .portal-section-head {
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .discovery-section .portal-section-head > a {
+    align-self: flex-start;
+    min-height: 32px;
+  }
+  .portal-section-head h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .portal-section-head p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .section-link {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .discovery-subjects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .discovery-subjects a {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    column-gap: 8px;
+    text-align: left;
+    padding: 12px;
+  }
+  .subject-symbol {
+    grid-row: span 2;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    border-radius: 8px;
+  }
+  .subject-symbol svg {
+    width: 24px;
+  }
+  .discovery-subjects h3 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .discovery-subjects p {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 4px;
+  }
+  .portal-programme-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .discovery-institutions {
+    gap: 12px;
+  }
+  .discovery-institutions > a {
+    padding: 16px;
+  }
+  .discovery-institutions h3 {
+    font-size: 14px;
+    line-height: 20px;
+    min-height: 40px;
+  }
+  .discovery-institutions p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .discovery-institutions > a > span:last-child {
+    font-weight: 500;
+  }
+  .discovery-guides {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .discovery-guides > a {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+  }
+  .guide-art {
+    height: 100%;
+    padding: 16px;
+    justify-content: center;
+  }
+  .discovery-guides > a > div {
+    padding: 16px;
+  }
+  .discovery-guides h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .discovery-guides p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .guide-read {
+    margin-top: 12px;
+  }
+  .route-next-step h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .route-next-step > svg {
+    display: none;
+  }
+  .route-next-step .button {
+    margin-left: 0;
+  }
+  .route-switch {
+    width: 100%;
+    padding: 4px;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+  .route-switch :is(a, button) {
+    flex: 1;
+    text-align: center;
+    padding: 12px 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .portal-page-heading h1,
+  .programme-page-head h1,
+  .guide-page h1 {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .finder-callout {
+    padding: 16px;
+  }
+  .directory-institutions .portal-institution {
+    padding: 16px;
+  }
+  .portal-mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  [data-sonner-toaster] {
+    --offset-bottom: 88px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-links a {
+    animation: none;
+  }
+}

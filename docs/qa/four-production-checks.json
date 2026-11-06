@@ -1,0 +1,13 @@
+{
+  "production": true,
+  "ugcProgrammeReload": true,
+  "ugcSavedPlan": true,
+  "ugcComparison": true,
+  "sharedLimitFour": true,
+  "personalScoreExcludedFromShare": true,
+  "searchAndClearBothRoutes": true,
+  "streamBackNavigation": true,
+  "phoneActionClearance": true,
+  "feeCaveats": true,
+  "errors": []
+}

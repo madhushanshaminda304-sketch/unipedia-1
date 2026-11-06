@@ -1,0 +1,23 @@
+{
+  "detailBack": {
+    "url": "http://127.0.0.1:5174/courses",
+    "profileShown": 1,
+    "resultsShown": 0
+  },
+  "language": {
+    "header": "මුල් පිටුවUGC උපාධිවෙනත් උපාධිආයතනමාර්ගෝපදේශ",
+    "pageHeading": "Private & other programmes",
+    "documentLang": "si"
+  },
+  "populatedCompare": {
+    "path": "http://127.0.0.1:5174/compare?route=catalogue",
+    "header": "site-header portal-header",
+    "columns": 2
+  },
+  "serverHtml": {
+    "status": 200,
+    "hasProgrammeTitle": false,
+    "hasGenericDescription": true,
+    "hasOgImage": false
+  }
+}

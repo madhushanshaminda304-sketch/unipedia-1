@@ -1,0 +1,777 @@
+{
+  "reports": [
+    {
+      "path": "/",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "Explore Sri Lankan study options · UniPedia.lk",
+      "h1": [
+        "Find your higher education path in Sri Lanka"
+      ],
+      "canonical": "https://unipedia.lk/",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 481,
+      "images": [
+        {
+          "src": "/images/colombo-college-house.jpg",
+          "ok": true
+        },
+        {
+          "src": "/images/nsbm-engineering.jpg",
+          "ok": true
+        }
+      ],
+      "emptyLinks": []
+    },
+    {
+      "path": "/explore",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 6
+        }
+      ],
+      "title": "UGC programmes · UniPedia.lk",
+      "h1": [
+        "UGC programmes"
+      ],
+      "canonical": "https://unipedia.lk/explore",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 342,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/courses",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 16
+        }
+      ],
+      "title": "Find courses · UniPedia.lk",
+      "h1": [
+        "Explore your university opportunities"
+      ],
+      "canonical": "https://unipedia.lk/courses",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 144,
+      "images": [
+        {
+          "src": "/images/colombo-college-house.jpg",
+          "ok": true
+        }
+      ],
+      "emptyLinks": []
+    },
+    {
+      "path": "/courses?view=results",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 7
+        }
+      ],
+      "title": "Find courses · UniPedia.lk",
+      "h1": [
+        "Your university opportunities"
+      ],
+      "canonical": "https://unipedia.lk/courses",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 597,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/pathways",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 10
+        }
+      ],
+      "title": "Private & other programmes · UniPedia.lk",
+      "h1": [
+        "Private & other programmes"
+      ],
+      "canonical": "https://unipedia.lk/pathways",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 653,
+      "images": [
+        {
+          "src": "/images/nsbm-engineering.jpg",
+          "ok": true
+        },
+        {
+          "src": "/images/nsbm-engineering.jpg",
+          "ok": true
+        }
+      ],
+      "emptyLinks": []
+    },
+    {
+      "path": "/programmes/nsbm-research-08",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "BSc (Hons) Software Engineering | UniPedia.lk",
+      "h1": [
+        "BSc (Hons) Software Engineering"
+      ],
+      "canonical": "https://unipedia.lk/programmes/nsbm-research-08",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 402,
+      "images": [
+        {
+          "src": "/images/nsbm-engineering.jpg",
+          "ok": true
+        }
+      ],
+      "emptyLinks": []
+    },
+    {
+      "path": "/programmes/nibm-research-01",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "BSc (Hons) Computer Science with Data Science | UniPedia.lk",
+      "h1": [
+        "BSc (Hons) Computer Science with Data Science"
+      ],
+      "canonical": "https://unipedia.lk/programmes/nibm-research-01",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header reference-header",
+      "mainWords": 539,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/institutions",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "Universities & institutes · UniPedia.lk",
+      "h1": [
+        "UGC universities & institutes"
+      ],
+      "canonical": "https://unipedia.lk/institutions",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 240,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/institutions?route=catalogue",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "Universities & institutes · UniPedia.lk",
+      "h1": [
+        "Private & other institutions"
+      ],
+      "canonical": "https://unipedia.lk/institutions",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 194,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/universities/MRT",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [
+            {
+              "text": "← Home",
+              "w": 56.796875,
+              "h": 20
+            }
+          ],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [
+            {
+              "text": "← Home",
+              "w": 55.890625,
+              "h": 20
+            }
+          ],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "University of Moratuwa · UniPedia.lk",
+      "h1": [
+        "University of Moratuwa"
+      ],
+      "canonical": "https://unipedia.lk/universities/MRT",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 503,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/institutions/sliit",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "SLIIT | UniPedia.lk",
+      "h1": [
+        "SLIIT"
+      ],
+      "canonical": "https://unipedia.lk/institutions/sliit",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 609,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/courses/008G",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [
+            {
+              "text": "← Back to courses",
+              "w": 126.0625,
+              "h": 20
+            }
+          ],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [
+            {
+              "text": "← Back to courses",
+              "w": 126.0625,
+              "h": 20
+            }
+          ],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "Engineering · UniPedia.lk",
+      "h1": [
+        "Engineering"
+      ],
+      "canonical": "https://unipedia.lk/courses/008G",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 292,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/guides",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Student guides · UniPedia.lk",
+      "h1": [
+        "Make your next decision clearer."
+      ],
+      "canonical": "https://unipedia.lk/guides",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 73,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/guides/understanding-z-scores",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "What does your Z-score tell you? | UniPedia.lk",
+      "h1": [
+        "What does your Z-score tell you?"
+      ],
+      "canonical": "https://unipedia.lk/guides/understanding-z-scores",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 128,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/shortlist",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "My shortlist · UniPedia.lk",
+      "h1": [
+        "My shortlist"
+      ],
+      "canonical": "https://unipedia.lk/shortlist",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "noindex,follow",
+      "header": "site-header portal-header",
+      "mainWords": 94,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/compare",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 1
+        }
+      ],
+      "title": "Compare · UniPedia.lk",
+      "h1": [
+        "Compare"
+      ],
+      "canonical": "https://unipedia.lk/compare",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "noindex,follow",
+      "header": "site-header portal-header",
+      "mainWords": 71,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/compare?route=catalogue",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Compare · UniPedia.lk",
+      "h1": [
+        "Compare"
+      ],
+      "canonical": "https://unipedia.lk/compare",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "noindex,follow",
+      "header": "site-header portal-header",
+      "mainWords": 55,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/dates",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Dates & notices · UniPedia.lk",
+      "h1": [
+        "Dates & official notices"
+      ],
+      "canonical": "https://unipedia.lk/dates",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 86,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/interests",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Study interests · UniPedia.lk",
+      "h1": [
+        "Explore study interests"
+      ],
+      "canonical": "https://unipedia.lk/interests",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 117,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/about",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "About & sources · UniPedia.lk",
+      "h1": [
+        "About UniPedia & its sources"
+      ],
+      "canonical": "https://unipedia.lk/about",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 405,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/privacy",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Privacy · UniPedia.lk",
+      "h1": [
+        "Privacy & device storage"
+      ],
+      "canonical": "https://unipedia.lk/privacy",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 142,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/terms",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "Terms · UniPedia.lk",
+      "h1": [
+        "Terms of use"
+      ],
+      "canonical": "https://unipedia.lk/terms",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "index,follow",
+      "header": "site-header portal-header",
+      "mainWords": 99,
+      "images": [],
+      "emptyLinks": []
+    },
+    {
+      "path": "/not-a-real-page",
+      "widths": [
+        {
+          "width": 1280,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        },
+        {
+          "width": 390,
+          "overflow": false,
+          "escape": [],
+          "smallControls": [],
+          "smallPhoneText": 0
+        }
+      ],
+      "title": "We could not find that record · UniPedia.lk",
+      "h1": [
+        "We could not find that record"
+      ],
+      "canonical": "https://unipedia.lk/not-a-real-page",
+      "description": "Explore Sri Lankan UGC courses and 2025/2026 requirements. Compare official 2025/2026 and 2024/2025 cutoffs, check entry requirements and build your own shortlist.",
+      "robots": "noindex,follow",
+      "header": "site-header portal-header",
+      "mainWords": 26,
+      "images": [],
+      "emptyLinks": []
+    }
+  ],
+  "data": {
+    "ugc": 255,
+    "other": 130,
+    "institutions": 33,
+    "otherInstitutions": 13,
+    "feesReported": 89,
+    "feeMissing": 41,
+    "requirementsMissing": 16,
+    "datesMissing": 12,
+    "durationMissing": 1,
+    "awardMissing": 0,
+    "verificationCounts": {
+      "reported_not_independently_verified": 130
+    },
+    "reportDates": [
+      "2026-11-05",
+      null
+    ],
+    "feesWithCaveats": 109
+  },
+  "switched": {
+    "formAction": "/pathways",
+    "institutionCards": [
+      "SLIIT",
+      "CINEC Campus",
+      "NSBM Green University",
+      "NIBM"
+    ]
+  },
+  "homeScopeAfterBack": "/explore",
+  "errors": []
+}

@@ -6,6 +6,8 @@ import {
   checkSubjectCombinationEligibility,
   checkSubjectEligibility,
   evaluateOlEligibility,
+  matchGradeDistribution,
+  evaluateCourseAcademicEligibility,
 } from '../ugcLogic';
 import { OL_REQUIREMENTS_BY_COURSE_CODE } from '../../data/sriLankaUgcSnapshot';
 import {
@@ -255,5 +257,115 @@ describe('ugcLogic — Sri Lankan UGC Z-Score & Preference Order Engine', () => 
     // 4. Null rule passes immediately
     const noRule = evaluateOlEligibility({ english: 'S' }, null);
     expect(noRule.meetsOl).toBe(true);
+  });
+
+  describe('Conservative Eligibility Engine & Multiset Grade Permutations', () => {
+    it('verifies Medicine grade distribution (2 Cs and 1 S) irrespective of subject array position', () => {
+
+      // 1. Permutation 1: Biology=S, Chemistry=C, Physics=C -> PASS
+      expect(matchGradeDistribution(['S', 'C', 'C'], ['C', 'C', 'S'])).toBe(true);
+
+      // 2. Permutation 2: Biology=C, Chemistry=S, Physics=C -> PASS
+      expect(matchGradeDistribution(['C', 'S', 'C'], ['C', 'C', 'S'])).toBe(true);
+
+      // 3. Permutation 3: Biology=C, Chemistry=C, Physics=S -> PASS
+      expect(matchGradeDistribution(['C', 'C', 'S'], ['C', 'C', 'S'])).toBe(true);
+
+      // 4. Higher grades: Biology=A, Chemistry=B, Physics=C -> PASS
+      expect(matchGradeDistribution(['A', 'B', 'C'], ['C', 'C', 'S'])).toBe(true);
+
+      // 5. Insufficient grades: Biology=C, Chemistry=S, Physics=S (only one C) -> FAIL
+      expect(matchGradeDistribution(['C', 'S', 'S'], ['C', 'C', 'S'])).toBe(false);
+
+      // 6. Insufficient grades: Biology=A, Chemistry=S, Physics=F -> FAIL
+      expect(matchGradeDistribution(['A', 'S', 'F'], ['C', 'C', 'S'])).toBe(false);
+    });
+
+    it('returns FURTHER_CHECKING_NEEDED for courses that require manual review (auto_decision_safe=false)', () => {
+
+      // Arts (019) has complex subject baskets and auto_decision_safe=false
+      const result = evaluateCourseAcademicEligibility({
+        courseCode: '019',
+        studentSubjects: [
+          { subject: 'Sinhala', grade: 'B' },
+          { subject: 'History', grade: 'B' },
+          { subject: 'Political Science', grade: 'C' },
+        ],
+        commonGeneralScore: 55,
+      });
+
+      expect(result.status).toBe('FURTHER_CHECKING_NEEDED');
+      expect(result.autoDecisionSafe).toBe(false);
+      expect(result.reason).toContain('manual review');
+      expect(result.sourceRequirementText).toBeDefined();
+    });
+
+    it('returns FURTHER_CHECKING_NEEDED when student subjects or grades are missing', () => {
+
+      const result = evaluateCourseAcademicEligibility({
+        courseCode: '001', // Medicine
+        studentSubjects: [],
+      });
+
+      expect(result.status).toBe('FURTHER_CHECKING_NEEDED');
+      expect(result.reason).toContain('not entered');
+    });
+
+    it('evaluates Medicine academic eligibility accurately with student subject combinations', () => {
+
+      // Eligible student with Biology S, Chemistry C, Physics C
+      const passResult = evaluateCourseAcademicEligibility({
+        courseCode: '001',
+        studentSubjects: [
+          { subject: 'Biology', grade: 'S' },
+          { subject: 'Chemistry', grade: 'C' },
+          { subject: 'Physics', grade: 'C' },
+        ],
+        commonGeneralScore: 40,
+      });
+      expect(passResult.status).toBe('ELIGIBLE');
+
+      // Ineligible student missing Biology
+      const missingSubResult = evaluateCourseAcademicEligibility({
+        courseCode: '001',
+        studentSubjects: [
+          { subject: 'Combined Mathematics', grade: 'A' },
+          { subject: 'Chemistry', grade: 'A' },
+          { subject: 'Physics', grade: 'A' },
+        ],
+        commonGeneralScore: 40,
+      });
+      expect(missingSubResult.status).toBe('NOT_ELIGIBLE');
+      expect(missingSubResult.reason).toContain('Biology');
+    });
+
+    it('handles negative historical cutoffs accurately without treating them as zero or NQC', () => {
+
+      const negMatch = classifyProgramMatch({
+        studentZ: 0.1500,
+        minZScore: -0.0096,
+        status: 'QUALIFIED',
+        allIslandMeritOnly: false,
+      });
+
+      expect(negMatch.tier).toBe('ABOVE_LAST_CUTOFF');
+      expect(negMatch.effectiveCutoff).toBe(-0.0096);
+      expect(negMatch.margin).toBeCloseTo(0.1596, 4);
+      expect(negMatch.label).toContain('-0.0096');
+    });
+
+    it('handles new offerings with NO_HISTORICAL_CUTOFF cleanly', () => {
+
+      const noCutoffMatch = classifyProgramMatch({
+        studentZ: 1.52,
+        minZScore: null,
+        status: 'NO_HISTORICAL_CUTOFF',
+        allIslandMeritOnly: false,
+      });
+
+      expect(noCutoffMatch.tier).toBe('NO_HISTORICAL_CUTOFF');
+      expect(noCutoffMatch.effectiveCutoff).toBeNull();
+      expect(noCutoffMatch.label).toContain('No 2024/25 Cutoff');
+    });
   });
 });

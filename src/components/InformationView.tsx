@@ -1,0 +1,220 @@
+import React, { useState } from "react";
+import { useApp } from "../context/AppContext";
+import type { ActiveRoute } from "../context/AppContext";
+import { Modal } from "./Modal";
+export function InformationView({ page }: { page: ActiveRoute }) {
+  const app = useApp(),
+    [reset, setReset] = useState(false),
+    [report, setReport] = useState("");
+  const copyReport = async () => {
+    const text = `UniPedia data correction\nPage: ${location.origin}${location.pathname}\nRequirements year: 2025/2026\nCutoff year: ${app.cutoffYear}\nCourse / Uni Code:\nHandbook section and printed page:\nCurrent value:\nCorrect value and official source:\n`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setReport(
+        "Correction template copied. This tool does not submit reports. You can also prepare a downloadable report on the Feedback & corrections page.",
+      );
+    } catch {
+      setReport(text);
+    }
+  };
+  return (
+    <div className="premium-page prose-page">
+      {page === "privacy" ? (
+        <>
+          <p className="eyebrow">Your information</p>
+          <h1>Privacy & device storage</h1>
+          <p>
+            Your district, selected stream, academic details, shortlist and
+            comparison choices are saved in this browser’s local storage. This
+            does not create an account or sync them between devices. Other
+            people using this browser profile may see those details.
+          </p>
+          <p>
+            The redesigned study tools do not submit your grades, Z score or
+            shortlist to a server. Filtered sharing links include the search,
+            stream, medium and district only. Printing creates a local browser
+            print job.
+          </p>
+          <p>
+            The site requests web fonts from Google Fonts. Your hosting provider
+            and external sites you choose to visit may process ordinary request
+            information, such as your IP address. This app has no analytics
+            tracking enabled in these tools.
+          </p>
+          <p>
+            Clearing browser data can remove your saved choices. Earlier
+            versions may have stored a saved plan backup on this device.
+          </p>
+          <button className="button secondary" onClick={() => setReset(true)}>
+            Clear UniPedia data on this device
+          </button>
+          <Modal
+            open={reset}
+            onClose={() => setReset(false)}
+            title="Clear saved data?"
+          >
+            <p>
+              This removes your UniPedia profile, shortlist, comparison and
+              older saved backups from this browser. This cannot be undone.
+            </p>
+            <div className="button-row">
+              <button
+                className="button secondary"
+                onClick={() => setReset(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="button primary"
+                onClick={() => {
+                  try {
+                    Object.keys(localStorage)
+                      .filter((k) => /^(unipedia_|lankavuz_)/.test(k))
+                      .forEach((k) => localStorage.removeItem(k));
+                    location.assign("/");
+                  } catch {
+                    setReport(
+                      "Browser storage could not be cleared. Use your browser’s site data settings.",
+                    );
+                    setReset(false);
+                  }
+                }}
+              >
+                Clear saved data
+              </button>
+            </div>
+          </Modal>
+        </>
+      ) : page === "terms" ? (
+        <>
+          <p className="eyebrow">Using UniPedia</p>
+          <h1>Terms of use</h1>
+          <p>
+            UniPedia is an independent educational planning project. It is not
+            operated by UGC or a university and does not submit applications or
+            make admission decisions.
+          </p>
+          <p>
+            Use the material as a starting point. Confirm requirements,
+            deadlines, fees, recognition and selection results with the official
+            authority before acting. Historical cutoffs cannot guarantee future
+            selection.
+          </p>
+          <p>
+            Automated checks cover only supported academic rules. Conditions
+            such as examination sittings, attempts, citizenship, previous
+            admissions, aptitude tests and exceptions can require individual
+            review.
+          </p>
+          <p>
+            External resources have their own terms. No payment, scholarship,
+            loan approval, salary or employment outcome is promised here.
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="eyebrow">Independent student planning</p>
+          <h1>About UniPedia & its sources</h1>
+          <p>
+            UniPedia helps Sri Lankan students explore study options, compare
+            handbook requirements and organize their own shortlist.
+          </p>
+          <h2>Choose the cutoff admission year</h2>
+          <p>
+            <strong>2025/2026:</strong> course offerings, requirements and
+            proposed intakes from that edition of the UGC handbook.
+          </p>
+          <p>
+            <strong>2025/2026 cutoffs:</strong> the default selection snapshot
+            comes from UGC’s separate official release dated 31 July 2026, based
+            on the 2025 A/L examination after re-scrutiny. It contains 260
+            stream/course/institution columns and 6,500 district cells covering
+            255 selectable offerings.
+          </p>
+          <p>
+            <strong>2024/2025 cutoffs:</strong> the previous snapshot comes from
+            Section 9 of the attached 2025/2026 handbook and is based on 2024
+            A/L results. The handbook’s edition year is not the year of its
+            cutoff tables. Both snapshots remain available; the year selector
+            controls which one you see.
+          </p>
+          <a
+            href="https://www.ugc.ac.lk/downloads/admissions/cutoff_2026/COP_2025_2026-ENGLISH_Final.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Official 2025/2026 cutoff PDF ↗
+          </a>
+          <h2>How the data was prepared</h2>
+          <p>
+            Navigation and common finder controls are available in English,
+            Sinhala and Tamil. Detailed guidance and the extracted handbook text
+            currently remain in English.
+          </p>
+          <p>
+            The handbook was extracted with Gemini / NotebookLM assistance into
+            ten Markdown files. Staged JSON records were checked against those
+            Markdown sources using extraction and validation scripts. This can
+            preserve transcription errors introduced during extraction.
+          </p>
+          <div className="notice">
+            <strong>
+              Original handbook requirement PDF review is still outstanding.
+            </strong>
+            <p>
+              Do not treat an AI extraction or a passing structural test as
+              proof that every handbook value is correct. Source records are
+              marked as needing review.
+            </p>
+            <p>
+              The separate 2025/2026 cutoff release was extracted directly from
+              UGC’s PDF. All 6,500 cells passed two text-extraction checks, all
+              headers were mapped to current offerings, and the three new or
+              changed course headings were visually checked. This does not
+              verify the separate handbook requirement transcription.
+            </p>
+          </div>
+          <p>
+            The current catalog contains 121 active courses and 255 selectable
+            Uni Code offerings. Separate campuses retain separate identifiers.
+            Suspended courses and the Additional Intake aggregate are not
+            offered as selectable choices.
+          </p>
+          <h2>What the results mean</h2>
+          <p>
+            Numeric cutoffs retain their published precision, including negative
+            values. NQC, absent history and stream category splits are kept
+            distinct. Unknown information stays unknown.
+          </p>
+          <p>
+            “Academic requirements match” means the entered details passed the
+            supported academic checks. It is not a complete eligibility or
+            admission decision. Rules requiring manual interpretation stay
+            marked “Further checking needed”.
+          </p>
+          <h2>Report a possible error</h2>
+          <p><a href="/contact">Prepare a feedback or correction report</a></p>
+          <p>
+            Include the Uni Code, handbook edition, section, printed page and
+            the official source showing the correction. Avoid sharing your
+            personal exam details.
+          </p>
+          <button className="button secondary" onClick={copyReport}>
+            Copy a correction template
+          </button>
+          <p className="small muted">
+            There is no submission service connected to this button.
+          </p>
+          <a href="https://www.ugc.ac.lk/" target="_blank" rel="noreferrer">
+            Open the official UGC website ↗
+          </a>
+        </>
+      )}
+      {report && (
+        <p className="notice source-prose" role="status">
+          {report}
+        </p>
+      )}
+    </div>
+  );
+}

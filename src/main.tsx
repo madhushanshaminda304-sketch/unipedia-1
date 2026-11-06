@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/tokens.css';
-import './lib/i18n';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./styles/app.css";
+import "./styles/design-tokens.css";
+import "./styles/portal.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import "./lib/i18n";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

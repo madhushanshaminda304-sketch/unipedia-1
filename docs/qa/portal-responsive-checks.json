@@ -1,0 +1,146 @@
+[
+  {
+    "path": "/explore?institution=nibm&level=Foundation",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/explore?institution=nibm&level=Foundation",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/explore?institution=nibm&level=Foundation",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/explore?institution=nibm&level=Foundation",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  },
+  {
+    "path": "/institutions/nsbm-green-university",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/institutions/nsbm-green-university",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/institutions/nsbm-green-university",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/institutions/nsbm-green-university",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  },
+  {
+    "path": "/programmes/nibm-research-14",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/programmes/nibm-research-14",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/programmes/nibm-research-14",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/programmes/nibm-research-14",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  },
+  {
+    "path": "/guides/understanding-z-scores",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/guides/understanding-z-scores",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/guides/understanding-z-scores",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/guides/understanding-z-scores",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  },
+  {
+    "path": "/shortlist",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/shortlist",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/shortlist",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/shortlist",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  },
+  {
+    "path": "/compare",
+    "viewport": 390,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "path": "/compare",
+    "viewport": 768,
+    "scrollWidth": 753,
+    "width": 753
+  },
+  {
+    "path": "/compare",
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  {
+    "path": "/compare",
+    "viewport": 1920,
+    "scrollWidth": 1905,
+    "width": 1905
+  }
+]

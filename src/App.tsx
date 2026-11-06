@@ -1,181 +1,325 @@
-import React, { useEffect } from 'react';
-import { AppProvider, useApp } from './context/AppContext';
-import { GlobalHeader } from './components/GlobalHeader';
-import { HomeDiscoveryView } from './components/HomeDiscoveryView';
-import { PredictorView } from './components/PredictorView';
-import {
-  PreferenceSimulatorView,
-  PreferenceSimulatorDrawer,
-} from './components/PreferenceSimulatorView';
-import { CompareEngineView } from './components/CompareEngineView';
-import { CareerAtlasAndQuizView } from './components/CareerAtlasAndQuizView';
-import {
-  InstitutionAndCourseProfileView,
-  AdmissionsCalendarView,
-} from './components/ProfileAndCalendarView';
-import { WelcomeSplashModal } from './components/WelcomeSplashModal';
-import { PrivateUniversitiesView } from './components/PrivateUniversitiesView';
-import { FloatingActionDock } from './components/FloatingActionDock';
-import { Toaster } from 'sonner';
+import React, { Suspense, lazy, useEffect } from "react";
+import { AppProvider, useApp } from "./context/AppContext";
+import { PortalProvider } from "./context/PortalContext";
+import { portalCopy } from "./lib/portalCopy";
+const Portal = lazy(() =>
+  import("./components/PortalPages").then((m) => ({ default: m.PortalPages })),
+);
+import { GlobalHeader } from "./components/GlobalHeader";
+import { PageSkeleton } from "./components/PageSkeleton";
+import { Toaster } from "sonner";
+import { copy } from "./lib/ui";
+import { routePath, readLocation } from "./lib/routes";
+import { NON_STATE_CATALOG } from "./lib/nonStateCatalog";
+import { GUIDES, slugify } from "./lib/portal";
+import type { ActiveRoute } from "./context/AppContext";
+import { getInstitutionById } from "./services/ugcAdapter";
+const Home = lazy(() =>
+  import("./components/HomeDiscoveryView").then((m) => ({
+    default: m.HomeDiscoveryView,
+  })),
+);
+const Finder = lazy(() =>
+  import("./components/PredictorView").then((m) => ({
+    default: m.PredictorView,
+  })),
+);
+const Plan = lazy(() =>
+  import("./components/PreferenceSimulatorView").then((m) => ({
+    default: m.PreferenceSimulatorView,
+  })),
+);
+const Compare = lazy(() =>
+  import("./components/CompareEngineView").then((m) => ({
+    default: m.CompareEngineView,
+  })),
+);
+const Interests = lazy(() =>
+  import("./components/CareerAtlasAndQuizView").then((m) => ({
+    default: m.CareerAtlasAndQuizView,
+  })),
+);
+const Profile = lazy(() =>
+  import("./components/ProfileAndCalendarView").then((m) => ({
+    default: m.InstitutionAndCourseProfileView,
+  })),
+);
+const Dates = lazy(() =>
+  import("./components/ProfileAndCalendarView").then((m) => ({
+    default: m.AdmissionsCalendarView,
+  })),
+);
+const NotFound = lazy(() =>
+  import("./components/ProfileAndCalendarView").then((m) => ({
+    default: m.RecordNotFound,
+  })),
+);
+const Pathways = lazy(() =>
+  import("./components/PrivateUniversitiesView").then((m) => ({
+    default: m.PrivateUniversitiesView,
+  })),
+);
+const Information = lazy(() =>
+  import("./components/InformationView").then((m) => ({
+    default: m.InformationView,
+  })),
+);
+const SiteUtilities = lazy(() =>
+  import("./components/SitePages").then((m) => ({ default: m.SitePages })),
+);
 
-const AppRouterContent: React.FC = () => {
-  const { route, district, setRoute, isWelcomeOpen, setIsWelcomeOpen } = useApp();
-
-  useEffect(() => {
-    const titles: Record<string, string> = {
-      home: `UniPedia.lk (${district.district_name}) — Sri Lanka UGC Cutoff Atlas & Higher Education Portal`,
-      predictor: `Course & Cutoff Finder (${district.district_name}) — UniPedia.lk`,
-      'my-plan': `My UGC Preference Order Simulator & Conflict Auditor — UniPedia.lk`,
-      compare: `4-Way University & UGC uni_code Comparator — UniPedia.lk`,
-      careers: `Sri Lanka Career-to-Degree Atlas & LKR Salary Guide — UniPedia.lk`,
-      'career-quiz': `3-Minute RIASEC & Klimov Career Compass Quiz — UniPedia.lk`,
-      calendar: `Sri Lanka UGC Admissions & Aptitude Test Calendar — UniPedia.lk`,
-      'private-unis': `Sri Lanka Private, Foreign & Non-State University Hub (${district.district_name}) — UniPedia.lk`,
-      institution: `University Profile & 25-District Cutoffs — UniPedia.lk`,
-      course: `UGC uni_code Course Cutoff Matrix & Reviews — UniPedia.lk`,
-    };
-    document.title = titles[route] ?? titles.home;
-  }, [route, district]);
-
+class ViewBoundary extends React.Component<
+  { children: React.ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? (
+      <div className="page empty-state" role="alert">
+        <h1>This page could not load.</h1>
+        <p>Your saved choices remain on this device. Reload to try again.</p>
+        <button className="button primary" onClick={() => location.reload()}>
+          Reload page
+        </button>
+      </div>
+    ) : (
+      this.props.children
+    );
+  }
+}
+function ResearchLanguage({ children }: { children: React.ReactNode }) {
+  const app = useApp();
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg-canvas)] text-[var(--color-text-primary)]">
+    <>
+      {app.lang !== "EN" && (
+        <p
+          className="portal-container language-note"
+          lang={app.lang.toLowerCase()}
+        >
+          {portalCopy(app.lang).english}
+        </p>
+      )}
+      <div lang="en">{children}</div>
+    </>
+  );
+}
+function AppContent() {
+  const app = useApp(),
+    c = copy(app.lang, app.cutoffYear);
+  useEffect(() => {
+    const pointer = () => {
+      document.documentElement.dataset.input = "pointer";
+    };
+    const keyboard = () => {
+      document.documentElement.dataset.input = "keyboard";
+    };
+    document.addEventListener("pointerdown", pointer, { passive: true });
+    document.addEventListener("keydown", keyboard);
+    return () => {
+      document.removeEventListener("pointerdown", pointer);
+      document.removeEventListener("keydown", keyboard);
+    };
+  }, []);
+  useEffect(() => {
+    document.getElementById("main-content")?.focus({ preventScroll: true });
+  }, [app.route]);
+  useEffect(() => {
+    const portalCode = readLocation(window.location).code;
+    const titles: Partial<Record<ActiveRoute, string>> = {
+      tools: "Student tools",
+      budget: "Study budget calculator",
+      contact: "Feedback & corrections",
+      sitemap: "Website sitemap",
+      home: "Explore Sri Lankan study options",
+      predictor: c.find,
+      "my-plan": c.plan,
+      compare: c.compare,
+      careers: c.careers,
+      "career-quiz": c.careers,
+      calendar: c.dates,
+      "private-unis": c.pathways,
+      explore: "UGC programmes",
+      institutions: "Universities & institutes",
+      guides: "Student guides",
+      programme:
+        NON_STATE_CATALOG.find((p) => p.id === portalCode)?.title || c.notFound,
+      "catalogue-institution":
+        NON_STATE_CATALOG.find((p) => slugify(p.institution) === portalCode)
+          ?.institution || c.notFound,
+      guide: GUIDES.find((g) => g.slug === portalCode)?.title || c.notFound,
+      about: c.about,
+      privacy: c.privacy,
+      terms: c.terms,
+      institution:
+        getInstitutionById(app.selectedInstitutionCode)?.official_name ||
+        c.notFound,
+      course:
+        app.districtPrograms.find((p) => p.uni_code === app.selectedUniCode)
+          ?.course_name || c.notFound,
+      "not-found": c.notFound,
+    };
+    document.title = `${titles[app.route] || "Study options"} · UniPedia.lk`;
+    const canonical = document.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+    if (canonical) {
+      const institutionRoute =
+        window.location.pathname === "/institutions" &&
+        new URLSearchParams(window.location.search).get("route") === "catalogue"
+          ? "?route=catalogue"
+          : "";
+      canonical.href = `https://unipedia.lk${window.location.pathname}${institutionRoute}`;
+    }
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", document.title);
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.append(robots);
+    }
+    robots.setAttribute(
+      "content",
+      ["my-plan", "compare", "not-found"].includes(app.route)
+        ? "noindex,follow"
+        : "index,follow",
+    );
+  }, [app.route, app.selectedUniCode, app.selectedInstitutionCode, app.lang]);
+  const footerLink = (route: ActiveRoute, label: string) => (
+    <a
+      href={routePath(route)}
+      onClick={(e) => {
+        e.preventDefault();
+        app.setRoute(route);
+      }}
+    >
+      {label}
+    </a>
+  );
+  return (
+    <div className="app-shell premium-application">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <GlobalHeader />
-
-      <main className="flex-1">
-        {route === 'home' && <HomeDiscoveryView />}
-        {route === 'predictor' && <PredictorView />}
-        {route === 'my-plan' && <PreferenceSimulatorView />}
-        {route === 'compare' && <CompareEngineView />}
-        {route === 'careers' && <CareerAtlasAndQuizView initialTab="atlas" />}
-        {route === 'career-quiz' && <CareerAtlasAndQuizView initialTab="quiz" />}
-        {route === 'calendar' && <AdmissionsCalendarView />}
-        {route === 'institution' && <InstitutionAndCourseProfileView mode="institution" />}
-        {route === 'course' && <InstitutionAndCourseProfileView mode="course" />}
-        {route === 'private-unis' && <PrivateUniversitiesView />}
+      <main id="main-content" tabIndex={-1}>
+        <ViewBoundary key={app.route}>
+          <Suspense
+            fallback={
+              <PageSkeleton
+                label={c.loading}
+                detail={[
+                  "course",
+                  "programme",
+                  "guide",
+                  "institution",
+                  "catalogue-institution",
+                ].includes(app.route)}
+              />
+            }
+          >
+            {[
+              "explore",
+              "institutions",
+              "programme",
+              "catalogue-institution",
+              "guides",
+              "guide",
+            ].includes(app.route) ? (
+              <ResearchLanguage>
+                <Portal />
+              </ResearchLanguage>
+            ) : ["tools", "budget", "contact", "sitemap"].includes(
+                app.route,
+              ) ? (
+              <SiteUtilities />
+            ) : app.route === "home" ? (
+              <Home />
+            ) : app.route === "predictor" ? (
+              <Finder />
+            ) : app.route === "my-plan" ? (
+              <Plan />
+            ) : app.route === "compare" ? (
+              <Compare />
+            ) : app.route === "careers" || app.route === "career-quiz" ? (
+              <Interests />
+            ) : app.route === "calendar" ? (
+              <Dates />
+            ) : app.route === "institution" || app.route === "course" ? (
+              <Profile mode={app.route} />
+            ) : app.route === "private-unis" ? (
+              <ResearchLanguage>
+                <Pathways />
+              </ResearchLanguage>
+            ) : ["about", "privacy", "terms"].includes(app.route) ? (
+              <Information page={app.route} />
+            ) : (
+              <NotFound />
+            )}
+          </Suspense>
+        </ViewBoundary>
       </main>
-
-      <PreferenceSimulatorDrawer />
-      <FloatingActionDock />
-      <WelcomeSplashModal isOpen={isWelcomeOpen} onClose={() => setIsWelcomeOpen(false)} />
-      <Toaster richColors position="top-center" />
-
-      {/* Authoritative Footer */}
-      <footer className="bg-[var(--primitive-obsidian-900)] text-slate-300 border-t border-slate-800 py-10 px-4 sm:px-6 lg:px-8 no-print">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center shadow-xs shrink-0">
-                <svg
-                  className="w-3.5 h-3.5 text-[#091929]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M6 5.5V14.5C6 16.8 8.7 18.2 12 19.8C15.3 18.2 18 16.8 18 14.5V6.5"
-                    stroke="currentColor"
-                    strokeWidth="2.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M14.8 9.2L18 5.5L21.2 9.2"
-                    stroke="currentColor"
-                    strokeWidth="2.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="font-extrabold text-base text-white">
-                Uni<span className="text-amber-400">Pedia</span><span className="text-slate-300 font-semibold text-xs">.lk</span>
-              </span>
-            </div>
-            <p className="text-slate-400 leading-relaxed">
-              UniPedia.lk — Sri Lanka's Higher Education Discovery, 25-District Z-Score Cutoff Atlas, UGC Preference Conflict Auditor, and MOHE Interest-Free Loan (IFSLS) Bridge.
+      <footer className="site-footer no-print">
+        <div className="footer-inner">
+          <div>
+            <a
+              className="brand"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                app.setRoute("home");
+              }}
+            >
+              Uni<span>Pedia</span>
+              <small>.lk</small>
+            </a>
+            <p>Make room for your next chapter.</p>
+            <p className="small">
+              Independent planning project. Not affiliated with UGC.
             </p>
           </div>
-
-          <div className="space-y-1.5">
-            <div className="font-bold text-white">Core UGC Admission Tools</div>
-            <ul className="space-y-1">
-              <li>
-                <button type="button" onClick={() => setRoute('predictor')} className="hover:text-amber-300">
-                  Course & Cutoff Finder
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => setRoute('my-plan')} className="hover:text-amber-300">
-                  My UGC Preference Order Simulator
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => setRoute('compare')} className="hover:text-amber-300">
-                  4-Way Degree & Loan Comparator
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-1.5">
-            <div className="font-bold text-white">Pathways & Counseling</div>
-            <ul className="space-y-1">
-              <li>
-                <button type="button" onClick={() => setRoute('careers')} className="hover:text-amber-300">
-                  Reverse Career-to-Degree Atlas
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => setRoute('career-quiz')} className="hover:text-amber-300">
-                  3-Minute RIASEC & Klimov Quiz
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => setRoute('private-unis')} className="hover:text-amber-300 text-amber-300 font-semibold">
-                  🏛️ Private, Foreign & IFSLS Degrees
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => setRoute('private-unis')} className="hover:text-amber-300">
-                  MOHE IFSLS & Non-State Admissions ↗
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-1.5">
-            <div className="font-bold text-white">Official Sri Lankan Portals</div>
-            <ul className="space-y-1">
-              <li>
-                <a href="https://www.ugc.ac.lk" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
-                  University Grants Commission (ugc.ac.lk)
-                </a>
-              </li>
-              <li>
-                <a href="https://studentloans.mohe.gov.lk" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
-                  MOHE Interest-Free Student Loans (IFSLS)
-                </a>
-              </li>
-              <li>
-                <a href="https://www.doenets.lk" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
-                  Department of Examinations (doenets.lk)
-                </a>
-              </li>
-            </ul>
-          </div>
+          <nav aria-label="Information">
+            {footerLink("explore", "UGC programmes")}
+            {footerLink("institutions", "Universities & institutes")}
+            {footerLink("guides", "Student guides")}
+            {footerLink("tools", "Student tools")}
+            {footerLink("contact", "Feedback & corrections")}
+            {footerLink("sitemap", "Sitemap")}
+            {footerLink("about", c.about)}
+            {footerLink("calendar", c.dates)}
+            {footerLink("private-unis", c.pathways)}
+            {footerLink("careers", c.careers)}
+            {footerLink("privacy", c.privacy)}
+            {footerLink("terms", c.terms)}
+          </nav>
+          <p className="small">
+            State UGC data: {c.historical}
+            <br />
+            {c.disclaimer}
+          </p>
         </div>
       </footer>
+      <Toaster
+        richColors
+        position="bottom-right"
+        closeButton
+        mobileOffset={{ bottom: "88px", left: "16px", right: "16px" }}
+        toastOptions={{ duration: 4000 }}
+      />
     </div>
   );
-};
-
+}
 export function App() {
   return (
     <AppProvider>
-      <AppRouterContent />
+      <PortalProvider>
+        <AppContent />
+      </PortalProvider>
     </AppProvider>
   );
 }
-
 export default App;

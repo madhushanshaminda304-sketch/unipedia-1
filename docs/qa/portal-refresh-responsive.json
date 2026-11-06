@@ -1,0 +1,198 @@
+[
+  {
+    "width": 375,
+    "route": "/",
+    "clipped": 0,
+    "overflow": false,
+    "title": "What do you want to study?"
+  },
+  {
+    "width": 375,
+    "route": "/explore",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC programmes"
+  },
+  {
+    "width": 375,
+    "route": "/pathways",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other programmes"
+  },
+  {
+    "width": 375,
+    "route": "/institutions",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC universities & institutes"
+  },
+  {
+    "width": 375,
+    "route": "/institutions?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other institutions"
+  },
+  {
+    "width": 375,
+    "route": "/compare",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 375,
+    "route": "/compare?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "clipped": 0,
+    "overflow": false,
+    "title": "What do you want to study?"
+  },
+  {
+    "width": 768,
+    "route": "/explore",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC programmes"
+  },
+  {
+    "width": 768,
+    "route": "/pathways",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other programmes"
+  },
+  {
+    "width": 768,
+    "route": "/institutions",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC universities & institutes"
+  },
+  {
+    "width": 768,
+    "route": "/institutions?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other institutions"
+  },
+  {
+    "width": 768,
+    "route": "/compare",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 768,
+    "route": "/compare?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 1280,
+    "route": "/",
+    "clipped": 0,
+    "overflow": false,
+    "title": "What do you want to study?"
+  },
+  {
+    "width": 1280,
+    "route": "/explore",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC programmes"
+  },
+  {
+    "width": 1280,
+    "route": "/pathways",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other programmes"
+  },
+  {
+    "width": 1280,
+    "route": "/institutions",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC universities & institutes"
+  },
+  {
+    "width": 1280,
+    "route": "/institutions?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other institutions"
+  },
+  {
+    "width": 1280,
+    "route": "/compare",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 1280,
+    "route": "/compare?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 1920,
+    "route": "/",
+    "clipped": 0,
+    "overflow": false,
+    "title": "What do you want to study?"
+  },
+  {
+    "width": 1920,
+    "route": "/explore",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC programmes"
+  },
+  {
+    "width": 1920,
+    "route": "/pathways",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other programmes"
+  },
+  {
+    "width": 1920,
+    "route": "/institutions",
+    "clipped": 0,
+    "overflow": false,
+    "title": "UGC universities & institutes"
+  },
+  {
+    "width": 1920,
+    "route": "/institutions?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Private & other institutions"
+  },
+  {
+    "width": 1920,
+    "route": "/compare",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  },
+  {
+    "width": 1920,
+    "route": "/compare?route=catalogue",
+    "clipped": 0,
+    "overflow": false,
+    "title": "Compare"
+  }
+]

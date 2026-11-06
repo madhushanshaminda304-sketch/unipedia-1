@@ -1,0 +1,439 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/explore",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/explore",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses?view=results",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses?view=results",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/pathways",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/pathways",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/MRT",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/MRT",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/MRT",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/MRT",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/CMB",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/universities/CMB",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions?route=catalogue",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions?route=catalogue",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions/sliit",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions/sliit",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions/nsbm-green-university",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/institutions/nsbm-green-university",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses/008G",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses/008G",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses/008G",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/courses/008G",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/programmes/nibm-research-01",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/programmes/nibm-research-01",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides/understanding-z-scores",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/guides/understanding-z-scores",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools/budget",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/tools/budget",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/shortlist",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/shortlist",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/shortlist",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/shortlist",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare?route=catalogue",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/compare?route=catalogue",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/dates",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/dates",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/interests",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/interests",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/about",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/about",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/contact",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/contact",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/privacy",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/privacy",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/terms",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/terms",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/sitemap",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/sitemap",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/sitemap",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "path": "/sitemap",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    }
+  ],
+  "sitemap": {
+    "count": 438,
+    "duplicates": 0,
+    "invalid": [],
+    "parseErrors": 0,
+    "personal": [],
+    "missing": []
+  },
+  "navigationRestored": true,
+  "lockedSavedPlanPreserved": true,
+  "comparison": true,
+  "budget": true,
+  "localFeedbackDownload": true,
+  "keyboardMenu": true,
+  "errors": []
+}

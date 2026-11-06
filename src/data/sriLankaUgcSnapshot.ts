@@ -1,3 +1,5 @@
+import type { ProgramCutoffViewRow } from './ugc/types';
+export type { ProgramCutoffViewRow };
 import type { SubjectRequirementsSpec } from '../lib/ugcLogic';
 
 export interface DistrictInfo {
@@ -3954,52 +3956,12 @@ export const ADMISSION_OPTIONS_SEED: AdmissionOptionSeed[] = [
   { uni_code: '140P', course_code: '140', institution_code: 'GWUIM', duration_years: 4, medium: ['E'], proposed_intake: 0, aptitude_test_required: false, all_island_merit_only: false, colombo_base_z: 1.1500, is_suspended: true },
 ];
 
-export interface ProgramCutoffViewRow {
-  uni_code: string;
-  course_code: string;
-  course_name: string;
-  stream: string;
-  faculty: string;
-  degree_awarded: string;
-  subject_requirements: SubjectRequirementsSpec;
-  course_description: string;
-  career_category: string;
-  institution_code: string;
-  institution_name: string;
-  institution_type: string;
-  institution_location: string;
-  institution_website: string;
-  duration_years: number;
-  medium: ('E' | 'S' | 'T')[];
-  proposed_intake: number;
-  aptitude_test_required: boolean;
-  all_island_merit_only: boolean;
-  district_id: number;
-  district_name: string;
-  academic_year: string;
-  min_z_score: number | null;
-  status: 'QUALIFIED' | 'NQC';
-  all_island_min_z: number;
-  all_island_max_z: number;
-  requires_ol_special?: boolean;
-  is_suspended?: boolean;
-  ol_rule?: OlRequirementRule | null;
-  ol_requirements_text?: string | null;
-  ol_short_badge?: string | null;
-  overview?: string;
-  al_requirements_summary?: string;
-  specializations?: string[];
-  special_intake_quota_note?: string | null;
-  aptitude_test_info?: string | null;
-  career_paths?: string[];
-  total_national_intake?: number;
-  differently_abled_quota?: number;
-}
+// ProgramCutoffViewRow is re-exported from ./ugc/types
 
 export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCutoffViewRow[] {
   const district = SRI_LANKA_DISTRICTS.find((d) => d.district_id === districtId) ?? SRI_LANKA_DISTRICTS[0];
 
-  return ADMISSION_OPTIONS_SEED.map((opt) => {
+  return (ADMISSION_OPTIONS_SEED.map((opt) => {
     const course = UGC_COURSES.find((c) => c.course_code === opt.course_code)!;
     const inst = UGC_INSTITUTIONS.find((i) => i.institution_code === opt.institution_code)!;
     const isNqc = opt.nqc_districts?.includes(districtId) ?? false;
@@ -4049,7 +4011,7 @@ export function buildProgramCutoffRowsForDistrict(districtId: number): ProgramCu
       total_national_intake: COURSE_MASTER_OVERVIEWS[opt.course_code]?.total_national_intake ?? 120,
       differently_abled_quota: COURSE_MASTER_OVERVIEWS[opt.course_code]?.differently_abled_quota ?? 5,
     };
-  });
+  }) as unknown as ProgramCutoffViewRow[]);
 }
 
 export type HigherEdTier =

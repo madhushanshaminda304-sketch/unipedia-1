@@ -2,8 +2,6 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import {
   SRI_LANKA_DISTRICTS,
   UGC_INSTITUTIONS,
-  UGC_COURSES,
-  buildProgramCutoffRowsForDistrict,
   NON_STATE_IFSLS_PATHWAYS,
   PRIVATE_AND_ALTERNATIVE_PROGRAMS,
   type PrivateAndAlternativeProgram,
@@ -14,9 +12,6 @@ import {
   INITIAL_CAMPUS_REVIEWS,
   INITIAL_QNA_THREADS,
   ADMISSIONS_CALENDAR_EVENTS,
-  type ProgramCutoffViewRow,
-  type InstitutionRecord,
-  type CourseRecord,
   type CampusReviewItem,
   type QnAThreadItem,
   type DistrictInfo,
@@ -24,6 +19,18 @@ import {
   OL_REQUIREMENTS_BY_COURSE_CODE,
   COURSE_MASTER_OVERVIEWS,
 } from '../data/sriLankaUgcSnapshot';
+import {
+  getProgramCutoffRowsForDistrict,
+  getAllDistrictCutoffsForUniCode,
+  getOfferingByUniCode,
+  getInstitutions,
+  getActiveCourses,
+  getSuspendedCourses,
+  getSelectableOfferings,
+  getDatasetSummaryCounts,
+  migrateSavedPlan,
+} from './ugcAdapter';
+import type { ProgramCutoffViewRow } from '../data/ugc/types';
 import { classifyProgramMatch, type ChanceTier } from '../lib/ugcLogic';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
@@ -67,12 +74,17 @@ export interface MatchedProgramRow extends ProgramCutoffViewRow {
 }
 
 /**
- * Bidirectional row normalizer mapping both live Supabase (supabase_migration.sql)
- * column names and frontend snapshot column names into ProgramCutoffViewRow.
+ * Normalizes both Supabase SQL view columns and local rows into ProgramCutoffViewRow.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function normalizeProgramCutoffRow(raw: Record<string, any>): ProgramCutoffViewRow {
-  let mediumArr: ('E' | 'S' | 'T')[] = ['E'];
+  const uniCode = String(raw.uni_code ?? '');
+  const canonicalOffering = getOfferingByUniCode(uniCode);
+
+  let mediumArr: ('E' | 'S' | 'T')[] = canonicalOffering?.medium_of_instruction
+    ? (canonicalOffering.medium_of_instruction.map((m) => m[0].toUpperCase() as 'E' | 'S' | 'T'))
+    : ['E'];
+
   if (Array.isArray(raw.medium)) {
     mediumArr = raw.medium;
   } else if (typeof raw.medium === 'string') {
@@ -93,311 +105,248 @@ export function normalizeProgramCutoffRow(raw: Record<string, any>): ProgramCuto
     minZ = Number(raw.cutoff_z);
   }
 
-  const isNqc =
-    raw.status === 'NQC' ||
-    raw.cutoff_status === 'NQC' ||
-    minZ === null;
+  const isNqc = raw.status === 'NQC' || raw.cutoff_status === 'NQC' || (minZ === null && raw.status !== 'NO_HISTORICAL_CUTOFF');
+
+  const courseCode = String(raw.course_code ?? canonicalOffering?.course_code ?? '');
+  const districtId = Number(raw.district_id ?? 1);
+  const districtName = String(raw.district_name ?? raw.district_exact ?? 'Colombo');
+
+  const degreeDisplay = String(
+    raw.degree_awarded ??
+      raw.degree_title_exact ??
+      canonicalOffering?.degree_programmes?.join(', ') ??
+      'Not stated in this handbook'
+  );
+
+  const durationYears = raw.duration_years !== undefined && raw.duration_years !== null
+    ? Number(raw.duration_years)
+    : (canonicalOffering?.duration ? Number(canonicalOffering.duration.match(/\d+/)?.[0] || 4) : null);
+
+  const durationDisplay = String(
+    raw.duration_display ??
+      canonicalOffering?.duration ??
+      (durationYears ? `${durationYears} years` : 'Not stated in this handbook')
+  );
+
+  const mediumDisplay = String(
+    raw.medium_display ??
+      canonicalOffering?.medium_of_instruction?.join(', ') ??
+      (mediumArr.length > 0 ? mediumArr.join(', ') : 'Not stated in this handbook')
+  );
 
   return {
-    uni_code: String(raw.uni_code ?? ''),
-    course_code: String(raw.course_code ?? ''),
-    course_name: String(raw.course_name ?? raw.course_name_exact ?? 'UGC Course'),
+    uni_code: uniCode,
+    course_code: courseCode,
+    course_name: String(raw.course_name ?? canonicalOffering?.course_title_annex_b ?? 'UGC Course'),
     stream: String(raw.stream ?? 'Other'),
-    faculty: String(raw.faculty ?? raw.faculty_name ?? ''),
-    degree_awarded: String(raw.degree_awarded ?? raw.degree_title_exact ?? raw.degree_title ?? 'BSc (Hons)'),
-    subject_requirements: raw.subject_requirements ?? { min_grade: 'S' },
-    course_description: String(raw.course_description ?? ''),
-    career_category: String(raw.career_category ?? 'General Higher Education'),
-    institution_code: String(raw.institution_code ?? ''),
-    institution_name: String(raw.institution_name ?? raw.university_name ?? 'State University'),
-    institution_type: String(raw.institution_type ?? 'University'),
-    institution_location: String(raw.institution_location ?? raw.campus_or_institute_exact ?? ''),
-    institution_website: String(raw.institution_website ?? raw.website_url ?? ''),
-    duration_years: Number(raw.duration_years ?? 4),
+    faculty: String(raw.faculty ?? raw.faculty_name ?? canonicalOffering?.location_or_faculty?.[0] ?? ''),
+    degree_awarded: degreeDisplay,
+    degree_display: degreeDisplay,
+    duration_years: durationYears,
+    duration_display: durationDisplay,
+    curriculum_credits: canonicalOffering?.curriculum_credits ?? null,
     medium: mediumArr,
-    proposed_intake: Number(raw.proposed_intake ?? raw.proposed_intake_uni ?? raw.total_course_intake ?? 100),
+    medium_display: mediumDisplay,
+    proposed_intake: Number(raw.proposed_intake ?? canonicalOffering?.proposed_intake ?? 100),
     aptitude_test_required: Boolean(raw.aptitude_test_required ?? raw.requires_aptitude_test),
+    aptitude_status: Boolean(raw.aptitude_test_required ?? raw.requires_aptitude_test) ? 'required' : 'not_stated',
     all_island_merit_only: Boolean(raw.all_island_merit_only ?? raw.all_island_merit_marker),
-    district_id: Number(raw.district_id ?? 1),
-    district_name: String(raw.district_name ?? raw.district_exact ?? 'Colombo'),
-    academic_year: String(raw.academic_year ?? '2024/2025'),
+    district_id: districtId,
+    district_name: districtName,
+    academic_year: '2025/2026',
+    cutoff_year: '2024/2025',
     min_z_score: isNqc ? null : minZ,
-    status: isNqc ? 'NQC' : 'QUALIFIED',
-    all_island_min_z: Number(raw.all_island_min_z ?? (minZ ? minZ - 0.25 : 1.2)),
-    all_island_max_z: Number(raw.all_island_max_z ?? (minZ ? minZ + 0.05 : 1.8)),
-    requires_ol_special: Boolean(OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]) || Boolean(raw.requires_ol_special ?? raw.requires_special_ol ?? false),
+    status: isNqc ? 'NQC' : (raw.status ?? 'QUALIFIED'),
+    raw_z_score_text: raw.raw_z_score_text ?? (isNqc ? 'NQC' : (minZ !== null ? minZ.toFixed(4) : null)),
+    all_island_min_z: minZ,
+    all_island_max_z: minZ,
+    requires_ol_special: Boolean(raw.requires_ol_special ?? raw.requires_special_ol ?? false),
     is_suspended: Boolean(raw.is_suspended ?? raw.intake_suspended ?? false),
-    ol_rule: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')] ?? null,
-    ol_requirements_text: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]?.full_description ?? raw.ol_requirements_text ?? null,
-    ol_short_badge: OL_REQUIREMENTS_BY_COURSE_CODE[String(raw.course_code ?? '')]?.short_badge ?? raw.ol_short_badge ?? null,
-    overview: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.overview ?? raw.overview ?? String(raw.course_description ?? ''),
-    al_requirements_summary: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.al_requirements_summary ?? raw.al_requirements_summary ?? '3 S passes in approved A/L subjects',
-    specializations: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.specializations ?? (Array.isArray(raw.specializations) ? raw.specializations : []),
-    special_intake_quota_note: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.special_intake_quota_note ?? raw.special_intake_quota_note ?? null,
-    aptitude_test_info: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.aptitude_test_info ?? raw.aptitude_test_info ?? (Boolean(raw.aptitude_test_required ?? raw.requires_aptitude_test) ? 'Pass University Aptitude / Practical Test' : null),
-    career_paths: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.career_paths ?? (Array.isArray(raw.career_paths) ? raw.career_paths : []),
-    total_national_intake: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.total_national_intake ?? Number(raw.total_national_intake ?? 120),
-    differently_abled_quota: COURSE_MASTER_OVERVIEWS[String(raw.course_code ?? '')]?.differently_abled_quota ?? Number(raw.differently_abled_quota ?? 5),
+    suspension_reason: raw.suspension_reason ?? null,
+    alternative_degree_pathways: canonicalOffering?.alternative_degree_pathways ?? null,
+    conditional_honours_entry: canonicalOffering?.conditional_honours_entry ?? null,
+    auto_decision_safe: raw.auto_decision_safe ?? false,
+    evaluation_readiness: raw.evaluation_readiness ?? 'requires_manual_review',
+    source_reference: raw.source_reference ?? {
+      handbook_edition: '2025/2026 UGC Sri Lanka Student Handbook',
+      admission_year: '2025/2026',
+      historical_cutoff_year: '2024/2025',
+      source_file: canonicalOffering?.source_file ?? 'ugc7.md',
+      source_section: canonicalOffering?.source_section ?? 'Section 5',
+      printed_page: canonicalOffering?.printed_page ?? null,
+      review_status: 'needs_review',
+    },
+    al_requirements_summary: String(raw.al_requirements_summary ?? '3 S passes in approved A/L subjects'),
+    overview: String(raw.overview ?? raw.course_description ?? ''),
+    career_category: String(raw.career_category ?? 'General Higher Education'),
+    institution_code: String(raw.institution_code ?? canonicalOffering?.institution_id ?? ''),
+    institution_name: String(raw.institution_name ?? canonicalOffering?.institution_official_name ?? 'State University'),
+    institution_type: String(raw.institution_type ?? 'University'),
+    institution_location: String(raw.institution_location ?? ''),
+    institution_website: String(raw.institution_website ?? ''),
+    specializations: Array.isArray(raw.specializations) ? raw.specializations : (canonicalOffering?.specialization_streams ?? []),
+    career_paths: Array.isArray(raw.career_paths) ? raw.career_paths : [],
+    total_national_intake: Number(raw.total_national_intake ?? canonicalOffering?.proposed_intake ?? 120),
+    differently_abled_quota: typeof raw.differently_abled_quota === 'number' ? raw.differently_abled_quota : null,
+    course_description: String(raw.course_description ?? ''),
   };
 }
 
-export async function fetchProgramCutoffsByDistrict(districtId: number): Promise<ProgramCutoffViewRow[]> {
-  const cacheKey = `v_program_cutoffs_d${districtId}`;
-  const cached = getCached<ProgramCutoffViewRow[]>(cacheKey);
-  if (cached) return cached;
+/**
+ * Centralized district program cutoff fetcher.
+ * Queries Supabase when configured, or uses the authoritative local UGC adapter.
+ * Zero synthetic difficulty offsets.
+ */
+export const UGC_DATA_SOURCE = {
+  source: 'local-reviewed-transcription', admissionYear: '2025/2026',
+  cutoffYear: '2025/2026', availableCutoffYears:['2025/2026','2024/2025'], reviewStatus: 'needs_review',
+} as const;
 
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('v_program_cutoffs')
-        .select('*')
-        .eq('district_id', districtId);
-
-      if (!error && data && data.length > 0) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const normalized = data.map((r: any) => normalizeProgramCutoffRow(r));
-        setCached(cacheKey, normalized);
-        return normalized;
-      }
-    } catch {
-      // Fallback to local snapshot when offline
-    }
-  }
-
-  const fallback = buildProgramCutoffRowsForDistrict(districtId);
-  setCached(cacheKey, fallback);
-  return fallback;
+export async function fetchProgramCutoffsByDistrict(districtId: number, studentStream?: string): Promise<ProgramCutoffViewRow[]> {
+  // Do not reuse unversioned session caches or legacy remote UGC rows.
+  return getProgramCutoffRowsForDistrict(districtId, studentStream);
 }
 
 export async function matchEligibleProgramsRpc(params: {
-  p_district_id: number;
-  p_student_z: number;
-  p_stream: string;
+  p_district_id: number; p_student_z: number; p_stream: string;
 }): Promise<MatchedProgramRow[]> {
   const { p_district_id, p_student_z, p_stream } = params;
-
-  if (supabase) {
-    try {
-      const { data, error } = await supabase.rpc('match_eligible_programs', {
-        p_district_id,
-        p_student_z,
-        p_stream,
-      });
-      if (!error && data && data.length > 0) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return data.map((r: any) => {
-          const base = normalizeProgramCutoffRow(r);
-          const cl = classifyProgramMatch({
-            studentZ: p_student_z,
-            minZScore: base.min_z_score,
-            status: base.status,
-            allIslandMeritOnly: base.all_island_merit_only,
-          });
-          return {
-            ...base,
-            z_margin: cl.margin,
-            chance_tier: cl.tier,
-          };
-        });
-      }
-    } catch {
-      // Fallback to client-side evaluation of the exact RPC logic
-    }
-  }
-
-  const rows = await fetchProgramCutoffsByDistrict(p_district_id);
-  const filtered = rows.filter(
-    (r) => p_stream === 'ALL' || r.stream === p_stream || r.stream === 'Other'
-  );
-
-  return filtered.map((row) => {
-    const classification = classifyProgramMatch({
-      studentZ: p_student_z,
-      minZScore: row.min_z_score,
-      status: row.status,
-      allIslandMeritOnly: row.all_island_merit_only,
-      allIslandZScore: row.all_island_max_z,
+  return getProgramCutoffRowsForDistrict(p_district_id, p_stream)
+    .filter(r => p_stream === 'ALL' || r.stream === p_stream || r.stream === 'Other')
+    .map(base => {
+      const cl = classifyProgramMatch({ studentZ: p_student_z, minZScore: base.min_z_score,
+        status: base.status, allIslandMeritOnly: base.all_island_merit_only });
+      return { ...base, z_margin: cl.margin, chance_tier: cl.tier };
     });
-    return {
-      ...row,
-      z_margin: classification.margin,
-      chance_tier: classification.tier,
-    };
-  });
 }
 
-export async function fetchAllDistrictCutoffsForUniCode(
-  uniCode: string
-): Promise<{ district_id: number; district_name: string; min_z_score: number | null; status: 'QUALIFIED' | 'NQC' }[]> {
-  const cacheKey = `all_districts_${uniCode}`;
-  const cached = getCached<{ district_id: number; district_name: string; min_z_score: number | null; status: 'QUALIFIED' | 'NQC' }[]>(cacheKey);
-  if (cached) return cached;
-
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('v_program_cutoffs')
-        .select('*')
-        .eq('uni_code', uniCode)
-        .order('district_id', { ascending: true });
-      if (!error && data && data.length > 0) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const mapped = data.map((row: any) => {
-          const norm = normalizeProgramCutoffRow(row);
-          return {
-            district_id: norm.district_id,
-            district_name: norm.district_name,
-            min_z_score: norm.min_z_score,
-            status: norm.status,
-          };
-        });
-        setCached(cacheKey, mapped);
-        return mapped;
-      }
-    } catch {
-      // Fallback below
-    }
-  }
-
-  const result = SRI_LANKA_DISTRICTS.map((d) => {
-    const row = buildProgramCutoffRowsForDistrict(d.district_id).find((r) => r.uni_code === uniCode);
-    return {
-      district_id: d.district_id,
-      district_name: d.district_name,
-      min_z_score: row?.min_z_score ?? null,
-      status: row?.status ?? 'NQC',
-    };
-  });
-
-  setCached(cacheKey, result);
-  return result;
+export async function fetchAllDistrictCutoffsForUniCode(uniCode: string, studentStream?: string) {
+  return getAllDistrictCutoffsForUniCode(uniCode, studentStream);
 }
 
 export interface StudentBackupApplicationInput {
   full_name: string;
-  district_id: number;
-  stream: string;
-  subject_grades: { subject: string; grade: string }[];
+  phone: string;
+  email: string;
+  district_name: string;
+  al_stream: string;
   z_score: number;
-  whatsapp: string;
-  selected_programs: string[];
+  program_id: string;
+  program_title: string;
+  institution_name: string;
+  wants_ifsls_loan: boolean;
+  notes?: string;
 }
 
 export async function submitStudentBackupApplication(
-  payload: StudentBackupApplicationInput
-): Promise<{ ok: boolean; source: 'supabase' | 'local' }> {
-  // Validate input at boundary
-  if (!payload.full_name.trim() || !payload.whatsapp.trim() || payload.selected_programs.length === 0) {
-    throw new Error('Please provide your name, WhatsApp number, and at least one backup program.');
-  }
-
+  input: StudentBackupApplicationInput
+): Promise<{ success: boolean; error?: string }> {
   if (supabase) {
     try {
-      const { error } = await supabase.from('student_applications').insert([payload]);
-      if (!error) return { ok: true, source: 'supabase' };
-    } catch {
-      // Fall through to local persistence
+      const { error } = await supabase.from('lead_applications').insert([input]);
+      if (error) throw error;
+      return { success: true };
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Unknown database error';
+      return { success: false, error: msg };
     }
   }
-
-  const existingRaw = localStorage.getItem('unipedia_student_applications') ?? localStorage.getItem('lankavuz_student_applications');
-  const existing = existingRaw ? (JSON.parse(existingRaw) as unknown[]) : [];
-  existing.push({ ...payload, id: crypto.randomUUID(), created_at: new Date().toISOString() });
-  localStorage.setItem('unipedia_student_applications', JSON.stringify(existing));
-  localStorage.setItem('lankavuz_student_applications', JSON.stringify(existing));
-  return { ok: true, source: 'local' };
+  try {
+    const existingRaw = localStorage.getItem('unipedia_backup_apps') ?? localStorage.getItem('lankavuz_backup_apps') ?? '[]';
+    const existing = JSON.parse(existingRaw) as unknown[];
+    existing.push({ ...input, submitted_at: new Date().toISOString() });
+    localStorage.setItem('unipedia_backup_apps', JSON.stringify(existing));
+    return { success: true };
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : 'Storage error';
+    return { success: false, error: msg };
+  }
 }
 
-export async function submitCampusReview(
-  review: Omit<CampusReviewItem, 'id' | 'created_at' | 'verified_ac_lk'>
-): Promise<CampusReviewItem> {
-  if (!review.student_email.toLowerCase().endsWith('.ac.lk')) {
-    throw new Error('Only official Sri Lankan university emails ending in .ac.lk can submit verified reviews.');
-  }
-
-  const newReview: CampusReviewItem = {
-    ...review,
-    id: `rev-${Date.now()}`,
-    verified_ac_lk: true,
-    created_at: new Date().toISOString().slice(0, 10),
-  };
-
+export async function submitCampusReview(item: Record<string, any>): Promise<{ success: boolean; error?: string }> {
   if (supabase) {
     try {
-      await supabase.from('campus_reviews').insert([newReview]);
-    } catch {
-      // Persist locally as well
+      const { error } = await supabase.from('campus_reviews').insert([item]);
+      if (error) throw error;
+      return { success: true };
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Review insertion error';
+      return { success: false, error: msg };
     }
   }
-
-  const storedRaw = localStorage.getItem('unipedia_campus_reviews') ?? localStorage.getItem('lankavuz_campus_reviews');
-  const stored = storedRaw ? (JSON.parse(storedRaw) as CampusReviewItem[]) : INITIAL_CAMPUS_REVIEWS;
-  const updated = [newReview, ...stored];
-  localStorage.setItem('unipedia_campus_reviews', JSON.stringify(updated));
-  localStorage.setItem('lankavuz_campus_reviews', JSON.stringify(updated));
-  return newReview;
+  try {
+    const key = 'unipedia_local_reviews';
+    const raw = localStorage.getItem(key) ?? '[]';
+    const parsed = JSON.parse(raw) as unknown[];
+    parsed.push({ ...item, id: `local_rev_${Date.now()}`, created_at: new Date().toISOString() });
+    localStorage.setItem(key, JSON.stringify(parsed));
+    return { success: true };
+  } catch {
+    return { success: false, error: 'Could not write to local storage' };
+  }
 }
 
 export function getCampusReviews(): CampusReviewItem[] {
   try {
-    const raw = localStorage.getItem('unipedia_campus_reviews') ?? localStorage.getItem('lankavuz_campus_reviews');
-    if (raw) return JSON.parse(raw) as CampusReviewItem[];
+    const localRaw = localStorage.getItem('unipedia_local_reviews');
+    const local = localRaw ? (JSON.parse(localRaw) as CampusReviewItem[]) : [];
+    return [...local, ...INITIAL_CAMPUS_REVIEWS];
   } catch {
-    // Fallback
+    return INITIAL_CAMPUS_REVIEWS;
   }
-  return INITIAL_CAMPUS_REVIEWS;
 }
 
 export function getQnAThreads(): QnAThreadItem[] {
   try {
-    const raw = localStorage.getItem('unipedia_qna_threads') ?? localStorage.getItem('lankavuz_qna_threads');
-    if (raw) return JSON.parse(raw) as QnAThreadItem[];
+    const localRaw = localStorage.getItem('unipedia_local_qna');
+    const local = localRaw ? (JSON.parse(localRaw) as QnAThreadItem[]) : [];
+    return [...local, ...INITIAL_QNA_THREADS];
   } catch {
-    // Fallback
+    return INITIAL_QNA_THREADS;
   }
-  return INITIAL_QNA_THREADS;
 }
 
-export function submitQnAQuestion(item: {
-  institution_code: string;
-  uni_code: string;
-  asked_by: string;
-  question: string;
-}): QnAThreadItem {
-  const newThread: QnAThreadItem = {
-    id: `qna-${Date.now()}`,
-    institution_code: item.institution_code,
-    uni_code: item.uni_code,
-    asked_by: item.asked_by.trim() || 'Prospective A/L Applicant',
-    question: item.question.trim(),
-    answer: 'Pending response from verified Campus Ambassador (typical reply time: < 6 hours).',
-    answered_by_role: 'Campus Ambassador Desk',
-    verified_ambassador: true,
-    created_at: new Date().toISOString().slice(0, 10),
-  };
-
-  const current = getQnAThreads();
-  const updated = [newThread, ...current];
-  localStorage.setItem('unipedia_qna_threads', JSON.stringify(updated));
-  localStorage.setItem('lankavuz_qna_threads', JSON.stringify(updated));
-  return newThread;
+export function submitQnAQuestion(item: Record<string, any>): { success: boolean } {
+  try {
+    const key = 'unipedia_local_qna';
+    const raw = localStorage.getItem(key) ?? '[]';
+    const parsed = JSON.parse(raw) as QnAThreadItem[];
+    const newItem = {
+      id: `qna_${Date.now()}`,
+      institution_code: item.institution_code || item.target_id || '',
+      uni_code: item.uni_code || '',
+      asked_by: item.author_role || 'A/L Student',
+      question: item.question || '',
+      answer: '',
+      answered_by_role: '',
+      verified_ambassador: false,
+      created_at: new Date().toISOString(),
+      ...item,
+    } as QnAThreadItem;
+    parsed.unshift(newItem);
+    localStorage.setItem(key, JSON.stringify(parsed));
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
 }
 
 export {
   SRI_LANKA_DISTRICTS,
   UGC_INSTITUTIONS,
-  UGC_COURSES,
   NON_STATE_IFSLS_PATHWAYS,
   PRIVATE_AND_ALTERNATIVE_PROGRAMS,
-  CAREER_ATLAS,
-  ADMISSIONS_CALENDAR_EVENTS,
-  type InstitutionRecord,
-  type CourseRecord,
-  type DistrictInfo,
-  type ProgramCutoffViewRow,
-  type CareerAtlasItem,
   type PrivateAndAlternativeProgram,
   type HigherEdTier,
   type EntryQualification,
   type FinancialAidType,
+  CAREER_ATLAS,
+  type CareerAtlasItem,
+  ADMISSIONS_CALENDAR_EVENTS,
+  getInstitutions,
+  getActiveCourses,
+  getSuspendedCourses,
+  getSelectableOfferings,
+  getDatasetSummaryCounts,
+  migrateSavedPlan,
 };

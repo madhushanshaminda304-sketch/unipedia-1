@@ -1,0 +1,34 @@
+{
+  "students-japura.webp": {
+    "source": "https://commons.wikimedia.org/wiki/File:University_Students_Studying_before_exams.jpg",
+    "author": "Dinesh De Alwis",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Resized, WebP conversion; displayed with CSS cropping",
+    "depicts": "Students studying before exams, Japura campus, Sri Lanka; 2013-11-26"
+  },
+  "colombo-skyline.jpg": {
+    "source": "https://commons.wikimedia.org/wiki/File:ColomboSkyline_-_November_2017_%281%29.jpg",
+    "author": "Rehman Abubakr",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "changes": "Wikimedia thumbnail where available; CSS cropping and background overlay; original photograph otherwise unchanged. Adapted image remains under its source license.",
+    "depicts": "Colombo skyline, including the Lotus Tower; November 2017"
+  },
+  "colombo-college-house.jpg": {
+    "source": "https://commons.wikimedia.org/wiki/File:UoC_College_House.jpg",
+    "author": "Cossde at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Wikimedia thumbnail where available; CSS cropping and background overlay; original photograph otherwise unchanged. Adapted image remains under its source license.",
+    "depicts": "College House, University of Colombo"
+  },
+  "nsbm-engineering.jpg": {
+    "source": "https://commons.wikimedia.org/wiki/File:NSBM_Green_University_-_FOE.jpg",
+    "author": "Osanda97",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "changes": "Wikimedia thumbnail where available; CSS cropping and background overlay; original photograph otherwise unchanged. Adapted image remains under its source license.",
+    "depicts": "Faculty of Engineering, NSBM Green University; April 2022"
+  }
+}

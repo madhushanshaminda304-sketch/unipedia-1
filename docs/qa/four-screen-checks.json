@@ -1,0 +1,112 @@
+{
+  "bounds": [
+    {
+      "name": "ugc-profile",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-profile",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-profile",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-profile",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-results",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-results",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-results",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "ugc-results",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "other-directory",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "other-directory",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "other-directory",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "other-directory",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "programme",
+      "width": 390,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "programme",
+      "width": 768,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "programme",
+      "width": 1280,
+      "overflow": false,
+      "escapes": []
+    },
+    {
+      "name": "programme",
+      "width": 1920,
+      "overflow": false,
+      "escapes": []
+    }
+  ],
+  "profileDraftIsolation": true,
+  "backForward": true,
+  "privateScoresNotInUrl": true,
+  "filtersReload": true,
+  "pagination": true,
+  "saving": true,
+  "comparison": true,
+  "nibmDetails": true,
+  "phoneKeyboardMenu": true,
+  "reducedMotion": true,
+  "zoomEquivalentViewport": true,
+  "errors": []
+}

@@ -1,0 +1,257 @@
+{
+  "checks": [
+    {
+      "width": 375,
+      "route": "/",
+      "title": "Find your course in Sri Lanka.",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/explore",
+      "title": "UGC programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/pathways",
+      "title": "Private & other programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/institutions?route=catalogue",
+      "title": "Private & other institutions",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/programmes/nibm-research-14",
+      "title": "Advanced Diploma in Advertising and Multimedia (Full Time)",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/courses",
+      "title": "Find courses",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/shortlist",
+      "title": "My shortlist",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/compare",
+      "title": "Compare",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 375,
+      "route": "/guides/planning-study-costs",
+      "title": "What will studying really cost?",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "title": "Find your course in Sri Lanka.",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/explore",
+      "title": "UGC programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/pathways",
+      "title": "Private & other programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/institutions?route=catalogue",
+      "title": "Private & other institutions",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/programmes/nibm-research-14",
+      "title": "Advanced Diploma in Advertising and Multimedia (Full Time)",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/courses",
+      "title": "Find courses",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/shortlist",
+      "title": "My shortlist",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/compare",
+      "title": "Compare",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "route": "/guides/planning-study-costs",
+      "title": "What will studying really cost?",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/",
+      "title": "Find your course in Sri Lanka.",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/explore",
+      "title": "UGC programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/pathways",
+      "title": "Private & other programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/institutions?route=catalogue",
+      "title": "Private & other institutions",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/programmes/nibm-research-14",
+      "title": "Advanced Diploma in Advertising and Multimedia (Full Time)",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/courses",
+      "title": "Find courses",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/shortlist",
+      "title": "My shortlist",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/compare",
+      "title": "Compare",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "route": "/guides/planning-study-costs",
+      "title": "What will studying really cost?",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/",
+      "title": "Find your course in Sri Lanka.",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/explore",
+      "title": "UGC programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/pathways",
+      "title": "Private & other programmes",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/institutions?route=catalogue",
+      "title": "Private & other institutions",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/programmes/nibm-research-14",
+      "title": "Advanced Diploma in Advertising and Multimedia (Full Time)",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/courses",
+      "title": "Find courses",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/shortlist",
+      "title": "My shortlist",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/compare",
+      "title": "Compare",
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "route": "/guides/planning-study-costs",
+      "title": "What will studying really cost?",
+      "overflow": false,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

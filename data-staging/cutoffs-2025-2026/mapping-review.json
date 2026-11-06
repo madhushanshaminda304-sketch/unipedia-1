@@ -1,0 +1,10 @@
+{
+  "unmatched": [],
+  "ignored": [
+    {
+      "page": 10,
+      "column": 21,
+      "reason": "empty trailing table cell"
+    }
+  ]
+}

@@ -29,3 +29,6 @@ dist-ssr
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Local design baselines, verification records and image tooling
+.hallmark/

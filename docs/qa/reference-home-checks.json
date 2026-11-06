@@ -1,0 +1,54 @@
+{
+  "bounds": [
+    {
+      "width": 375,
+      "height": 812,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "escaped": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "escaped": []
+    }
+  ],
+  "scopedSearch": true,
+  "keyboardSuggestions": true,
+  "keyboardRouteSwitch": true,
+  "mobileMenuEscape": true,
+  "imagesLoaded": true,
+  "reducedMotion": true,
+  "zoomEquivalentViewport": true,
+  "errors": []
+}
