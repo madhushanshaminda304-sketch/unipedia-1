@@ -25,6 +25,16 @@ describe("Discovery navigation and sitemap destinations", () => {
     ])
       expect(safeUgcReturn(value)).toBe("/courses?view=results");
   });
+  it("preserves complex search queries, hashes, and view parameters on return", () => {
+    const store = new Map<string, string>();
+    vi.stubGlobal("sessionStorage", {
+      getItem: (k: string) => store.get(k),
+      setItem: (k: string, v: string) => store.set(k, v),
+    });
+    const queryUrl = "/courses?view=results&stream=PHYSICAL&district=1&z=1.85&page=2#results-grid";
+    rememberUgcReturn(queryUrl);
+    expect(ugcReturnDestination()).toBe(queryUrl);
+  });
   it("survives unavailable session storage and remembers a filtered results URL", () => {
     expect(ugcReturnDestination()).toBe("/courses?view=results");
     const store = new Map<string, string>();

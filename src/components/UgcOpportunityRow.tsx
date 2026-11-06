@@ -34,9 +34,15 @@ export function UgcOpportunityRow({
           <h2>
             <a
               href={`/courses/${p.uni_code}`}
-              onClick={() =>
-                rememberUgcReturn(location.pathname + location.search)
-              }
+              onClick={(e) => {
+                rememberUgcReturn(
+                  location.pathname + location.search + location.hash,
+                );
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  app.openCourseProfile(p.uni_code);
+                }
+              }}
             >
               {p.course_name}
             </a>
@@ -92,7 +98,15 @@ export function UgcOpportunityRow({
         <a
           className="button primary"
           href={`/courses/${p.uni_code}`}
-          onClick={() => rememberUgcReturn(location.pathname + location.search)}
+          onClick={(e) => {
+            rememberUgcReturn(
+              location.pathname + location.search + location.hash,
+            );
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              app.openCourseProfile(p.uni_code);
+            }
+          }}
         >
           View programme
         </a>

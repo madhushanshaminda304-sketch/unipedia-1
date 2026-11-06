@@ -43,7 +43,22 @@ export function InstitutionAndCourseProfileView({
         <nav className="reference-breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span>/</span>
-          <a href={ugcReturnDestination()}>Back to courses</a>
+          <a
+            href={ugcReturnDestination()}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                const dest = ugcReturnDestination();
+                if (typeof window !== "undefined" && window.history.length > 1) {
+                  window.history.back();
+                } else {
+                  window.location.href = dest;
+                }
+              }
+            }}
+          >
+            Back to courses
+          </a>
           <span>/</span>
           <span>{program.course_name}</span>
         </nav>

@@ -1,10 +1,10 @@
 const RETURN_KEY = "unipedia_ugc_return_v1";
 export function safeUgcReturn(value: unknown) {
-  if (typeof value !== "string" || !/^\/(courses|explore)(?:\?|$)/.test(value))
+  if (typeof value !== "string" || !/^\/(courses|explore)(?:[?#]|$)/.test(value))
     return "/courses?view=results";
   try {
     const url = new URL(value, "https://unipedia.lk");
-    return url.pathname + url.search;
+    return url.pathname + url.search + url.hash;
   } catch {
     return "/courses?view=results";
   }
