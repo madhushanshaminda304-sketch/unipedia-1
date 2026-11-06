@@ -3616,6 +3616,28 @@ button:disabled,
   font-size: var(--text-xs);
   line-height: 16px;
 }
+.opportunity-tags .code-copy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--lavender-50);
+  border: 1px dashed var(--lavender-300, #c4b5fd);
+  border-radius: 4px;
+  color: var(--lavender-950);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.opportunity-tags .code-copy-badge:hover {
+  background: var(--lavender-100, #ede9fe);
+  border-color: var(--primary, #6366f1);
+}
+.opportunity-tags .code-copy-badge code {
+  font-weight: 600;
+}
 .eligibility-line {
   font-size: var(--text-xs);
   line-height: 20px;

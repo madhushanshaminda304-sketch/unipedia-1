@@ -9,7 +9,9 @@ import {
   BookmarkSimpleIcon,
   ArrowsLeftRightIcon,
   MapPinIcon,
+  CopyIcon,
 } from "@phosphor-icons/react";
+import { toast } from "sonner";
 export function UgcOpportunityRow({
   program: p,
 }: {
@@ -53,7 +55,28 @@ export function UgcOpportunityRow({
           </p>
           <div className="opportunity-tags">
             <span>{p.duration_display || "Duration not stated"}</span>
-            <span>{p.uni_code}</span>
+            <button
+              type="button"
+              className="code-copy-badge"
+              title={`Click to copy UGC code ${p.uni_code}`}
+              aria-label={`Copy UGC code ${p.uni_code}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                try {
+                  navigator.clipboard?.writeText(p.uni_code);
+                  toast.success(`Copied UGC code ${p.uni_code}`, {
+                    description: `${p.course_name} — ${p.institution_name}`,
+                    id: `copy-${p.uni_code}`,
+                    duration: 3000,
+                  });
+                } catch {
+                  toast.info(`UGC Code: ${p.uni_code}`);
+                }
+              }}
+            >
+              <code>{p.uni_code}</code>
+              <CopyIcon size={12} aria-hidden="true" />
+            </button>
             <span>{p.stream}</span>
           </div>
           <p className={`eligibility-line status-${academic.status}`}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { toast } from "sonner";
 import { AppProvider, useApp, type AppContextValue } from "./AppContext";
 function inspect() {
   let app: AppContextValue | undefined;
@@ -92,5 +93,14 @@ describe("First visit and saved state", () => {
     expect(app.planEntries[0].uni_code).toBe("096G");
     expect(app.planEntries[0].suggestedUniCode).toBe("117G");
     expect(storage.has("unipedia_pre_migration_backup")).toBe(true);
+  });
+  it("provides toast notifications when managing shortlist and changing district", () => {
+    const successSpy = vi.spyOn(toast, "success");
+    const infoSpy = vi.spyOn(toast, "info");
+    const app = inspect();
+    app.addToPlan("001A");
+    expect(successSpy).toHaveBeenCalled();
+    app.setDistrictId(2);
+    expect(infoSpy).toHaveBeenCalled();
   });
 });
