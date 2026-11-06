@@ -225,11 +225,12 @@ small {
   top: 8px;
 }
 .site-header {
-  background: var(--retained-colour-2);
+  background: #ffffff;
   position: sticky;
   top: 0;
-  z-index: 30;
-  box-shadow: 0 1px 0 var(--line);
+  z-index: 50;
+  border-bottom: 1px solid var(--line, #e2e8f0);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
 .header-inner {
   max-width: 1200px;
@@ -248,7 +249,7 @@ small {
   white-space: nowrap;
 }
 .brand span {
-  color: var(--green);
+  color: var(--primary, #5c1bb6);
 }
 .brand small {
   font-size: var(--text-sm);
@@ -271,7 +272,7 @@ small {
 }
 .desktop-nav a[aria-current],
 .mobile-nav a[aria-current] {
-  color: var(--green);
+  color: var(--primary, #5c1bb6);
   text-decoration: underline;
   text-underline-offset: 8px;
 }

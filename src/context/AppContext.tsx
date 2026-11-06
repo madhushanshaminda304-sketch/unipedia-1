@@ -200,7 +200,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const d = SRI_LANKA_DISTRICTS.find((item) => item.district_id === id);
     if (d) {
       setDistrictIdState(id);
-      toast.info(`Switched to ${d.district_name_en} District`, {
+      toast.info(`Switched to ${d.district_name} District`, {
         description: "Minimum cutoff Z-scores updated.",
         id: "district-change",
         duration: 2500,
@@ -297,20 +297,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       toast.error("Your shortlist has reached 125 choices.");
       return;
     }
-    toast.success(`Added ${offering.course_name} (${code}) to shortlist`, {
-      action: {
-        label: "Undo",
-        onClick: () => removeFromPlan(code),
+    toast.success(
+      `Added ${offering.course_title_unicode_table} (${code}) to shortlist`,
+      {
+        action: {
+          label: "Undo",
+          onClick: () => removeFromPlan(code),
+        },
+        id: `plan-${code}`,
+        duration: 4000,
       },
-      id: `plan-${code}`,
-      duration: 4000,
-    });
+    );
     setPlanEntries((prev) => [...prev, { uni_code: code, locked: false }]);
   };
   const removeFromPlan = (code: string) => {
     const offering = getOfferingByUniCode(code);
     if (offering) {
-      toast(`Removed ${offering.course_name} from shortlist`, {
+      toast(`Removed ${offering.course_title_unicode_table} from shortlist`, {
         action: {
           label: "Undo",
           onClick: () => addToPlan(code),

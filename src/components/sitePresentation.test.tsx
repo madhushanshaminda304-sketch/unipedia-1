@@ -11,6 +11,7 @@ import { CompareEngineView } from "./CompareEngineView";
 import { DegreeRoiCalculator } from "./DegreeRoiCalculator";
 import { CareerAtlasAndQuizView } from "./CareerAtlasAndQuizView";
 import { CourseDetails } from "./CourseDetails";
+import { PortalHeader } from "./PortalHeader";
 const fixture = vi.hoisted(() => ({ app: {} as any }));
 vi.mock("../context/AppContext", () => ({ useApp: () => fixture.app }));
 beforeEach(() => {
@@ -106,5 +107,12 @@ describe("Truthful site presentation", () => {
     expect(html).toContain("Select an area above");
     expect(html).not.toContain('class="course-card"');
     expect(html).not.toContain("Degrees you qualify");
+  });
+  it("renders the unified reference masthead with cap icon and brand lockup", () => {
+    const html = renderToStaticMarkup(<PortalHeader />);
+    expect(html).toContain("reference-header");
+    expect(html).toContain("brand-cap");
+    expect(html).toContain("UniPedia");
+    expect(html).toContain("Sri Lanka’s study explorer");
   });
 });
