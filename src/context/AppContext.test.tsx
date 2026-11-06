@@ -97,10 +97,36 @@ describe("First visit and saved state", () => {
   it("provides toast notifications when managing shortlist and changing district", () => {
     const successSpy = vi.spyOn(toast, "success");
     const infoSpy = vi.spyOn(toast, "info");
+    const toastSpy = vi.spyOn(toast, "message").mockImplementation(() => "id" as any);
+    const defaultToastSpy = vi.fn();
+    // sonner toast() is callable as a function
     const app = inspect();
-    app.addToPlan("001A");
-    expect(successSpy).toHaveBeenCalled();
+
+    // Silent district update (e.g. from URL sync on mount)
+    app.setDistrictId(2, { silent: true });
+    expect(infoSpy).not.toHaveBeenCalled();
+
+    // Interactive district update
     app.setDistrictId(2);
-    expect(infoSpy).toHaveBeenCalled();
+    expect(infoSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Gampaha"),
+      expect.objectContaining({ id: "district-change" }),
+    );
+
+    // Add to plan
+    app.addToPlan("001A");
+    expect(successSpy).toHaveBeenCalledWith(
+      expect.stringContaining("001A"),
+      expect.objectContaining({
+        action: expect.objectContaining({ label: "Undo" }),
+      }),
+    );
+
+    // Remove from plan
+    app.removeFromPlan("001A");
+    // Verify undo re-adds without stale closure error
+    const lastSuccessCall = successSpy.mock.calls[0];
+    const undoAction = (lastSuccessCall[1] as any)?.action;
+    expect(typeof undoAction?.onClick).toBe("function");
   });
 });

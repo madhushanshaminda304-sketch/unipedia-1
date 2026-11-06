@@ -73,7 +73,8 @@ export function UgcFinder() {
       const params = new URLSearchParams(location.search),
         current = appRef.current,
         next = makeDraft();
-      if (params.has("district")) current.setDistrictId(next.district);
+      if (params.has("district"))
+        current.setDistrictId(next.district, { silent: true });
       if (params.has("year")) current.setCutoffYear(next.year);
       if (params.has("stream") || (params.has("view") && params.has("year")))
         current.setStudentStream(next.stream);

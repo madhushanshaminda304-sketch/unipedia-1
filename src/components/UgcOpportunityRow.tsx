@@ -60,17 +60,24 @@ export function UgcOpportunityRow({
               className="code-copy-badge"
               title={`Click to copy UGC code ${p.uni_code}`}
               aria-label={`Copy UGC code ${p.uni_code}`}
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.stopPropagation();
                 try {
-                  navigator.clipboard?.writeText(p.uni_code);
+                  if (!navigator.clipboard?.writeText) {
+                    throw new Error("Clipboard API unavailable");
+                  }
+                  await navigator.clipboard.writeText(p.uni_code);
                   toast.success(`Copied UGC code ${p.uni_code}`, {
                     description: `${p.course_name} — ${p.institution_name}`,
                     id: `copy-${p.uni_code}`,
                     duration: 3000,
                   });
                 } catch {
-                  toast.info(`UGC Code: ${p.uni_code}`);
+                  toast.info(`UGC Code: ${p.uni_code}`, {
+                    description: `${p.course_name} — ${p.institution_name}`,
+                    id: `copy-${p.uni_code}`,
+                    duration: 4000,
+                  });
                 }
               }}
             >

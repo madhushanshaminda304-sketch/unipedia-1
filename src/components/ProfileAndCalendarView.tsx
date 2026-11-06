@@ -49,10 +49,10 @@ export function InstitutionAndCourseProfileView({
               if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
                 e.preventDefault();
                 const dest = ugcReturnDestination();
-                if (typeof window !== "undefined" && window.history.length > 1) {
-                  window.history.back();
-                } else {
-                  window.location.href = dest;
+                if (typeof window !== "undefined") {
+                  window.history.pushState(null, "", dest);
+                  window.dispatchEvent(new PopStateEvent("popstate"));
+                  window.scrollTo({ top: 0, behavior: "instant" });
                 }
               }
             }}

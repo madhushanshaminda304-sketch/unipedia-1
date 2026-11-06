@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
   useCallback,
+  useRef,
 } from "react";
 import { toast } from "sonner";
 import {
@@ -60,7 +61,7 @@ const initialLocation = () =>
 
 export interface AppContextValue {
   district: DistrictInfo;
-  setDistrictId: (id: number) => void;
+  setDistrictId: (id: number, options?: { silent?: boolean }) => void;
   isDistrictModalOpen: boolean;
   setIsDistrictModalOpen: (value: boolean) => void;
   lang: LanguageCode;
@@ -161,6 +162,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       persist("unipedia_pre_migration_backup", existing);
     return migrated.migratedEntries;
   });
+  const planEntriesRef = useRef(planEntries);
+  useEffect(() => {
+    planEntriesRef.current = planEntries;
+  }, [planEntries]);
   const [compareList, setCompareList] = useState<string[]>(() => {
     const saved = stored<string[]>("unipedia_compare_v2", []);
     return Array.isArray(saved)
@@ -196,17 +201,22 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       ),
     [district.district_id, studentStream, cutoffYear],
   );
-  const setDistrictId = useCallback((id: number) => {
-    const d = SRI_LANKA_DISTRICTS.find((item) => item.district_id === id);
-    if (d) {
-      setDistrictIdState(id);
-      toast.info(`Switched to ${d.district_name} District`, {
-        description: "Minimum cutoff Z-scores updated.",
-        id: "district-change",
-        duration: 2500,
-      });
-    }
-  }, []);
+  const setDistrictId = useCallback(
+    (id: number, options?: { silent?: boolean }) => {
+      const d = SRI_LANKA_DISTRICTS.find((item) => item.district_id === id);
+      if (d) {
+        setDistrictIdState(id);
+        if (!options?.silent) {
+          toast.info(`Switched to ${d.district_name} District`, {
+            description: "Minimum cutoff Z-scores updated.",
+            id: "district-change",
+            duration: 2500,
+          });
+        }
+      }
+    },
+    [],
+  );
   const setStudentZScore = useCallback(
     (z: number | null) =>
       setStudentZScoreState(z !== null && Number.isFinite(z) ? z : null),
@@ -278,7 +288,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     );
   const openCourseProfile = (code: string) => {
     if (["/courses", "/explore"].includes(window.location.pathname))
-      rememberUgcReturn(window.location.pathname + window.location.search);
+      rememberUgcReturn(
+        window.location.pathname +
+          window.location.search +
+          window.location.hash,
+      );
     setSelectedUniCode(code);
     navigate("course", code);
   };
@@ -286,14 +300,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setSelectedInstitutionCode(code);
     navigate("institution", code);
   };
-  const addToPlan = (code: string) => {
+  const addToPlan = useCallback((code: string) => {
     const offering = getOfferingByUniCode(code);
     if (!offering) {
       toast.error("This course is not available in the current catalog.");
       return;
     }
-    if (planEntries.some((p) => p.uni_code === code)) return;
-    if (planEntries.length >= 125) {
+    if (planEntriesRef.current.some((p) => p.uni_code === code)) return;
+    if (planEntriesRef.current.length >= 125) {
       toast.error("Your shortlist has reached 125 choices.");
       return;
     }
@@ -308,9 +322,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         duration: 4000,
       },
     );
-    setPlanEntries((prev) => [...prev, { uni_code: code, locked: false }]);
-  };
-  const removeFromPlan = (code: string) => {
+    setPlanEntries((prev) =>
+      prev.some((p) => p.uni_code === code)
+        ? prev
+        : [...prev, { uni_code: code, locked: false }],
+    );
+  }, []);
+  const removeFromPlan = useCallback((code: string) => {
     const offering = getOfferingByUniCode(code);
     if (offering) {
       toast(`Removed ${offering.course_title_unicode_table} from shortlist`, {
@@ -323,7 +341,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       });
     }
     setPlanEntries((prev) => prev.filter((p) => p.uni_code !== code));
-  };
+  }, []);
   const movePlanItem = (index: number, direction: "up" | "down") =>
     setPlanEntries((prev) => {
       const to = index + (direction === "up" ? -1 : 1);
