@@ -1,5 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowSquareOutIcon, CertificateIcon, GraduationCapIcon, WalletIcon } from "@phosphor-icons/react";
+import {
+  ArrowSquareOutIcon,
+  CaretDownIcon,
+  CertificateIcon,
+  GraduationCapIcon,
+  SlidersHorizontalIcon,
+  WalletIcon,
+} from "@phosphor-icons/react";
 import { useApp } from "../context/AppContext";
 import { usePortal } from "../context/PortalContext";
 import { readLocation } from "../lib/routes";
@@ -125,6 +132,8 @@ export function PortalExplore({
     results = filterDiscovery(rows, filters),
     pages = Math.max(1, Math.ceil(results.length / 12)),
     page = Math.min(pages, Math.floor(filters.page));
+  const isCatalogue = defaultRoute === "catalogue";
+  const activeFilters = activeExploreFilters(filters, institutions);
   return (
     <div
       className={`portal-container portal-directory${defaultRoute === "catalogue" ? " reference-screen catalogue-reference" : " reference-screen ugc-browse-reference"}`}
@@ -175,8 +184,11 @@ export function PortalExplore({
         }}
       >
         <Search size={22} aria-hidden="true" />
-        <label className="sr-only" htmlFor="explore-query">
-          Search programmes
+        <label
+          className={isCatalogue ? "catalogue-search-label" : "sr-only"}
+          htmlFor="explore-query"
+        >
+          {isCatalogue ? "Search the catalogue" : "Search programmes"}
         </label>
         <input
           id="explore-query"
@@ -188,10 +200,10 @@ export function PortalExplore({
         />
         <button className="button primary">Search</button>
       </form>
-      {activeExploreFilters(filters, institutions).length > 0 && (
+      {activeFilters.length > 0 && (
         <div className="active-filters" aria-label="Active programme filters">
           <span>Filtered by</span>
-          {activeExploreFilters(filters, institutions).map(({ key, label }) => (
+          {activeFilters.map(({ key, label }) => (
             <button
               className="filter-chip"
               key={key}
@@ -215,7 +227,20 @@ export function PortalExplore({
             open={filtersOpen}
             onToggle={(e) => setFiltersOpen(e.currentTarget.open)}
           >
-            <summary>Filter programmes</summary>
+            <summary>
+              {isCatalogue ? (
+                <>
+                  <span className="catalogue-filter-icon">
+                    <SlidersHorizontalIcon size={20} aria-hidden="true" />
+                  </span>
+                  <span>Filter programmes</span>
+                  {activeFilters.length > 0 && (
+                    <span className="catalogue-filter-count">{activeFilters.length} active</span>
+                  )}
+                  <CaretDownIcon className="catalogue-filter-chevron" size={18} aria-hidden="true" />
+                </>
+              ) : "Filter programmes"}
+            </summary>
             <div className="filter-stack">
               <label className="field">
                 Qualification
@@ -284,14 +309,21 @@ export function PortalExplore({
                   <option value="unknown">Ask institution</option>
                 </select>
               </label>
-              <button
-                className="text-link"
-                onClick={() =>
-                  update({ ...EMPTY_EXPLORE, route: defaultRoute })
-                }
-              >
-                Clear filters
-              </button>
+              {(!isCatalogue || activeFilters.length > 0) && (
+                <button
+                  className="text-link"
+                  onClick={() => {
+                    update({ ...EMPTY_EXPLORE, route: defaultRoute });
+                    if (isCatalogue) {
+                      requestAnimationFrame(() =>
+                        document.getElementById("explore-query")?.focus(),
+                      );
+                    }
+                  }}
+                >
+                  Clear filters
+                </button>
+              )}
               <a
                 className="filter-help"
                 href={
@@ -302,7 +334,7 @@ export function PortalExplore({
               >
                 {defaultRoute === "ugc"
                   ? "Check academic requirements and district cutoffs."
-                  : "Understand tuition, registration and living costs."}
+                  : "Guide to study costs"}
               </a>
             </div>
           </details>
