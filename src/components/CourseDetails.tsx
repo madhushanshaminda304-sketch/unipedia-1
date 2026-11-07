@@ -223,10 +223,8 @@ export function CourseDetails({
           )}
           <dt>Review status</dt>
           <dd>
-            Handbook requirements were extracted with AI assistance and checked
-            against Markdown; original handbook PDF review remains outstanding.
-            The 2025/2026 cutoffs are extracted directly from the official PDF
-            with cell and mapping validation.
+            Check entry requirements in the official handbook before applying.{" "}
+            <a href="/about">How we prepare and verify the data</a>
           </dd>
         </dl>
         <a href="https://www.ugc.ac.lk/" target="_blank" rel="noreferrer">

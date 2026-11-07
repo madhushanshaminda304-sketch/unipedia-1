@@ -154,13 +154,12 @@ export function ImportedProgrammeDetail({
               )}
             </section>
             <section id="programme-sources">
-              <h2>Research & sources</h2>
+              <h2>Sources</h2>
               <p className="small muted">
-                Report date: {source.report_date || "Not supplied"}. Programme
-                research has not been independently confirmed.
+                Report date: {source.report_date || "Not supplied"}
               </p>
               <details className="source-disclosure">
-                <summary>View supplied research details</summary>
+                <summary>View source details</summary>
                 <p>{source.source_document}</p>
                 <p>
                   Verification status:{" "}

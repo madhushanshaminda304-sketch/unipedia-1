@@ -63,6 +63,25 @@ describe("Truthful site presentation", () => {
     expect(html).toContain("16 course offerings");
     expect(html).not.toContain("University of Colombo");
   });
+  it("shows a district selector and renders the selected district’s cutoffs on Jaffna’s profile", () => {
+    fixture.app.selectedInstitutionCode = "UJA";
+    const colombo = renderToStaticMarkup(
+      <InstitutionAndCourseProfileView mode="institution" />,
+    );
+    expect(colombo).toContain("Admission district");
+    expect(colombo).toContain('<option value="1" selected="">Colombo</option>');
+    expect(colombo).toContain("2025/2026 · Colombo");
+
+    fixture.app.district = { district_id: 10, district_name: "Jaffna" };
+    fixture.app.districtPrograms = getProgramCutoffRowsForDistrict(10);
+    const jaffna = renderToStaticMarkup(
+      <InstitutionAndCourseProfileView mode="institution" />,
+    );
+    expect(jaffna).toContain('<option value="10" selected="">Jaffna</option>');
+    expect(jaffna).toContain("2025/2026 · Jaffna");
+    expect(jaffna).toContain("21 course offerings");
+    expect(jaffna).not.toContain("2025/2026 · Colombo");
+  });
   it("shows a missing record rather than a university fallback", () => {
     fixture.app.selectedInstitutionCode = "MISSING";
     expect(

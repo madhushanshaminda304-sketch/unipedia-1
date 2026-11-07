@@ -473,7 +473,7 @@ export function PortalPages() {
           <p>
             {institutionScope === "ugc"
               ? "Institutions participating in central UGC admissions."
-              : "Institutions offering direct entry and other application routes. Inclusion does not establish recognition or ownership."}
+              : "Browse institutions with direct entry and other application routes."}
           </p>
         </div>
         <DiscoveryRouteLinks scope={institutionScope} institutions />
@@ -526,7 +526,7 @@ export function PortalPages() {
         kind="catalogue"
         website={institution.website ? new URL(institution.website).origin : ""}
         location={institution.location}
-        source="Supplied programme research. Dates, fees and verification caveats are available on each programme page. Inclusion does not establish ownership, recognition or accreditation."
+        source="Find fee details and source links on each programme page."
         programmes={rows.filter(
           (p) =>
             p.ref.kind === "catalogue" && p.institutionId === institution.id,

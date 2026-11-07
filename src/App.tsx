@@ -277,10 +277,7 @@ function AppContent() {
               Uni<span>Pedia</span>
               <small>.lk</small>
             </a>
-            <p>Make room for your next chapter.</p>
-            <p className="small">
-              Independent planning project. Not affiliated with UGC.
-            </p>
+            <p>Explore higher education in Sri Lanka.</p>
           </div>
           <nav aria-label="Information">
             {footerLink("explore", "UGC programmes")}
@@ -297,9 +294,7 @@ function AppContent() {
             {footerLink("terms", c.terms)}
           </nav>
           <p className="small">
-            State UGC data: {c.historical}
-            <br />
-            {c.disclaimer}
+            {c.historical}
           </p>
         </div>
       </footer>

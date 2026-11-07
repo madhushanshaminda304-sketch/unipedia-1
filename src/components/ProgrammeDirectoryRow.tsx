@@ -28,11 +28,6 @@ export function ProgrammeDirectoryRow({
       <div className="catalogue-row-fee">
         <small>Reported fee & payment basis</small>
         <p>{p.fee}</p>
-        {p.source?.fee_notes && (
-          <small>
-            Fee notes and caveats are available in programme details.
-          </small>
-        )}
       </div>
       <div className="catalogue-row-actions">
         <a className="button primary" href={p.href}>

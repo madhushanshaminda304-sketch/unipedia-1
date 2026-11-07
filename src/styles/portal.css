@@ -5535,8 +5535,18 @@ button:disabled,
 .institution-programmes {
   margin: 24px 0;
 }
-.institution-programmes > .field {
+.institution-programme-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   max-width: 720px;
+}
+.institution-programme-filters > .field {
+  flex: 2 1 300px;
+  min-width: 0;
+}
+.institution-programme-filters > .field + .field {
+  flex: 1 1 200px;
 }
 .institution-programmes .portal-section-head h2 {
   font-size: var(--text-2xl);

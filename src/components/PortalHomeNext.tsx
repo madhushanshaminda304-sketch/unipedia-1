@@ -405,11 +405,6 @@ export function PortalHome() {
               <ProgrammeCard key={p.key} programme={p} />
             ))}
           </div>
-          <p className="section-footnote">
-            {scope === "ugc"
-              ? "Cutoffs are historical references. A subject match does not establish academic eligibility."
-              : "Fees retain their reported payment period. Confirm the current total with the institution."}
-          </p>
         </div>
       </section>
       <section className="portal-container discovery-section">
@@ -514,9 +509,7 @@ export function PortalHome() {
           </a>
           . Images resized by Wikimedia where available and cropped for display;
           the skyline has a colour overlay. Adapted photographs retain their
-          respective licenses. These are examples of campus architecture and do
-          not represent every institution in either pathway. Inclusion does not
-          imply endorsement.
+          respective licenses.
         </p>
       </details>
     </div>

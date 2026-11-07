@@ -253,11 +253,6 @@ export function UgcFinder() {
                   Discover UGC programmes and compare your results with
                   published historical admission cutoffs.
                 </p>
-                <p className="reference-warning">
-                  <InfoIcon size={18} aria-hidden="true" />
-                  Historical cutoffs are a reference and do not guarantee
-                  admission.
-                </p>
               </div>
               <figure>
                 <img
@@ -585,8 +580,7 @@ export function UgcFinder() {
             )}
             <p className="reference-warning">
               <InfoIcon size={18} />
-              Historical comparisons do not guarantee admission. Academic checks
-              are separate.
+              Compare your score with past cutoffs and check each programme’s entry requirements.
             </p>
             <details className="reference-refinements">
               <summary>Refine results</summary>

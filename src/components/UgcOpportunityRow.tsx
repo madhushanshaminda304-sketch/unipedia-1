@@ -118,11 +118,6 @@ export function UgcOpportunityRow({
           Number.isFinite(app.studentZScore) && (
             <small>Your Z-score: {app.studentZScore.toFixed(4)}</small>
           )}
-        <small>
-          {comparison === "unavailable"
-            ? "Check published status and stream category."
-            : "Historical comparison only; admission is not guaranteed."}
-        </small>
       </div>
       <div className="opportunity-actions">
         <a

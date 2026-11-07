@@ -119,6 +119,7 @@ export function InformationView({ page }: { page: ActiveRoute }) {
             UniPedia helps Sri Lankan students explore study options, compare
             handbook requirements and organize their own shortlist.
           </p>
+          <p>UniPedia is an independent student planning site.</p>
           <h2>Choose the cutoff admission year</h2>
           <p>
             <strong>2025/2026:</strong> course offerings, requirements and
@@ -145,35 +146,25 @@ export function InformationView({ page }: { page: ActiveRoute }) {
           >
             Official 2025/2026 cutoff PDF ↗
           </a>
-          <h2>How the data was prepared</h2>
-          <p>
-            Navigation and common finder controls are available in English,
-            Sinhala and Tamil. Detailed guidance and the extracted handbook text
-            currently remain in English.
-          </p>
-          <p>
-            The handbook was extracted with Gemini / NotebookLM assistance into
-            ten Markdown files. Staged JSON records were checked against those
-            Markdown sources using extraction and validation scripts. This can
-            preserve transcription errors introduced during extraction.
-          </p>
-          <div className="notice">
-            <strong>
-              Original handbook requirement PDF review is still outstanding.
-            </strong>
+          <h2>Data sources and verification</h2>
+          <p>Check the official UGC handbook for entry requirements before applying.</p>
+          <details>
+            <summary>How we prepare and verify the data</summary>
             <p>
-              Do not treat an AI extraction or a passing structural test as
-              proof that every handbook value is correct. Source records are
-              marked as needing review.
+              We transcribed the handbook with Gemini and NotebookLM assistance
+              and checked the resulting records against that transcription.
+              A review of the requirements against the original PDF is still pending.
             </p>
             <p>
-              The separate 2025/2026 cutoff release was extracted directly from
-              UGC’s PDF. All 6,500 cells passed two text-extraction checks, all
-              headers were mapped to current offerings, and the three new or
-              changed course headings were visually checked. This does not
-              verify the separate handbook requirement transcription.
+              The 2025/2026 cutoffs come directly from the official UGC release.
+              We cross-checked all 6,500 district cells and matched the course
+              headings to the current catalogue.
             </p>
-          </div>
+            <p>
+              Navigation and common finder controls are available in English,
+              Sinhala and Tamil. Detailed guidance and handbook text are in English.
+            </p>
+          </details>
           <p>
             The current catalog contains 121 active courses and 255 selectable
             Uni Code offerings. Separate campuses retain separate identifiers.

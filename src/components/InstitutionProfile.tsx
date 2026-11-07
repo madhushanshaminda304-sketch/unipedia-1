@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useApp } from "../context/AppContext";
+import { SRI_LANKA_DISTRICTS } from "../data/sriLankaUgcSnapshot";
 import type { DiscoveryProgramme } from "../lib/portal";
 import {
   InstitutionVisual,
@@ -34,6 +36,7 @@ export function InstitutionProfile({
   source: string;
   programmes: DiscoveryProgramme[];
 }) {
+  const { district, setDistrictId } = useApp();
   const research = kind === "ugc" ? INSTITUTION_PROFILES[id] : undefined;
   website = research?.website || website;
   location = research?.address || location;
@@ -129,7 +132,7 @@ export function InstitutionProfile({
           <dd>
             {kind === "ugc"
               ? "UGC handbook 2025/2026"
-              : "Supplied programme research"}
+              : "Programme sources"}
           </dd>
         </div>
       </dl>
@@ -144,16 +147,11 @@ export function InstitutionProfile({
       </nav>
       <div className="institution-overview-layout">
         <section className="premium-panel" id="institution-overview">
-          <h2>About this listing</h2>
+          <h2>Overview</h2>
           <p>
             {research?.overview || (kind === "ugc"
               ? `${name} is included in the UGC handbook records used by UniPedia. Browse its listed course offerings and check programme-specific requirements and historical district cutoffs.`
               : `This profile brings together the supplied programme reports for ${name}. Compare durations, entry requirements, awarding bodies and reported fee periods before contacting the institution.`)}
-          </p>
-          <p className="small muted">
-            Directory inclusion does not establish recognition or accreditation.
-            Programme availability and current facts should be confirmed with
-            the official institution.
           </p>
         </section>
         <aside className="premium-panel quick-links">
@@ -177,15 +175,32 @@ export function InstitutionProfile({
             <p>{programmes.length} listings from the current catalogue</p>
           </div>
         </div>
-        <label className="field">
-          Find a programme at {name}
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search programme titles or subjects"
-          />
-        </label>
+        <div className="institution-programme-filters">
+          <label className="field">
+            Find a programme at {name}
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search programme titles or subjects"
+            />
+          </label>
+          {kind === "ugc" && (
+            <label className="field">
+              Admission district
+              <select
+                value={district.district_id}
+                onChange={(e) => setDistrictId(Number(e.target.value))}
+              >
+                {SRI_LANKA_DISTRICTS.map((option) => (
+                  <option key={option.district_id} value={option.district_id}>
+                    {option.district_name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
         <p className="small muted" role="status">
           {choices.length} matching programmes
         </p>
@@ -225,7 +240,7 @@ export function InstitutionProfile({
       <section id="institution-sources" className="premium-panel">
         <h2>Sources & contact</h2>
         {research ? <>
-          <p>Report research date: <time dateTime={research.reportDate}>{new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(research.reportDate))}</time>. Central address and general telephone numbers checked against the official university contact directory.</p>
+          <p>Report research date: <time dateTime={research.reportDate}>{new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(research.reportDate))}</time></p>
           <p><strong>Central university address:</strong> {research.address}</p>
           <p><strong>General university telephone numbers:</strong></p>
           <ul>{research.telephones.map((phone) => <li key={phone}><a href={`tel:${phone.replace(/ /g, "")}`}>{phone}</a></li>)}</ul>
@@ -237,7 +252,6 @@ export function InstitutionProfile({
             <p>Use the official contact directory for email and office-specific enquiries.</p>
           )}
           <ul>{research.sources.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}</ul>
-          <p className="small muted">Programme requirements and historical cutoffs continue to use the existing UGC catalogue sources.</p>
         </> : <><p>{source}</p>{contact && <p>Contact listed in the source: {contact}</p>}</>}
         {website && (
           <a href={website} target="_blank" rel="noreferrer">
