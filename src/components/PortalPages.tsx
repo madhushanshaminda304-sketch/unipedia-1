@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { ArrowSquareOutIcon, CertificateIcon, GraduationCapIcon, WalletIcon } from "@phosphor-icons/react";
 import { useApp } from "../context/AppContext";
 import { usePortal } from "../context/PortalContext";
 import { readLocation } from "../lib/routes";
@@ -369,19 +370,56 @@ export function PortalExplore({
     </div>
   );
 }
+const pathwayResources = [
+  {
+    title: "Interest-free student loans",
+    description: "Check eligibility and how the government loan scheme works for selected degrees.",
+    action: "Read the loan FAQ",
+    href: "https://studentloans.mohe.gov.lk/loan_application/index.php/login/faq",
+    icon: WalletIcon,
+  },
+  {
+    title: "SLIATE diplomas",
+    description: "Explore Higher National Diplomas in areas such as IT, engineering, accountancy and English.",
+    action: "Browse diplomas",
+    href: "https://www.sliate.ac.lk/course",
+    icon: CertificateIcon,
+  },
+  {
+    title: "Open University programmes",
+    description: "Explore programmes by subject, qualification and delivery mode.",
+    action: "Find a programme",
+    href: "https://ou.ac.lk/find-a-programme/",
+    icon: GraduationCapIcon,
+  },
+];
+
 export function PortalPathways() {
   return (
     <>
       <PortalExplore defaultRoute="catalogue" />
       <section id="study-budget" className="portal-container portal-section">
         <DegreeRoiCalculator />
-        <div className="resource-list">
-          <a href="https://studentloans.mohe.gov.lk/loan_web/">
-            Official student loan information
-          </a>
-          <a href="https://www.sliate.ac.lk/">SLIATE programme information</a>
-          <a href="https://ou.ac.lk/">Open University programme information</a>
-        </div>
+        <section className="pathway-resources" aria-labelledby="pathway-resources-title">
+          <h2 id="pathway-resources-title">Plan your next step</h2>
+          <ul className="pathway-resource-grid">
+            {pathwayResources.map(({ title, description, action, href, icon: Icon }) => (
+              <li key={href}>
+                <a className="pathway-resource-card" href={href} target="_blank" rel="noreferrer">
+                  <span className="pathway-resource-icon">
+                    <Icon size={22} aria-hidden="true" />
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                  <span className="pathway-resource-action">
+                    {action} <ArrowSquareOutIcon size={16} aria-hidden="true" />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </section>
     </>
   );
