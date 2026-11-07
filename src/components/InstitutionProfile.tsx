@@ -229,7 +229,13 @@ export function InstitutionProfile({
           <p><strong>Central university address:</strong> {research.address}</p>
           <p><strong>General university telephone numbers:</strong></p>
           <ul>{research.telephones.map((phone) => <li key={phone}><a href={`tel:${phone.replace(/ /g, "")}`}>{phone}</a></li>)}</ul>
-          <p>A single general university email is not listed. Use the official contact directory for office-specific contacts; faculty contacts are separate.</p>
+          {research.email ? (
+            <p><strong>General university email:</strong>{" "}
+              <a href={`mailto:${research.email}`}>{research.email}</a>
+            </p>
+          ) : (
+            <p>Use the official contact directory for email and office-specific enquiries.</p>
+          )}
           <ul>{research.sources.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}</ul>
           <p className="small muted">Programme requirements and historical cutoffs continue to use the existing UGC catalogue sources.</p>
         </> : <><p>{source}</p>{contact && <p>Contact listed in the source: {contact}</p>}</>}
